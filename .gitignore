@@ -1,0 +1,11 @@
+# directories
+docs/worksheet/
+docs/homework/
+docs/exam/
+docs/roster/
+docs/instructor-materials/
+
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
