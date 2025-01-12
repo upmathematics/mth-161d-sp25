@@ -78,7 +78,7 @@ refs <- bibtex::read.bib("../references.bib")
 
 The syllabus, tentative topics schedule, and other information are posted on the course website.
 
-> You can access the course website at [mth-161d-sp25](){target="_blank"}.
+> You can access the course website at [mth-161d-sp25](https://upmathematics.github.io/mth-161d-sp25/){target="_blank"}.
 
 Note that this website can also be viewed in Teams.
 
@@ -248,9 +248,9 @@ Note that these are recommendations so that you can get the most out of the help
 
 I expect you to participate in the class through lectures, discussion, labs, and other engagements. I also expect you to make use of opportunities to get help outside of class (help hours, Teams, email, tutoring) if you need help. Concise and specific messages are the most helpful so I know how I can best help you.
 
-> You are **encouraged to participate in discussions** with your peers regarding worksheets and homeworks. However, each student must take responsibility and ownership of their work and submit their work individually.
+> You are encouraged to participate in discussions with your peers regarding worksheets and homeworks. However, each student must take responsibility and ownership of their work and submit their work individually.
 
-> You **may not collaborate during assessments** but you are permitted to access the textbook, Posit Cloud, Teams, and the internet.
+> You may not collaborate during assessments but you are permitted to access the textbook, Posit Cloud, Teams, and the internet.
 
 <br>
 
@@ -324,7 +324,7 @@ Your work must be labeled correctly and clearly written. Homework and worksheets
 
 > You need to submit your homework and worksheet assignments online through Moodle.
 
-> The assessments will be given during class and must be submitted physically. They will then be returned to students with feedback through Moodle and physically.
+> The assessments will be given during class. Depending on the learning objective, assessments must be submitted physically or online through Moodle. They will then be returned to students with feedback through Moodle.
 
 ### Worksheets
 
@@ -516,7 +516,7 @@ In the study of natural and mathematical sciences, often perceived as objective 
 
 # Topics
 
-> You are required to read the materials and watch the videos, and are strongly encouraged to actively participate in class discussions and complete the worksheets efficiently to deepen your understanding and succeed in the course.
+> You are required to read the materials, and are strongly encouraged to actively participate in class discussions and complete the worksheets efficiently to deepen your understanding and succeed in the course.
 
 The "Read" column in the table below contains page numbers (Pg.) or chapters (ch.) on which it refers to a label in the Books \& Online Resources List. For example "Pg. 1-5 @diez2012openintro" refers to pages 1-5 of the textbook titled "Openintro Statistics".
 
