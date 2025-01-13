@@ -1,10 +1,10 @@
 ---
-title: "Elementary Statistics Orientation"
+title: "Elementary Statistics <br>Orientation"
 author: "MTH-161D Elementary Statistics | Spring 2025 | University of Portland"
 date: "January 13, 2025"
 output:
   ioslides_presentation:
-    widescreen: false
+    widescreen: true
     transition: faster
 bibliography: ../../references.bib
 csl: ../../mbe.csl
@@ -16,14 +16,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Course Information
 
-<div class="columns-2">
 - **Number:** MTH-391
 - **Title:** Elementary Statistics
 - **Section:** D
 - **Term:** Spring 2025
 - **Credits:** 3
 - **Instructor:** Dr. Quijano
-</div>
 
 ### **Schedule**
 
@@ -38,11 +36,11 @@ Franz Hall 125
 ### Dr. [Alex John Quijano](alexjohnquijano.com){target="_blank"}
 
 - **Education and Profession:** Applied Mathematics
-- **Teaching:** Probability and Statistics, Data Science, Linear Algebra, Calculus, Differential Equations
+- **Teaching:** Probability and statistics, data science, linear algebra, calculus, differential equations
 - **Research:** 
   * Mathematical interdisciplinary research in data science
   * Mathematical modeling of natural languages, social and biological systems
-- **Hobbies and Interests:** Movies, Anime, Musicals, Coffee 
+- **Hobbies and Interests:** Movies, anime, musicals, coffee 
 - **Other Facts:** Two cats
   
 ## Today's Objectives
@@ -138,7 +136,7 @@ My walk-in help hours start week 2.
 
 ### **Math Resource Center**
 
-Visit the [Math Resource Center](https://www.up.edu/learningcommons/tutoring-services/math-resource-center/index.html){target="_blank"} website to sign-up for an appointment.
+The [Math Resource Center](https://www.up.edu/learningcommons/tutoring-services/math-resource-center/index.html){target="_blank"} offiers walk-in tutoring and appointment-based tutoring.
 
 ## Activity
 
