@@ -14,9 +14,14 @@ csl: ../../mbe.csl
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## Objectives
+
+- **Communicate highlights of the Syllabus**
+- **Activity: Introductions**
+
 ## Course Information
 
-- **Number:** MTH-391
+- **Number:** MTH-161
 - **Title:** Elementary Statistics
 - **Section:** D
 - **Term:** Spring 2025
@@ -35,18 +40,13 @@ Franz Hall 125
 
 ### Dr. [Alex John Quijano](alexjohnquijano.com){target="_blank"}
 
+- **Office:** Buckley Center 279
+- **Email:** quijano@up.edu
 - **Education and Profession:** Applied Mathematics
 - **Teaching:** Probability and statistics, data science, linear algebra, calculus, differential equations
-- **Research:** 
-  * Mathematical interdisciplinary research in data science
-  * Mathematical modeling of natural languages, social and biological systems
+- **Research:** Mathematical interdisciplinary research in data science, modeling of natural languages, social and biological systems
 - **Hobbies and Interests:** Movies, anime, musicals, coffee 
 - **Other Facts:** Two cats
-  
-## Today's Objectives
-
-- **Communicate highlights of the Syllabus**
-- **Activity: Introduce ourselves to each other**
 
 ## Modes of Communication
 
@@ -121,7 +121,9 @@ refs <- bibtex::read.bib("../../references.bib")
 
 We will be using R, as a computational tool, for some assignments. These tools are free and open-source. 
 
-> We will use the [Posit Cloud](https://login.posit.cloud/login?redirect=%2F){target="_blank"} service, an online computing environment. *We will discuss more about this tool soon.*
+> We will use the [Posit Cloud](https://login.posit.cloud/login?redirect=%2F){target="_blank"} service, an online computing environment.
+
+*We will discuss more about this tool next time.*
 
 ## Academic Support
 
@@ -129,7 +131,7 @@ We will be using R, as a computational tool, for some assignments. These tools a
 
 > Dr. Alex John Quijano
 > 
-> * 4:00 PM - 5:00 PM Mondays to Fridays
+> * 4:00 PM - 5:00 PM Mondays to Fridays, Buckley Center 279
 > * [One-to-One, Buckley Center 279 or in Teams](https://calendly.com/alexjohnquijano/helphours){target="_blank"} <br> *Click on the link to sign-up for a 15-minute session.*
 
 My walk-in help hours start week 2.
@@ -139,6 +141,8 @@ My walk-in help hours start week 2.
 The [Math Resource Center](https://www.up.edu/learningcommons/tutoring-services/math-resource-center/index.html){target="_blank"} offiers walk-in tutoring and appointment-based tutoring.
 
 ## Activity
+
+### Introductions
 
 On a piece of paper:
 
