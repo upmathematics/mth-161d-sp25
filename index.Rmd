@@ -191,7 +191,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 
 | **Week** | **Day** | **Topic** | **Read** |
 |:---:|:----:|:---------------:|:----:|
-| **1** | M 1/13 | Orientation | Syllabus |
+| **1** | M 1/13 | [Orientation](lessons/1.1-orientation/1.1-orientation.html) | Syllabus |
 |  | W 1/15 | Statistical Thinking | - |
 |  | F 1/17 | Introduction to R and R Studio | - |
 | **2** | M 1/20 | _MLK Day (no classes, offices closed)_ | - |
@@ -383,7 +383,7 @@ Here are the qualifications and requirements for homework revisions:
 Here are the rules for homework revisions:
 
   * Homework revisions are accepted within one week of the homework being returned to you, otherwise the grade is set.
-  * You can revised your homework multiple times as long as it is not marked as "M".
+  * You can revise your homework multiple times as long as it is not marked as "M".
 
 ### Assessments
 
