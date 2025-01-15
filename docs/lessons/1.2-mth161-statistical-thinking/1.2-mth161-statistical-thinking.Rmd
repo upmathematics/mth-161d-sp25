@@ -61,7 +61,7 @@ This question requires:
 The analysis anticipates:
 
   1. **Variability.** No two neighborhoods will produce exactly the same result.
-  2. **Uncertainty.** Because data varies, we’re often unsure about the "true" answer to a question.
+  2. **Uncertainty.** Because data varies, we’re often unsure about the "true" answer to the question.
   3. **Context.** Numbers alone don’t tell the whole story. You need to consider the situation, the method of data collection, and any potential biases.
 
 ## Example 1: Data Visualization
@@ -95,7 +95,7 @@ knitr::include_graphics("statistical-thinking-in-data-science-lifecycle.png")
   1. Ask a question or identify a problem
   2. Collect data, understand variability, identify patterns and relationships
   3. Apply statistical analysis
-  4. Evaluate results and make a conclusion
+  4. Evaluate results and make a conclusion or predict an outcome
 ::::
 
 :::: {.column width=1%}
@@ -107,22 +107,19 @@ knitr::include_graphics("statistical-thinking-in-data-science-lifecycle.png")
 ::::
 
 :::: {.column width=48%}
-* Understanding Data Fundamentals
-    
-    - Structure, collection methods, and limitations.
-    - Assessing impacts on inferential validity.
+* **Data Foundation:**
 
-* Data Presentation & Descriptive Statistics
-
-    - Effective graphical methods.
-    - Computing key descriptive measures.
+  - *Structure:* Understand data types, formats, and relationships.
+  - *Collection:* Explore sampling methods and ethical considerations.
+  - *Limitations:* Recognize biases, errors, and missing data impacts on analysis.
 ::::
 
 :::: {.column width=48%}
-* Statistical Analysis
+* **Statistical Analysis:**
 
-    - Analyze individual variables and relationships.
-    - Interpret results in context.
+  - *Univariate:* Analyze single variables. 
+  - *Bivariate:* Explore relationships between pairs of variables.
+  - *Multivariate:* Analyze complex interactions among multiple variables.
 ::::
 
 :::: {.column width=1%}
@@ -136,23 +133,23 @@ The full course learning outcomes and objectives is in the [Syllabus](../../inde
 ::::
 
 :::: {.column width=48%}
-* Linear Regression Models
+* **Data Exploration & Presentation:**
 
-  - Appropriate use and contextual interpretation.
+  - *Visualization:* Create effective graphs to communicate insights.
+  - *Descriptive Stats:* Calculate measures of central tendency and variability.
 
-* Probability & Random Variables
+* **Foundational Concepts:**
 
-  - Core principles explained clearly.
+  - *Probability:* Grasp core principles.
+  - *Critical Thinking:* Evaluate claims, identify biases, and make data-driven conclusions.
 ::::
 
 :::: {.column width=48%}
-* Critical Data Assessment
+* **R Programming:**
 
-  - Evaluate claims using data-driven evidence.
-
-* R for Data Analysis
-
-  - Execute basic R code for analysis, modeling, and visualization.
+  - *Data Preparation:* Clean, transform, and prepare data for analysis.
+  - *Statistical Modeling:* Implement statistical tests and regressions.
+  - *Visualization:* Create informative data visualizations.
 ::::
 
 :::: {.column width=1%}
