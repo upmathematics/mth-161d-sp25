@@ -1,11 +1,12 @@
 ---
-title: "Elementary Statistics <br>Orientation"
-author: "MTH-161D Elementary Statistics | Spring 2025 | University of Portland"
+title: "Orientation"
+subtitle: "Elementary Statistics"
+author: "MTH-161D | Spring 2025 | University of Portland"
 date: "January 13, 2025"
 output:
-  ioslides_presentation:
-    widescreen: true
-    transition: faster
+  slidy_presentation:
+    font_adjustment: +5
+    footer: "| <a href='../../index.html'>Back to the Course Website</a>"
 bibliography: ../../references.bib
 csl: ../../mbe.csl
 ---
@@ -16,46 +17,77 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Objectives
 
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
 - **Communicate highlights of the Syllabus**
 - **Activity: Introductions**
+::::
+
+:::: {.column width=15%}
+::::
 
 ## Course Information
 
+:::: {.column width=5%}
+::::
+
+:::: {.column width=45%}
 - **Number:** MTH-161
 - **Title:** Elementary Statistics
 - **Section:** D
 - **Term:** Spring 2025
 - **Credits:** 3
+:::: 
+
+:::: {.column width=45%}
 - **Instructor:** Dr. Quijano
+- **Schedule:** Monday, Wednesday, Friday at 9:15 AM to 10:10 AM
+- **Location** Franz Hall 125
+::::
 
-### **Schedule**
-
-Monday, Wednesday, Friday at 9:15 AM to 10:10 AM
-
-### **Location**
-
-Franz Hall 125
+:::: {.column width=5%}
+::::
 
 ## About the Instructor
 
-### Dr. [Alex John Quijano](alexjohnquijano.com){target="_blank"}
+### Dr. [Alex John Quijano](https://www.alexjohnquijano.com){target="_blank"}
 
+:::: {.column width=1%}
+::::
+
+:::: {.column width=40%}
 - **Office:** Buckley Center 279
 - **Email:** quijano@up.edu
-- **Education and Profession:** Applied Mathematics
+- **Hobbies and Interests:** Movies, anime, musicals, coffee 
+- **Other Facts:** Two cats (orange and black)
+::::
+
+:::: {.column width=57%}
+- **Education:** Applied Mathematics
+- **Profession**: Assistant Professor of Mathematics
 - **Teaching:** Probability and statistics, data science, linear algebra, calculus, differential equations
 - **Research:** Mathematical interdisciplinary research in data science, modeling of natural languages, social and biological systems
-- **Hobbies and Interests:** Movies, anime, musicals, coffee 
-- **Other Facts:** Two cats
+::::
+
+:::: {.column width=1%}
+::::
 
 ## Modes of Communication
 
+:::: {.column width=1%}
+::::
+
+:::: {.column width=48%}
 ### **Teams**
 
 We will be using Teams as the main real-time communication tool for general announcements, question-answering discussions, and direct messages.
 
 > The Teams for this course is [MTH-161D-sp25](https://teams.microsoft.com/l/team/19%3AzLuVe5GlJJ3Y5Ob-I0vypRDPEQLigxvlqaGHR7GAXv41%40thread.tacv2/conversations?groupId=a47c5106-9aa6-4569-b98f-17f70304580a&tenantId=ea8f3949-231c-40b6-a33f-56873af96f87){target="_blank"}. 
+::::
 
+:::: {.column width=48%}
 ### **Class Website**
 
 The syllabus, tentative topics schedule, and other information are posted on the course website.
@@ -63,21 +95,35 @@ The syllabus, tentative topics schedule, and other information are posted on the
 > You can access the course website at [mth-161d-sp25](https://upmathematics.github.io/mth-161d-sp25/){target="_blank"}.
 
 *Note that the course website can be accessed in Teams.*
+::::
+
+:::: {.column width=1%}
+::::
 
 ## Structure and Expectations
 
+:::: {.column width=5%}
+::::
+
+:::: {.column width=45%}
 ### **Class Structure**
 
   - Pre-reading
   - Short lecture
   - Worksheet activity
   - Group presentations or discussions
+::::
 
+:::: {.column width=45%}
 ### **Assignment Expectations**
 
   - Worksheets
   - Homework
   - Assessments
+::::
+
+:::: {.column width=5%}
+::::
 
 ## Assignments
 
@@ -131,27 +177,23 @@ We will be using R, as a computational tool, for some assignments. These tools a
 
 > Dr. Alex John Quijano
 > 
-> * 4:00 PM - 5:00 PM Mondays to Fridays, Buckley Center 279
+> * Walk-in Monday to Friday at 4:00 PM - 5:00 PM, Buckley Center 279
 > * [One-to-One, Buckley Center 279 or in Teams](https://calendly.com/alexjohnquijano/helphours){target="_blank"} <br> *Click on the link to sign-up for a 15-minute session.*
 
 My walk-in help hours start week 2.
 
 ### **Math Resource Center**
 
-The [Math Resource Center](https://www.up.edu/learningcommons/tutoring-services/math-resource-center/index.html){target="_blank"} offiers walk-in tutoring and appointment-based tutoring.
+The [Math Resource Center](https://www.up.edu/learningcommons/tutoring-services/math-resource-center/index.html){target="_blank"} offers walk-in tutoring and appointment-based tutoring.
 
-## Activity
+## Activity: Introductions
 
-### Introductions
-
-On a piece of paper:
-
-  - Write your name, year, and major.
-  - Discuss your background experience in math and science.
-  - Discuss your anxieties and fears about math.
-  - Discuss your hobbies.
-  - Write an encouraging message to yourself six weeks from now.
-
-Pair with another student and share what you wrote.
-
-Submit your work.
+1. On a piece of paper:
+    * Write your name, year, and major.
+    * Explain:
+        - your background experience in math and science.
+        - your anxieties and fears about math.
+        - your hobbies.
+    * Write an encouraging message to yourself six weeks from now.
+2. Pair with another student and share what you wrote.
+3. Submit your work physically.

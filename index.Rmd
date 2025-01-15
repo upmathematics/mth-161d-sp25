@@ -8,7 +8,6 @@ author: |
   | Department of Mathematics
   | University of Portland
   | 
-  | Made with [R](https://cran.r-project.org/){target='_blank'} and [RMarkdown](https://rmarkdown.rstudio.com/){target='_blank'}
   | Last updated on `r format(Sys.Date(), format='%B %d, %Y')`
 bibliography: references.bib
 csl: mbe.csl
@@ -49,8 +48,6 @@ This course uses the following textbook - which is free to access - for reading 
 ```{r echo=FALSE}
 refs <- bibtex::read.bib("references.bib")
 ```
-
-*Click on the link to access the resources.*
 
   * `r capture.output(print(refs["diez2012openintro"]))`
 
@@ -183,65 +180,54 @@ The following learning objectives are designed to build on one another, with som
 
 ## **Topics Schedule**
 
-> You are required to read the materials, and are strongly encouraged to actively participate in class discussions and complete the worksheets efficiently to deepen your understanding and succeed in the course.
-
-The "Read" column in the table below contains page numbers (Pg.) or chapters (ch.) on which it refers to a label in the Books \& Online Resources List. For example "Pg. 1-5 @diez2012openintro" refers to pages 1-5 of the textbook titled "Openintro Statistics".
-
-### Tentative Schedule
-
-| **Week** | **Day** | **Topic** | **Read** |
-|:---:|:----:|:---------------:|:----:|
-| **1** | M 1/13 | [Orientation](lessons/1.1-orientation/1.1-orientation.html?presentme=true) | Syllabus |
-|  | W 1/15 | Statistical Thinking | - |
-|  | F 1/17 | Introduction to R and R Studio | - |
-| **2** | M 1/20 | _MLK Day (no classes, offices closed)_ | - |
-|  | W 1/22 | Introduction to R Markdown | - |
-|  | F 1/24 | Data Basics & <br>Descriptive Statistics | Pg. 12-18 @diez2012openintro |
-| **3** | M 1/27 | Basic Data Structures & <br>**Homework 1** | - |
-|  | W 1/29 | Sampling Principles and Strategies | Pg. 22-28 @diez2012openintro |
-|  | F 1/31 | Observational and Experimental Studies | Pg. 32-34 @diez2012openintro |
-| **4** | M 2/3 | **Assessments 1** | - |
-|  | W 2/5 | Examining Numerical Data | Pg. 41-55 @diez2012openintro |
-|  | F 2/7 | Considering Categorical Data | Pg. 61-68 @diez2012openintro |
-| **5** | M 2/10 | Basic Data Visualizations & <br>**Homework 2** | - |
-|  | W 2/12 | Basic Probability | Pg. 81-91 @diez2012openintro |
-|  | F 2/14 | Conditional Probability | Pg. 95-108 @diez2012openintro |
-| **6** | M 2/17 | **Assessments 2** | - |
-|  | W 2/19 | Binomial Distribution | Pg. 149-155 @diez2012openintro |
-|  | F 2/21 | Normal Distribution | Pg. 133-141 @diez2012openintro |
-| **7** | M 2/24 | Practical Sampling & <br>**Homework 3** | - |
-|  | W 2/26 | Point Estimates and Sampling Variability | Pg. 170-178 @diez2012openintro |
-|  | F 2/28 | Confidence Intervals | Pg. 181-186 @diez2012openintro |
-| **8** | M 3/3 | _Spring Vacation_ | - |
-|  | W 3/5 | _Spring Vacation_ | - |
-|  | F 3/7 | _Spring Vacation_ | - |
-| **9** | M 3/10 | **Assessments 3** | - |
-|  | W 3/12 | Decision Errors | Pg. 189-201 @diez2012openintro |
-|  | F 3/14 | Inference for One Proportion | Pg. 208-213 @diez2012openintro |
-| **10** | M 3/17 | Hypothesis Testing for Proportions & <br>**Homework 4** | - |
-|  | W 3/19 | Inference for Difference of Two Proportions | Pg. 217-224 @diez2012openintro |
-|  | F 3/21 | Testing for Goodness of Fit | Pg. 229-238 @diez2012openintro |
-| **11** | M 3/24 | **Assessments 4** | - |
-|  | W 3/26 | Testing Independence in Two-Way Tables | Pg. 240-244 @diez2012openintro |
-|  | F 3/28 | Inference for One Mean | Pg. 251-258 @diez2012openintro |
-| **12** | M 3/31 | Hypothesis Testing for Means & <br>**Homework 5** | - |
-|  | W 4/2 | Inference for Difference of Two Means | Pg. 267-273 @diez2012openintro |
-|  | F 4/4 | Inference for Paired Means | Pg. 262-264 @diez2012openintro |
-| **13** | M 4/7 | **Assessments 5** | - |
-|  | W 4/9 | Introduction to Linear Regression,<br>Correlation, & <br>Residuals | Pg. 305-311 @diez2012openintro |
-|  | F 4/11 | Inference for Linear Regression | Pg. 331-334 @diez2012openintro |
-| **14** | M 4/14 | Hypothesis Testing for Linear Regression & <br>**Homework 6** | - |
-|  | W 4/16 | Least-Squares Regression | Pg. 317-324 @diez2012openintro |
-|  | F 4/18 | _Easter vacation_ | - |
-| **15** | M 4/21 | _Easter Vacation_ | - |
-|  | W 4/23 | Points of Leverage | Pg. 328-329 @diez2012openintro |
-|  | F 4/25 | Comparing Many Means, <br>Multiple Linear Regression, & <br>Logistic Regression | - |
-| **16** | Th 5/1 | **Final Assessments<br>(10:30 AM to 12:30 PM)** | - |
-
-### Books \& Online Resources Lists
-
-::: {#refs}
-:::
+| **Week** | **Day** | **Topic** |
+|:---:|:----:|:---------------:|
+| **1** | M 1/13 | Orientation |
+|  | W 1/15 | Statistical Thinking |
+|  | F 1/17 | R and R Studio |
+| **2** | M 1/20 | _MLK Day (no classes, offices closed)_ |
+|  | W 1/22 | R Markdown |
+|  | F 1/24 | Data Basics & <br>Descriptive Statistics |
+| **3** | M 1/27 | Basic Data Structures & <br>**Homework 1** |
+|  | W 1/29 | Sampling Principles and Strategies |
+|  | F 1/31 | Observational and Experimental Studies |
+| **4** | M 2/3 | **Assessments 1** |
+|  | W 2/5 | Examining Numerical Data |
+|  | F 2/7 | Considering Categorical Data |
+| **5** | M 2/10 | Basic Data Visualizations & <br>**Homework 2** |
+|  | W 2/12 | Basic Probability |
+|  | F 2/14 | Conditional Probability |
+| **6** | M 2/17 | **Assessments 2** |
+|  | W 2/19 | Binomial Distribution |
+|  | F 2/21 | Normal Distribution |
+| **7** | M 2/24 | Practical Sampling & <br>**Homework 3** |
+|  | W 2/26 | Point Estimates and Sampling Variability |
+|  | F 2/28 | Confidence Intervals |
+| **8** | M 3/3 | _Spring Vacation_ |
+|  | W 3/5 | _Spring Vacation_ |
+|  | F 3/7 | _Spring Vacation_ |
+| **9** | M 3/10 | **Assessments 3** |
+|  | W 3/12 | Decision Errors |
+|  | F 3/14 | Inference for One Proportion |
+| **10** | M 3/17 | Hypothesis Testing for Proportions & <br>**Homework 4** |
+|  | W 3/19 | Inference for Difference of Two Proportions |
+|  | F 3/21 | Testing for Goodness of Fit |
+| **11** | M 3/24 | **Assessments 4** |
+|  | W 3/26 | Testing Independence in Two-Way Tables |
+|  | F 3/28 | Inference for One Mean |
+| **12** | M 3/31 | Hypothesis Testing for Means & <br>**Homework 5** |
+|  | W 4/2 | Inference for Difference of Two Means |
+|  | F 4/4 | Inference for Paired Means |
+| **13** | M 4/7 | **Assessments 5** |
+|  | W 4/9 | Introduction to Linear Regression,<br>Correlation, & <br>Residuals |
+|  | F 4/11 | Inference for Linear Regression |
+| **14** | M 4/14 | Hypothesis Testing for Linear Regression & <br>**Homework 6** |
+|  | W 4/16 | Least-Squares Regression |
+|  | F 4/18 | _Easter vacation_ |
+| **15** | M 4/21 | _Easter Vacation_ |
+|  | W 4/23 | Points of Leverage |
+|  | F 4/25 | Comparing Many Means, <br>Multiple Linear Regression, & <br>Logistic Regression |
+| **16** | Th 5/1 | **Final Assessments<br>(10:30 AM to 12:30 PM)** |
 
 <br>
 
@@ -251,7 +237,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 
 > Dr. Alex John Quijano
 > 
-> * 4:00 PM - 5:00 PM Monday to Friday, Buckley Center 279
+> * Walk-in Monday to Friday at 4:00 PM - 5:00 PM, Buckley Center 279
 > * [One-to-One, Buckley Center 279 or in Teams](https://calendly.com/alexjohnquijano/helphours){target="_blank"} <br> *Click on the link to sign-up for a 15-minute session.*
 
 My walk-in help hours start week 2. Note that you can bring a fellow student with you when you sign-up for a session. Just click the "Add Guests" link when you sign-up, and add in your fellow student's UP email. If you need more than 15 minutes, you can book at least two consecutive sessions.
@@ -276,9 +262,9 @@ Note that these are recommendations so that you can get the most out of the help
 
 ### Collaboration Policy
 
-I expect you to participate in the class through lectures, discussion, labs, and other engagements. I also expect you to make use of opportunities to get help outside of class (help hours, Teams, email, tutoring) if you need help. Concise and specific messages are the most helpful so I know how I can best help you.
+I expect you to participate in the class through lectures, class activities, discussions, homework, and other engagements. I also expect you to make use of opportunities to get help outside of class (help hours, Teams, email, tutoring) if you need help. Concise and specific messages are the most helpful so I know how I can best help you.
 
-> You are encouraged to participate in discussions with your peers regarding worksheets and homeworks. However, each student must take responsibility and ownership of their work and submit their work individually.
+> You are encouraged to participate in discussions with your peers regarding assignments. However, each student must take responsibility and ownership of their work and submit their work individually, except for group projects.
 
 > You may not collaborate during assessments but you are permitted to access the textbook, Posit Cloud, Teams, and the internet.
 
@@ -544,5 +530,57 @@ The University of Portland is a community dedicated to the investigation and dis
 ### Diversity and Inclusion Statement
 
 In the study of natural and mathematical sciences, often perceived as objective disciplines aimed at understanding the world, it is crucial to recognize the historical biases embedded within these fields, stemming from a limited set of privileged populations. Acknowledging the potential existence of overt and covert biases within the course, I emphasize that science is a human endeavor necessitating the incorporation of diverse experiences in the pursuit of knowledge and skill. Valuing every student irrespective of background, origin, race, religion, ethnicity, sexual orientation, disability status, etc., I am committed to fostering an inclusive climate throughout the course. Encouraging open communication about concerns or challenges, I assure confidentiality, except for instances of academic integrity violations or sexual harassment, which are legally mandated to be reported. Within our classroom, diversity and individual differences are celebrated as strengths, and the use of mathematics as an analytical tool to challenge power, privilege, and oppression is supported. It is our collective responsibility to create a welcoming space where ideas can be challenged while maintaining respect for individuals.
+
+<br>
+
+# Materials
+
+> You are required to read the materials, and are strongly encouraged to actively participate in class discussions and complete the worksheets efficiently to deepen your understanding and succeed in the course.
+
+## Class Readings and Presentations
+
+The "Read" column in the table below contains page numbers (Pg.) or chapters (ch.) on which it refers to a label in the Books \& Online Resources List. For example "Pg. 1-5 @diez2012openintro" refers to pages 1-5 of the textbook titled "Openintro Statistics".
+
+| **Topic** | **Read** |
+|:---|:---|
+| [Orientation](lessons/1.1-mth161-orientation/1.1-mth161-orientation.html) | Syllabus |
+| Statistical Thinking | - |
+| R and R Studio | - |
+| R Markdown | - |
+| Data Basics &<br>Descriptive Statistics | Pg. 12-18 @diez2012openintro |
+| Basic Data Structures | - |
+| Sampling Principles and Strategies | Pg. 22-28 @diez2012openintro |
+| Observational and Experimental Studies | Pg. 32-34 @diez2012openintro |
+| Examining Numerical Data | Pg. 41-55 @diez2012openintro |
+| Considering Categorical Data | Pg. 61-68 @diez2012openintro |
+| Basic Data Visualizations | - |
+| Basic Probability | Pg. 81-91 @diez2012openintro |
+| Conditional Probability | Pg. 95-108 @diez2012openintro |
+| Binomial Distribution | Pg. 149-155 @diez2012openintro |
+| Normal Distribution | Pg. 133-141 @diez2012openintro |
+| Practical Sampling | - |
+| Point Estimates and Sampling Variability | Pg. 170-178 @diez2012openintro |
+| Confidence Intervals | Pg. 181-186 @diez2012openintro |
+| Decision Errors | Pg. 189-201 @diez2012openintro |
+| Inference for One Proportion | Pg. 208-213 @diez2012openintro |
+| Hypothesis Testing for Proportions | - |
+| Inference for Difference of Two Proportions | Pg. 217-224 @diez2012openintro |
+| Testing for Goodness of Fit | Pg. 229-238 @diez2012openintro |
+| Testing Independence in Two-Way Tables | Pg. 240-244 @diez2012openintro |
+| Inference for One Mean | Pg. 251-258 @diez2012openintro |
+| Hypothesis Testing for Means | - |
+| Inference for Difference of Two Means | Pg. 267-273 @diez2012openintro |
+| Inference for Paired Means | Pg. 262-264 @diez2012openintro |
+| Introduction to Linear Regression,<br>Correlation, &<br>Residuals | Pg. 305-311 @diez2012openintro |
+| Inference for Linear Regression | Pg. 331-334 @diez2012openintro |
+| Hypothesis Testing for Linear Regression | - |
+| Least-Squares Regression | Pg. 317-324 @diez2012openintro |
+| Points of Leverage | Pg. 328-329 @diez2012openintro |
+| Comparing Many Means,<br>Multiple Linear Regression, &<br>Logistic Regression | - |
+
+## Books \& Online Resources Lists
+
+::: {#refs}
+:::
 
 <br>
