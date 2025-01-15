@@ -115,7 +115,7 @@ The syllabus, tentative topics schedule, and other information are posted on the
 ::::
 
 :::: {.column width=45%}
-### **Assignment Expectations**
+### **Assignments**
 
   - Worksheets
   - Homework
