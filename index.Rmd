@@ -140,14 +140,14 @@ Upon completion of the course, you will be able to:
 The following learning objectives are designed to build on one another, with some overlap. The goal is to help you achieve proficiency in these areas.
 
 | **Topic** | **Core Learning Objectives** | **Additional Learning Objectives** |
-|---:|:------|:------|
+|:---|:---------|:---------|
 | **Orientation** | **O1:** Identify key components of the course syllabus, including grading policies, major assignments, and due dates. | **O2:** Explain the expectations and learning outcomes of the course. |
 | **Statistical Thinking** | **ST1:** Define the purpose and importance of statistical thinking in data analysis. <br>**ST2:** Differentiate between descriptive and inferential statistics through real-world examples. <br>**ST3:** Explain the role of variability and uncertainty in data. |  |
-| **Introduction to R and R Studio** | **IRRS1:** Navigate the RStudio interface and explain its key components. <br>**IRRS2:** Run basic R commands and interpret their outputs | **IRRS3:** Install and load R packages relevant to data analysis. |
-| **Introduction to R Markdown** | **IRM1:** Create and compile a basic R Markdown document. <br>**IRM2:** Use R Markdown to integrate narrative text, code, and visualizations. | **IRM3:** Format R Markdown documents for clear and professional presentation. |
+| **R and R Studio** | **RRS1:** Navigate the RStudio interface and explain its key components. <br>**RRS2:** Run basic R commands and interpret their outputs | **RRS3:** Install and load R packages relevant to data analysis. |
+| **R Markdown** | **RM1:** Create and compile a basic R Markdown document. <br>**RM2:** Use R Markdown to integrate narrative text, code, and visualizations. | **RM3:** Format R Markdown documents for clear and professional presentation. |
 | **Data Basics & <br>Descriptive Statistics** | **DB1:** Identify and categorize different types of data (numerical vs. categorical). <br>**DB2:** Compute measures of central tendency (mean, median, mode) and spread (range, variance, standard deviation). <br>**DB3:** Interpret descriptive statistics to summarize data. | **DB4:** Visualize data using basic plots (histograms, box plots) using R. |
 | **Basic Data Structures** | **BDS1:** Use R to create and manipulate basic data structures. | **BDS2:** Differentiate between vectors, matrices, data frames, and lists in R. |
-| **Sampling Principles and Strategies** | **SPS1:** Describe key sampling techniques (simple random, stratified, cluster). | **SPS2:** Evaluate the strengths and limitations of various sampling strategies. |
+| **Sampling Principles and Strategies** | **SPS1:** Describe key sampling techniques (simple random, stratified, cluster). <br>**SPS2:** Differentiate between a population and a sample, identify examples of each, and explain how samples are used to make inferences about populations. | **SPS3:** Evaluate the strengths and limitations of various sampling strategies. |
 | **Observational and Experimental Studies** | **OES1:** Distinguish between observational studies and experiments. <br>**OES2:** Evaluate the validity of conclusions drawn from observational and experimental data. | **OES3:** Identify key components of a well-designed experiment (randomization, control, replication). |
 | **Examining Numerical Data** | **END1:** Identify patterns, outliers, and trends in numerical data. <br>**END2:** Compute and interpret key summary statistics for numerical datasets. | **END3:** Use R to create visualizations such as scatter plots and line graphs. |
 | **Considering Categorical Data** | **CCD1:** Summarize categorical data using frequency tables and bar charts. <br>**CCD2:** Compute and interpret proportions and relative frequencies. | **CCD3:** Use R to analyze and visualize categorical data. |
@@ -157,9 +157,9 @@ The following learning objectives are designed to build on one another, with som
 | **Binomial Distribution** | **BD1:** Define the properties of a binomial random variable. | **BD2:** Use R to compute probabilities and cumulative probabilities for binomial distributions. |
 | **Normal Distribution** | **ND1:** Explain the properties of the normal distribution. <br>**ND2:** Apply the empirical rule to estimate probabilities for normally distributed data. | **ND3:** Use R to calculate probabilities and percentiles for normal distributions. |
 | **Practical Sampling** |  | **PS1:** Simulate random sampling from data using R. |
-| **Point Estimates and Sampling Variability** | **PESV1:** Explain the concepts of point estimates and variation. <br>**PESV2:** Define and explain the null and alternative hypothesis in context. <br>**PESV3:** Explain and interpret the p-value. |  |
+| **Point Estimates and Sampling Variability** | **PESV1:** Explain the concepts of point estimates and variation.  <br>**PESV2:** Explain and interpret the p-value. |  |
 | **Confidence Intervals** | **CI1:** Explain and interpret confidence intervals. |  |
-| **Decision Errors** | **DE1:** Define Type I and Type II errors and their implications in hypothesis testing. | **DE2:** Evaluate the impact of sample size and significance level on decision errors. |
+| **Decision Errors** | **DE1:** Define and explain the null and alternative hypothesis in context. <br>**DE2:** Define Type I and Type II errors and their implications in hypothesis testing. | **DE3:** Evaluate the impact of sample size and significance level on decision errors. |
 | **Inference for One Proportion** | **IOP1:** Conduct a hypothesis test for one proportion. <br>**IOP2:** Evaluate assumptions and interpret the p-value and confidence interval for one proportion. |  |
 | **Hypothesis Testing for Proportions** |  | **HTP:** Perform a hypothesis test for proportions to a dataset using R. |
 | **Inference for Difference of Two Proportions** | **IDTP1:** Perform hypothesis tests comparing two proportions. <br>**IDTP2:** Evaluate assumptions and interpret the p-value and confidence interval for two proportions. |  |
@@ -181,7 +181,7 @@ The following learning objectives are designed to build on one another, with som
 ## **Topics Schedule**
 
 | **Week** | **Day** | **Topic** |
-|:---:|:----:|:---------------|
+|:--:|:--:|:---------------|
 | **1** | M 1/13 | Orientation |
 |  | W 1/15 | Statistical Thinking |
 |  | F 1/17 | R and R Studio |
@@ -296,7 +296,7 @@ Each assignment will be graded according to the general marking guide detailed b
 Given the following marks, your work:
 
 | **Mark** | **Rubric Description** |
-|-----:|:---------------|
+|:-----|:---------------|
 | **Outstanding <br>(O)** | Demonstrates a full understanding of the material, clearly and concisely explains concepts, applies them correctly and efficiently to solve problems, and may extend the concepts to new situations. |
 | **Excellent <br>(E)** | Demonstrates an approximate understanding of the material, may have made minor errors but is able to correct them and explain the reasoning, solves problems correctly, and may need more time or practice to improve efficiency. |
 | **Acceptable <br>(A)** | Demonstrates some understanding of the material but makes errors, can solve some problems, may need help with more difficult ones, and may need to work on improving problem-solving skills and reasoning. |
@@ -309,7 +309,7 @@ Note that these are categorical marks (not numerical scores).
 ### Final Course Grades
 
 | **Assignment** | **Rank** | **Mark** | **A** | **B** | **C** | **D** |
-|----------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+|:----------|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 | **Core Learning Objectives** | 1 | O | 90% | - | - | - |
 |  |  | E | - | 80% | - | - |
 |  |  | A | - | - | 70% | - |
@@ -380,7 +380,7 @@ Assessments are given every other Monday after a short summary review. The purpo
 Assessments are marked using the general grading guide and will be returned with detailed feedback. Your work will be marked according to these three components:
 
 | **Component** | **Description** |
-|-----:|:---------------|
+|:-----|:---------------|
 | **Methodology** | The method should be sound and well-founded. It should be based on a solid understanding of the underlying principles. The method should be applied correctly and consistently. |
 | **Reasoning** | The solution method should be explained in a clear and logical way. The steps of the method should be justified and explained. The reasonableness of the solution should be justified. |
 | **Writing** | The solution process should be written in a clear and concise way. The steps of the method should be easy to follow. The graphs/diagrams/equations should be clear and helpful. The mathematical notation should be used clearly and correctly. |
@@ -542,7 +542,7 @@ In the study of natural and mathematical sciences, often perceived as objective 
 The "Read" column in the table below contains page numbers (Pg.) or chapters (ch.) on which it refers to a label in the Books \& Online Resources List. For example "Pg. 1-5 @diez2012openintro" refers to pages 1-5 of the textbook titled "Openintro Statistics".
 
 | **Topic** | **Read** |
-|:------|:---|
+|:---|:---|
 | [Orientation](lessons/1.1-mth161-orientation/1.1-mth161-orientation.html) | Syllabus |
 | [Statistical Thinking](lessons/1.2-mth161-statistical-thinking/1.2-mth161-statistical-thinking.html) | - |
 | R and R Studio | - |
