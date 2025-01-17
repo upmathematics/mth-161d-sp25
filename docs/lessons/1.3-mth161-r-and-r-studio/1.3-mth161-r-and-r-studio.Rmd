@@ -135,7 +135,7 @@ knitr::include_graphics("basic-parts-of-posit-cloud.png")
 
 2. Enter your email again using this form - [Email Entry for Activity: Setting up Posit Cloud](https://forms.office.com/r/8Rm8Ni7aDG?origin=lprLink){target="_blank"} so I can add you to the course's workspace. You will be invited to this course's Workspace soon. Check your email.
 
-3. Enter the Workspace using the link in the email sent from Posit Cloud, then click on the "project" named *Calculator - Alex Q*. This will create a copy for you.
+3. Enter the Workspace using the link in the email sent from Posit Cloud, then click on the "project" named *Calculator Alex Q*. This will create a copy for you.
 
 4. Rename your workspace as *Calculator [First name] [First letter of last name]*.
 
