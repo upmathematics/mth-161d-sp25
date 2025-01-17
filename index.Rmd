@@ -545,7 +545,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 |:---|:---|
 | [Orientation](lessons/1.1-mth161-orientation/1.1-mth161-orientation.html) | Syllabus |
 | [Statistical Thinking](lessons/1.2-mth161-statistical-thinking/1.2-mth161-statistical-thinking.html) | - |
-| R and R Studio | - |
+| [R and R Studio](lessons/1.3-mth161-r-and-r-studio/1.3-mth161-r-and-r-studio.html) | - |
 | R Markdown | - |
 | Data Basics & <br>Descriptive Statistics | Pg. 12-18 @diez2012openintro |
 | Basic Data Structures | - |
