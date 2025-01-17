@@ -137,6 +137,6 @@ knitr::include_graphics("basic-parts-of-posit-cloud.png")
 
 3. Enter the Workspace using the link in the email sent from Posit Cloud, then click on the "project" named *Calculator - Alex Q*. This will create a copy for you.
 
-4. Rename your workspace as *Calculator - [First name] [First letter of last name]*.
+4. Rename your workspace as *Calculator [First name] [First letter of last name]*.
 
 5. For now you can explore R Studio. We will discuss more about this tool as we progress.
