@@ -1,9 +1,0 @@
-name: "MTH-161Dsp2025"
-output_dir: "docs"
-description: |
-  Elementary Statistics Section D at the University of Portland
-output:
-   rmdformats::readthedown:
-      lib_dir: site_libs
-      link-citations: true
-      css: css/custom.css
