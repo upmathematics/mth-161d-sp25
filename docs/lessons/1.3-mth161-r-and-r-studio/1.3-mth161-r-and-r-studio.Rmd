@@ -2,7 +2,7 @@
 title: "R and R Studio"
 subtitle: "Elementary Statistics"
 author: "MTH-161D | Spring 2025 | University of Portland"
-date: "January 19, 2025"
+date: "January 17, 2025"
 output:
   slidy_presentation:
     font_adjustment: +5

@@ -1,8 +1,10 @@
 ---
-title: "Elementary Statistics"
+title: "MTH-161: Elementary Statistics"
 subtitle: | 
-  | MTH-161 | Section D 
-  | Spring 2025 | University of Portland
+  | Section D 
+  | Spring 2025 
+  | Department of Mathematics 
+  | University of Portland
 author: | 
   | Dr. [Alex John Quijano](https://www.alexjohnquijano.com){target='_blank'} [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/){target='_blank'}
   | Department of Mathematics
@@ -21,11 +23,6 @@ knitr::opts_chunk$set(echo = TRUE)
 # Syllabus
 
 ## **About the Class**
-
-### Course Information
-
-> * Title: MTH 161: Elementary Statistics
-> * Sections: D
 
 ### Instructor Information
 
