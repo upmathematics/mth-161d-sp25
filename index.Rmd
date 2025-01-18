@@ -1,5 +1,5 @@
 ---
-title: "MTH-161: Elementary Statistics"
+title: "MTH 161: Elementary Statistics"
 subtitle: | 
   | Section D 
   | Spring 2025 
