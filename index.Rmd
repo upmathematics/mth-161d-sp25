@@ -20,6 +20,12 @@ nocite: '@*'
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r statistical-thinking-1, echo=FALSE, fig.align='left', out.width = '70%'}
+knitr::include_graphics("statistical-thinking-in-data-science-lifecycle.png")
+```
+
+Statistical thinking is a way of understanding the world through data, serving as the foundational principle of statistics.
+
 # Syllabus
 
 ## **About the Class**
@@ -90,7 +96,11 @@ We will be using the course [Moodle](https://learning.up.edu){target="_blank"} p
 
 ### Posit Cloud
 
-We will be using a computational tool (R) for some assignments. These tools are free and open-source. We will use the [Posit Cloud](https://login.posit.cloud/login?redirect=%2F){target="_blank"} service, an online computing environment.
+We will be using the R programming language as a statistical tool for some assignments. These tools are free and open-source. We will use the [Posit Cloud](https://login.posit.cloud/login?redirect=%2F){target="_blank"} service, an online computing environment that supports computations in R and Python.
+
+*Amendment 1: The sentence "We will be using a computational tool (R) for some assignments." was change to "We will be using the R programming language as a statistical tool for some assignments.*
+
+*Amendment 2: The sentence "We will use the Posit Cloud service, an online computing environment." was modified to "We will use the Posit Cloud service, an online computing environment that supports computations in R and Python."*
 
 > Create a free account at [Posit Cloud Sign-Up](https://login.posit.cloud/register?redirect=%2F){target="_blank"} using your UP email. Note that you must use your UP email for me to add you into the course’s workspace in Posit Cloud. You will receive an email inviting you into the workspace at the first week of the semester.
 
