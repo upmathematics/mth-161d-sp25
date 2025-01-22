@@ -29,7 +29,7 @@ fontsize: 12pt
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## **About the Class**
+## About the Class
 
 ### Instructor Information
 
@@ -53,11 +53,20 @@ This course uses the following textbook - which is free to access - for reading 
 refs <- bibtex::read.bib("../../references.bib")
 ```
 
-  * `r capture.output(print(refs["diez2012openintro"]))`
+>  * `r capture.output(print(refs["diez2012openintro"]))`
+
+*Amendment 3: The textbook was emphasized.*
+
+### Credit Hours and Prerequisites
+
+* Credit hours: 3
+* Prerequisites: None
+
+*Amendment 4: The subsection "Credit hours and Prerequisites" was added with the number of course credits and prerequisites.*
 
 <br>
 
-## **Communication Tools**
+## Communication Tools
 
 ### Class Website
 
@@ -87,7 +96,7 @@ It is easy for me to get notice of your email if you put the keyword in the subj
 
 <br>
 
-## **Assignment Tools**
+## Assignment Tools
 
 ### Moodle
 
@@ -97,7 +106,11 @@ We will be using the course [Moodle](https://learning.up.edu){target="_blank"} p
 
 ### Posit Cloud
 
-We will be using a computational tool (R) for some assignments. These tools are free and open-source. We will use the [Posit Cloud](https://login.posit.cloud/login?redirect=%2F){target="_blank"} service, an online computing environment.
+We will be using the R programming language as a statistical tool for some assignments. These tools are free and open-source. We will use the [Posit Cloud](https://login.posit.cloud/login?redirect=%2F){target="_blank"} service, an online computing environment that supports computations in R and Python.
+
+*Amendment 1: The sentence "We will be using a computational tool (R) for some assignments." was change to "We will be using the R programming language as a statistical tool for some assignments.*
+
+*Amendment 2: The sentence "We will use the Posit Cloud service, an online computing environment." was modified to "We will use the Posit Cloud service, an online computing environment that supports computations in R and Python."*
 
 > Create a free account at [Posit Cloud Sign-Up](https://login.posit.cloud/register?redirect=%2F){target="_blank"} using your UP email. Note that you must use your UP email for me to add you into the course’s workspace in Posit Cloud. You will receive an email inviting you into the workspace at the first week of the semester.
 
@@ -109,7 +122,7 @@ If you are interested in using your own machine, you can install R environments 
 
 <br>
 
-## **Learning Goals**
+## Learning Goals
 
 ### Description
 
@@ -182,7 +195,7 @@ The following learning objectives are designed to build on one another, with som
 
 <br>
 
-## **Topics Schedule**
+## Topics Schedule
 
 | **Week** | **Day** | **Topic** |
 |:--:|:--:|:---------------|
@@ -235,7 +248,7 @@ The following learning objectives are designed to build on one another, with som
 
 <br>
 
-## **Academic Support**
+## Academic Support
 
 ### Help Hours
 
@@ -274,7 +287,7 @@ I expect you to participate in the class through lectures, class activities, dis
 
 <br>
 
-## **Assessment**
+## Assessment
 
 ### Assessment Disclosure Statement
 
@@ -334,7 +347,7 @@ The above table shows the percent of given assignments. These percentages are mi
 
 <br>
 
-## **Assignments**
+## Assignments
 
 ### Submission Guidelines
 
@@ -450,17 +463,29 @@ Here are additional rules for retakes during the final assessments:
 
 <br>
 
-## **Expectations**
+## Expectations
 
 ### Deadline Extension Policy
 
-If you need more time to submit a homework assignment, you may request an extension by following these steps:
+If you need more time to submit an assignment, you may request an extension by following these steps:
 
   * Communicate with me at least 12 hours before the deadline.
   * Specify the exact day you plan to submit your work or the number of extra days you need.
   * Please ensure that you adhere to the established timeline for submitting assignments, as it is important to maintain fairness and avoid over-reliance on extensions.
 
-Submitting a few hours late is usually not a major issue, as long as I receive your work before I begin marking and providing feedback. An extension is not required in such cases. Extensions for worksheets will only be granted if I decide to extend the deadline for the entire class.
+Submitting a few hours late is usually not a major issue, as long as I receive your work before I begin marking and providing feedback. An extension is not required in such cases. Extensions for in-class assignments --such as worksheets, mini-assignments, or activities-- will only be granted if I decide to extend the deadline for the entire class.
+
+*Amendment 5: The sentence "If you need more time to submit a homework assignment, you may request an extension by following these steps:" was changed to "If you need more time to submit an assignment, you may request an extension by following these steps:".*
+
+*Amendment 6: The sentence "Extensions for worksheets will only be granted if I decide to extend the deadline for the entire class." was changed to "Extensions for in-class assignments --such as worksheets, mini-assignments, or activities-- will only be granted if I decide to extend the deadline for the entire class."*
+
+### Late Assignments
+
+You are expected to turn in all completed assignments on time. Circumstances that may disallow you to turn in your work on time - such as a medical reason - are understandable. Please let me know if you have missed the deadline way beyond its original posted date without prior communication regarding extensions. Because every assignment is an important aspect of your learning in this class, we will discuss when you will turn in the assignment as well as decide upon an acceptable consequence for your turning it in late. I am committed to successfully helping you learn from this course.
+
+*Amendment 7: The "Late Assignments" subsection was moved.*
+
+*Amendment 8: The sentence "Please let me know if you are unable to submit your work and have missed the deadline way beyond its original posted date." was modified to "Please let me know if you have missed the deadline way beyond its original posted date without prior communication regarding extensions."*
 
 ### Withdrawal Procedures
 
@@ -480,11 +505,7 @@ Attendance is not tracked. However, participation is highly recommended. You are
 
 Generally, students are expected to attend all class sessions according to the instructor’s direction. Students who feel unwell should NOT attend class in person. These students should inform their instructor as soon as possible. 
 
-Should the instructor need to miss class, the course may be temporarily conducted remotely. Should the instructor be unable to teach for an extended period of time, the respective department or unit will find a substitute to continue the course. 
-
-### Late Assignments
-
-You are expected to turn in all completed assignments on time. Circumstances that may disallow you to turn in your work on time - such as a medical reason - are understandable. Please let me know if you are unable to submit your work and have missed the deadline way beyond its original posted date. Because every assignment is an important aspect of your learning in this class, we will discuss when you will turn in the assignment as well as decide upon an acceptable consequence for your turning it in late. I am committed to successfully helping you learn from this course.
+Should the instructor need to miss class, the course may be temporarily conducted remotely. Should the instructor be unable to teach for an extended period of time, the respective department or unit will find a substitute to continue the course.
 
 ### Incompletes
 

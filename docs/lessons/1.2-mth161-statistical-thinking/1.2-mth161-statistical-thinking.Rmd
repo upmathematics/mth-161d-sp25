@@ -45,6 +45,10 @@ A way of understanding the world through data.
 knitr::include_graphics("statistical-thinking-in-data-science-lifecycle.png")
 ```
 
+::: {style="color: red;"}
+$\star$ Statistical thinking is our guiding principle as we learn statistical concepts and techniques.
+:::
+
 ## Example 1: Statistical Question
 
 *Question:* **What is the crime rate in Portland, OR?**
@@ -161,7 +165,7 @@ The full course learning outcomes and objectives is in the [Syllabus](../../inde
 
 **Scenario:** Researchers conducted a study to understand whether drinking coffee impacts productivity at work. They collected data on how much coffee people drink daily and how productive they feel during their workday. The study examined whether there is a consistent pattern between coffee consumption and productivity levels.
 
-**Discussion Questions:**
+**Discussion Questions:** Write your individual answers for the following questions on paper, then discuss them with your peers.
 
 1. What is the main focus of the study?
 2. How might coffee consumption affect productivity, based on your intuition?
