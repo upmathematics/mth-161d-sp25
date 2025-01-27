@@ -99,7 +99,7 @@ $\dagger$ Can you spot anything unusual about any of the data points?
 $\star$ There is one student with GPA > 4.0, this is likely a data error.
 :::
 
-## Explanotory vs Response Variables
+## Explanatory vs Response Variables
 
 * To identify the explanatory variable in a pair of variables, identify which of the two is suspected of affecting the other:
 
