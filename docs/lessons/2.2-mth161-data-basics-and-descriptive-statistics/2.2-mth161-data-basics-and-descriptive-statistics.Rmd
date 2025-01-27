@@ -7,6 +7,7 @@ output:
   slidy_presentation:
     font_adjustment: +5
     footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
 bibliography: ../../references.bib
 csl: ../../apa.csl
 link-citation: true
@@ -22,8 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ::::
 
 :::: {.column width=70%}
-- **Explain types of variables**
-- **Develop an understanding of the different types of variables**
+- **Develop an understanding of different types of variables**
 - **Know how to compute the mean, median, frequency, and proportion**
 - **Activity: Identify types of variables & compute descriptive statistics**
 ::::
@@ -252,9 +252,7 @@ So, there are $5$ *b* and $3$ *g*.
 
 The **<span style="color:red;">Relative Frequency</span>** is the proportion of observations in each category.
 
-The proportion is the computed using the formula
-
-$$\text{proportion of a category} = \frac{\text{number of cases of a category}}{\text{total number of cases}}.$$
+The proportion is computed using the formula $$\text{proportion of a category} = \frac{\text{number of cases of a category}}{\text{total number of cases}}.$$
 
 ## Computing the Relative Frequency (2/2)
 
@@ -265,15 +263,7 @@ $$b, g, g, b, b, g, b, b$$
 :::: {.column width=39%}
 * *Manual Computation:*
 
-The unique categories are *b* and *g*.
-
-Number of occurrences: 
-\[
-\begin{aligned}
-b,b,b,b,b & \longrightarrow 5 \\
-g,g,g & \longrightarrow 3
-\end{aligned}
-\]
+The number of occurrences are the same as the previous example.
 
 Number of cases: $8$
 
@@ -301,7 +291,7 @@ So, there are $0.625$ *b* and $0.375$ *g*.
 
 1. Make sure you have a copy of the *F 1/24 Worksheet*. This will be handed out physically and it is also digitally available on Moodle. Then, access your *Calculator [First name] [First letter of last name]* in Posit Cloud.
 
-2. Work on your worksheet by yourself for 10 minutes.
+2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
 
 3. Get together with another student.
 

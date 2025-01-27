@@ -7,6 +7,7 @@ output:
   slidy_presentation:
     font_adjustment: +5
     footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
 bibliography: ../../references.bib
 csl: ../../mbe.csl
 ---
@@ -221,10 +222,10 @@ The purpose of this activity is for you to get a sense of how homework assignmen
 
 1. Log-in to Posit Cloud and open the R Studio assignment *W 1/22 - Modify a RMarkdown Document*.
 
-2. Make sure you are in the current working directory. Rename the `.Rmd` file to your name. Then, open the `.Rmd` file.
+2. Make sure you are in the current working directory. Rename the `.Rmd` file by replacing `[name]` with your name using the format `[First name][Last initial]`. Then, open the `.Rmd` file.
 
 3. Change the author in the YAML header.
 
-4. Read the provided instructions. Then answer all problems.
+4. Read the provided instructions.
 
-5. Knit your `.Rmd` file to `.html` file. Then, export both of your `.Rmd` and `.html` files and submit them into Moodle.
+5. Answer all exercise problems on the designated sections.

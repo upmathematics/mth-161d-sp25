@@ -7,6 +7,7 @@ output:
   slidy_presentation:
     font_adjustment: +5
     footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
 bibliography: ../../references.bib
 csl: ../../mbe.csl
 ---
@@ -189,11 +190,13 @@ The [Math Resource Center](https://www.up.edu/learningcommons/tutoring-services/
 ## Activity: Introductions
 
 1. On a piece of paper:
+
     * Write your name, year, and major.
     * Explain:
         - your background experience in math and science.
         - your anxieties and fears about math.
         - your hobbies.
     * Write an encouraging message to yourself six weeks from now.
+    
 2. Pair with another student and share what you wrote.
 3. Submit your work physically.

@@ -55,7 +55,7 @@ c. What are the variables in the study? Identify each variable as numerical or c
 
 \newpage
 
-### 2. Understanding Variable Types and Computing Descriptive Statistics
+### 2. Understanding variable types and computing descriptive statistics
 
 You are tasked with analyzing and comparing four data sets. Follow the steps below to identify the variable types, calculate descriptive statistics, and explain your reasoning.
 

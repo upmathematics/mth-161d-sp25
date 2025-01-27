@@ -1,15 +1,28 @@
 ---
-title: "My First RMarkdown Document"
+title: "Modify a RMarkdown Document"
 subtitle: "Elementary Statistics"
 author: "[First name] [First letter of last name]"
 date: "`r Sys.Date()`"
 output: html_document
 ---
 
-::: {style="color: red"}
+# Syllabus Reminders
+
+* You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+* Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+
 # Instructions
 
-For the exercises, please provide your answers in full sentences. Write your answers by replacing the text "[Write your answer here]". Please read the problems fully and carefully before answering.
+* For the exercises, please provide your answers in full sentences.
+* Write your answers by replacing the text "[Write your answer here]".
+* Please read the problems fully and carefully before answering.
+* When finished, knit this `.Rmd` to `.html`.
+* Submit this `.Rmd` and the recently knitted `.html`.
+
+# Collaborators
+
+::: {style="color: blue;"}
+[Write your answer here]
 :::
 
 # Exercises

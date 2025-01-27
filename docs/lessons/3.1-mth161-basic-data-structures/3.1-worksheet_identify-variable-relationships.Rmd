@@ -1,0 +1,76 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{M 1/27 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Identify Variable Relationships
+
+### 1. Head Length vs Skull Width of Possums
+
+Examine the scatterplot below and determine whether each of the following five statements is true or false. For each statement, explain your reasoning in a way that references the data or patterns visible in the scatterplot, and the definitions presented in class.
+
+```{r possum-head-vs-tail, echo=FALSE, fig.align='center', fig.cap="", message=FALSE, warning=FALSE, out.width='70%'}
+library(openintro)
+data(possum)
+data(COL)
+
+plot(possum$head_l, possum$skull_w, pch=20, col= COL[1], xlab = "head length (mm)", ylab = "skull width (mm)")
+```
+
+a. There is *no relationship* between head length and skull width, i.e. the variables are *independent*.
+\vfill
+
+\newpage
+
+b. Head length and skull width are *positively associated*.
+\vfill
+
+c. Skull width and head length are *negatively associated*.
+\vfill
+
+d. A longer head *causes* the skull to be wider.
+\vfill
+
+e. A wider skull *causes* the head to be longer.
+\vfill
+
+<!-- \newpage
+
+## **References**
+
+::: {#refs}
+:::
+
+<br> -->
