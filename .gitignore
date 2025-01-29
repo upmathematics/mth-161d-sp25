@@ -6,7 +6,7 @@ docs/roster/
 docs/instructor-materials/
 
 # files
-docs/worksheet/*S-worksheet_*
+docs/lessons/*/*S-worksheet_*
 
 .Rproj.user
 .Rhistory
