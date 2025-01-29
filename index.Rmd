@@ -573,7 +573,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [RMarkdown](lessons/2.1-mth161-rmarkdown/2.1-mth161-rmarkdown.html) | - |
 | [Data Basics & <br>Descriptive Statistics](lessons/2.2-mth161-data-basics-and-descriptive-statistics/2.2-mth161-data-basics-and-descriptive-statistics.html) | Pg. 12-18 @diez2012openintro |
 | [Basic Data Structures](lessons/3.1-mth161-basic-data-structures/3.1-mth161-basic-data-structures.html) | - |
-| Sampling Principles and Strategies | Pg. 22-28 @diez2012openintro |
+| [Sampling Principles and Strategies](lessons/3.2-mth161-sampling-principles-and-strategies/3.2-mth161-sampling-principles-and-strategies.html) | Pg. 22-28 @diez2012openintro |
 | Observational and Experimental Studies | Pg. 32-34 @diez2012openintro |
 | Examining Numerical Data | Pg. 41-55 @diez2012openintro |
 | Considering Categorical Data | Pg. 61-68 @diez2012openintro |

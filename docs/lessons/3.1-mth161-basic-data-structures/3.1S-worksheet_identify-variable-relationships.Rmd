@@ -23,7 +23,7 @@ fontsize: 12pt
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-**Name:**
+**Name:** \textcolor{blue}{\textbf{Solution}}
 
 **Collaborators:**
 
@@ -51,23 +51,33 @@ plot(possum$head_l, possum$skull_w, pch=20, col= COL[1], xlab = "head length (mm
 
 a. There is *no relationship* between head length and skull width, i.e. the variables are *independent*.
 
+    \textcolor{blue}{\textbf{False.} The scatterplot shows that as head length increases, the skull width increases, which indicate a positive association or the variables appear to be dependent. Therefore, the given statement is false.}
+
 \vfill
 
 \newpage
 
 b. Head length and skull width are *positively associated*.
 
+    \textcolor{blue}{\textbf{True.} As answered in Part (a), there appears to be a positive association between the variables. Therefore, the given statement holds true.}
+
 \vfill
 
 c. Skull width and head length are *negatively associated*.
+
+    \textcolor{blue}{\textbf{False.} The scatterplot shows a positive association between the variables. Additionally, Part (b) is true as stated. Therefore, the given statement is false.}
 
 \vfill
 
 d. A longer head *causes* the skull to be wider.
 
+    \textcolor{blue}{\textbf{False.} The variables appear to be positively associated based on the scatterplot. However, causal relationships can only be established if there is supporting evidence from experiments. Therefore, the given statement is false.}
+
 \vfill
 
 e. A wider skull *causes* the head to be longer.
+
+    \textcolor{blue}{\textbf{False.} The given statement uses the word "causes", which poses a similar problem as in Part (d). Thus, the given statement is false.}
 
 \vfill
 

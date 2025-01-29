@@ -37,7 +37,7 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::include_graphics("variables.png")
 ```
 
-## Case Study 1
+## Case Study
 
 A survey was conducted on students in an introductory statistics course. Below are a few of the questions on the survey, and the corresponding variables the data from the responses were stored in:
 

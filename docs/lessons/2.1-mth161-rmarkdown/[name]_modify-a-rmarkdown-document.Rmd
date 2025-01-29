@@ -1,7 +1,7 @@
 ---
 title: "Modify a RMarkdown Document"
 subtitle: "Elementary Statistics"
-author: "[First name] [First letter of last name]"
+author: "[First name][Last initial]"
 date: "`r Sys.Date()`"
 output: html_document
 ---

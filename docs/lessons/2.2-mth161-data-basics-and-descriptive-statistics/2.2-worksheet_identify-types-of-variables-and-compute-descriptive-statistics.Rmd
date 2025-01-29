@@ -67,12 +67,15 @@ You are tasked with analyzing and comparing four data sets. Follow the steps bel
 | B | $dog,mouse,cat,cat,cat,dog,cat$ |
 
 a. Identify the type of variable and its sub type for each set.
+
 \vfill
 
 b. Calculate descriptive statistics. For numerical data, compute the mean and median. For categorical data, calculate the frequency and proportion for each category.
+
 \vfill
 
 c. Provide a short written explanation for your findings. Be sure to justify why the chosen descriptive statistics are appropriate for the given variable type.
+
 \vfill
 
 <!-- \newpage

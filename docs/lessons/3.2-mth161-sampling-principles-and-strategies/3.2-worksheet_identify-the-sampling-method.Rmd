@@ -1,0 +1,79 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{M 1/29 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Identify the Sampling Method
+
+### 1. Household Surveys
+
+A city council has requested a household survey be conducted in a suburban area of their city. The area is broken into many distinct and unique neighborhoods, some including large homes, some with only apartments. Which sampling approach would likely be the least effective, and the most effective? Explain your reasoning.
+
+  (a) Simple random sampling
+  (b) Cluster sampling
+  (c) Stratified sampling
+  (d) multistage sampling
+  
+\vfill
+
+\newpage
+
+### 2. Parking at School Policy
+
+A school district is considering whether it will no longer allow high school students to park at school after two recent accidents where students were severely injured. As a first step, they survey parents by mail, asking them whether or not the parents would object to this policy change. Of 6,000 surveys that go out, 1,200 are returned. Of these 1,200 surveys that were completed, 960 agreed with the policy change and 240 disagreed.
+
+Determine whether each of the following five statements is true or false. For each statement, explain your reasoning in a way that references the definitions presented in class.
+
+a. Some of the mailings may have never reached the parents.
+
+\vfill
+
+b. The school district has strong support from parents to move forward with the policy approval.
+
+\vfill
+
+c. It is possible that majority of the parents of high school students disagree with the policy change.
+
+\vfill
+
+d. The survey results are unlikely to be biased because all parents were mailed a survey.
+
+\vfill
+
+## **References**
+
+::: {#refs}
+:::
