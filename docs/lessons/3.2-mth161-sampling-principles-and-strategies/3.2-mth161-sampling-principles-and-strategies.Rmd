@@ -210,8 +210,8 @@ knitr::include_graphics("us-census-citizenship-question-effects.png")
 ::::
 
 :::: {.column width=70%}
-* For your inference to be valid, the spoonful you tasted (the *sample*) needs to be **representative** of the entire pot (the *population*).
-* If your spoonful comes only from the surface and the salt is collected at the bottom of the pot (*sampling bias*), what you tasted is probably not representative of the whole pot.
+* For your inference to be valid, the spoonful you tasted (the **sample**) needs to be **representative** of the entire pot (the **population**).
+* If your spoonful comes only from the surface and the salt is collected at the bottom of the pot (**sampling bias**), what you tasted is probably not representative of the whole pot.
 * If you first stir the soup thoroughly before you taste (**random sampling**), your spoonful will more likely be representative of the whole pot.
 ::::
 
@@ -281,13 +281,9 @@ knitr::include_graphics("multistage.png")
 ## Activity: Identify the Sampling Method
 
 1. Make sure you have a copy of the *M 1/29 Worksheet*. This will be handed out physically and it is also digitally available on Moodle.
-
 2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
-
 3. Get together with another student.
-
 4. Discuss your results.
-
 5. Submit your worksheet on Moodle as a `.pdf` file.
 
 ## References
