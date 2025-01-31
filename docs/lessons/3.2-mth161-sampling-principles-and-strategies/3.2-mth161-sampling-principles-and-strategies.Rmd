@@ -43,7 +43,7 @@ knitr::include_graphics("variables.png")
 
 ## Previously... (2/2)
 
-The guiding principle of elementary statistics is statistical thinking.
+The guiding principle of statistics is statistical thinking.
 
 ```{r statistical-thinking-1, echo=FALSE, fig.cap="Statistical Thinking in the Data Science Life Cycle", fig.align='center', out.width = '55%'}
 knitr::include_graphics("statistical-thinking-in-data-science-lifecycle.png")
@@ -280,7 +280,7 @@ knitr::include_graphics("multistage.png")
 
 ## Activity: Identify the Sampling Method
 
-1. Make sure you have a copy of the *M 1/29 Worksheet*. This will be handed out physically and it is also digitally available on Moodle.
+1. Make sure you have a copy of the *W 1/29 Worksheet*. This will be handed out physically and it is also digitally available on Moodle.
 2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
 3. Get together with another student.
 4. Discuss your results.

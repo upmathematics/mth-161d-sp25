@@ -1,0 +1,79 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{F 1/31 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Identify the Type of Study
+
+### 1. Exam Performance
+  
+A study is designed to test the effect of light level and noise level on exam performance of students. The researcher also believes that light and noise levels might have different effects on males and females. They want to make sure both genders are equally represented in each group. Which of the below is correct? Explain your reasoning.
+
+  (a) There are 3 explanatory variables (light, noise, gender) and 1 response variable (exam performance)
+  (b) There are 2 explanatory variables (light and noise), 1 blocking variable (gender), and 1 response variable (exam performance)
+  (c) There is 1 explanatory variable (gender) and 3 response variables (light, noise, exam performance)
+  (d) There are 2 blocking variables (light and noise), 1 explanatory variable (gender), and 1 response variable (exam performance)
+
+\vfill
+
+\newpage
+
+### 2. Observational vs Experimental Studies
+
+Observational and experimental studies are two fundamental types of research methods used in various fields, especially in the social and natural sciences, to gather data and draw conclusions.
+
+Determine whether each of the following five statements is true or false. For each statement, explain your reasoning in a way that references the definitions presented in class.
+
+a. Experiments take place in a lab while observational studies do not need to.
+
+\vfill
+
+b. In an observational study we only look at what happened in the past.
+
+\vfill
+
+c. Most experiments use random assignment while observational studies do not.
+
+\vfill
+
+d. Observational studies are completely useless since no causal inference can be made based on their findings.
+
+\vfill
+
+## **References**
+
+::: {#refs}
+:::

@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Previously... (1/2)
 
-The guiding principle of elementary statistics is statistical thinking.
+The guiding principle of statistics is statistical thinking.
 
 ```{r statistical-thinking-1, echo=FALSE, fig.cap="Statistical Thinking in the Data Science Life Cycle", fig.align='center', out.width = '55%'}
 knitr::include_graphics("statistical-thinking-in-data-science-lifecycle.png")
