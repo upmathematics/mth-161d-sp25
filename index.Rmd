@@ -210,7 +210,7 @@ The following learning objectives are designed to build on one another, with som
 | **4** | M 2/3 | **Assessments 1** |
 |  | W 2/5 | Examining Numerical Data |
 |  | F 2/7 | Considering Categorical Data |
-| **5** | M 2/10 | Basic Data Visualizations & <br>**Homework 2** |
+| **5** | M 2/10 | Inference & <br>**Homework 2** |
 |  | W 2/12 | Basic Probability |
 |  | F 2/14 | Conditional Probability |
 | **6** | M 2/17 | **Assessments 2** |
@@ -391,9 +391,9 @@ Here are the rules for homework revisions:
 
 Assessments are given every other Monday after a short summary review. The purpose of the assessments is to evaluate your understanding of the learning objectives. Each assessment is specifically designed according to the learning objective being assessed.
 
-> Assessments are administed during class after a short summary review, and you have the entire class period to work on it.
+> Assessments are administered during class after a short summary review, and you have the entire class period to work on it.
 
-Assessments are marked using the general grading guide and will be returned with detailed feedback. Your work will be marked according to these three components:
+Assessments are marked using the general marking guide and will be returned with detailed feedback. Your work will be marked according to these three components:
 
 | **Component** | **Description** |
 |:-----|:---------------|
@@ -426,7 +426,7 @@ Here are the rules for assessment retakes:
 
 > Here is how you can sign-up for the assessment retakes:
 >
-> * [Retake Assessment (Lower-Division)](https://calendly.com/alexjohnquijano/retake-or-make-up-exam-quiz-upper-division-clone){target="_Blank"} <br>Click on the link to sign-up for a 55-minute proctored session. Retakes must be scheduled 24 hours in advance.
+> * [Retake Assessment (Lower-Division)](https://calendly.com/alexjohnquijano/retake-or-make-up-exam-quiz-upper-division){target="_Blank"} <br>Click on the link to sign-up for a 55-minute proctored session. Retakes must be scheduled 24 hours in advance.
 
 ### Make-up Assessments
 
@@ -441,7 +441,7 @@ Here are the rules of make-up exams:
 
 > Here is how you can sign-up for the assessment make-ups:
 >
-> * [Make-Up Assessment (Lower-Division)](https://calendly.com/alexjohnquijano/retake-or-make-up-exam-quiz-upper-division-clone){target="_Blank"} <br>Click on the link to sign-up for a 55-minute session. Make-ups must be scheduled 24 hours in advance.
+> * [Make-Up Assessment (Lower-Division)](https://calendly.com/alexjohnquijano/retake-or-make-up-exam-quiz-upper-division){target="_Blank"} <br>Click on the link to sign-up for a 55-minute session. Make-ups must be scheduled 24 hours in advance.
 
 ### Final Assessments
 
@@ -563,7 +563,7 @@ In the study of natural and mathematical sciences, often perceived as objective 
 
 ## Class Readings and Presentations
 
-The "Read" column in the table below contains page numbers (Pg.) or chapters (ch.) on which it refers to a label in the Books \& Online Resources List. For example "Pg. 1-5 @diez2012openintro" refers to pages 1-5 of the textbook titled "Openintro Statistics".
+The "Read" column in the table below contains page numbers (Pg.) or chapters (ch.) on which it refers to a label in the Books \& Online Resources List. For example "Pg. 1-5 @diez2012openintro" refers to pages 1-5 of the textbook titled *Openintro Statistics*.
 
 | **Topic** | **Read** |
 |:---|:---|
@@ -574,10 +574,10 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Data Basics & <br>Descriptive Statistics](lessons/2.2-mth161-data-basics-and-descriptive-statistics/2.2-mth161-data-basics-and-descriptive-statistics.html) | Pg. 12-18 @diez2012openintro |
 | [Basic Data Structures](lessons/3.1-mth161-basic-data-structures/3.1-mth161-basic-data-structures.html) | - |
 | [Sampling Principles and Strategies](lessons/3.2-mth161-sampling-principles-and-strategies/3.2-mth161-sampling-principles-and-strategies.html) | Pg. 22-28 @diez2012openintro |
-| [Observational and Experimental Studies](lessons/3.3-mth361-observational-and-experimental-studies/3.3-mth361-observational-and-experimental-studies.html)  | Pg. 32-34 @diez2012openintro |
-| Examining Numerical Data | Pg. 41-55 @diez2012openintro |
+| [Observational and Experimental Studies](lessons/3.3-mth161-observational-and-experimental-studies/3.3-mth161-observational-and-experimental-studies.html)  | Pg. 32-34 @diez2012openintro |
+| [Examining Numerical Data](lessons/4.1-mth161-examining-numerical-data/4.1-mth161-examining-numerical-data.html) | Pg. 41-55 @diez2012openintro |
 | Considering Categorical Data | Pg. 61-68 @diez2012openintro |
-| Basic Data Visualizations | - |
+| Inference | - |
 | Basic Probability | Pg. 81-91 @diez2012openintro |
 | Conditional Probability | Pg. 95-108 @diez2012openintro |
 | Binomial Distribution | Pg. 149-155 @diez2012openintro |

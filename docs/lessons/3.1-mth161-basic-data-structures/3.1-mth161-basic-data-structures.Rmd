@@ -11,6 +11,7 @@ output:
 bibliography: ../../references.bib
 csl: ../../apa.csl
 link-citation: true
+nocite: '@*'
 ---
 
 ```{r setup, include=FALSE}
@@ -86,9 +87,7 @@ knitr::include_graphics("data-matrix.png")
 
 ```{r gpa-vs-study-hours, echo=FALSE, fig.align='center', fig.cap="", message=FALSE, warning=FALSE, out.width='60%'}
 library(openintro)
-d = read.csv("gpa_study_hours.csv")
-
-plot(d$gpa ~ d$study_hours, pch = 19, col = COL[1,3], xlab = "Hours of study / week", ylab = "GPA", cex.lab = 1.5, cex.axis = 1.5)
+plot(gpa_study_hours$gpa ~ gpa_study_hours$study_hours, pch = 19, col = COL[1,3], xlab = "Hours of study / week", ylab = "GPA", cex.lab = 1.5, cex.axis = 1.5)
 ```
 
 ::: {style="color: blue;"}
@@ -128,13 +127,9 @@ $$\text{explanatory variable} \xrightarrow{\text{might affect}} \text{response v
 ## Activity: Identify Variable Relationships
 
 1. Make sure you have a copy of the *M 1/27 Worksheet*. This will be handed out physically and it is also digitally available on Moodle.
-
 2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
-
 3. Get together with another student.
-
 4. Discuss your results.
-
 5. Submit your worksheet on Moodle as a `.pdf` file.
 
 ## References

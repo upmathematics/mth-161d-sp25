@@ -10,6 +10,7 @@ output:
     css: ../_style.css
 bibliography: ../../references.bib
 csl: ../../mbe.csl
+nocite: '@*'
 ---
 
 ```{r setup, include=FALSE}
@@ -173,3 +174,8 @@ The full course learning outcomes and objectives is in the [Syllabus](../../inde
 3. What could a strong relationship between coffee consumption and productivity suggest for coffee drinkers?
 4. What other factors (confounders) might influence both coffee consumption and productivity? How could these affect the study's conclusions?
 5. If the study finds a meaningful connection, what practical advice could it offer to workers?
+
+## References
+
+::: {#refs}
+:::

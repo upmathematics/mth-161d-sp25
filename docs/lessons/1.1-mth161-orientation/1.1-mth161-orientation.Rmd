@@ -10,6 +10,7 @@ output:
     css: ../_style.css
 bibliography: ../../references.bib
 csl: ../../mbe.csl
+nocite: '@*'
 ---
 
 ```{r setup, include=FALSE}
@@ -200,3 +201,8 @@ The [Math Resource Center](https://www.up.edu/learningcommons/tutoring-services/
     
 2. Pair with another student and share what you wrote.
 3. Submit your work physically.
+
+## References
+
+::: {#refs}
+:::

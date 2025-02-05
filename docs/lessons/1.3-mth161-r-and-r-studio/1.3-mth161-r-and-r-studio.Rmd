@@ -10,6 +10,7 @@ output:
     css: ../_style.css
 bibliography: ../../references.bib
 csl: ../../mbe.csl
+nocite: '@*'
 ---
 
 ```{r setup, include=FALSE}
@@ -133,11 +134,12 @@ knitr::include_graphics("basic-parts-of-posit-cloud.png")
 ## Activity: Setting up Posit Cloud
 
 1. Sign-up for a free [Posit Cloud](https://login.posit.cloud/){target="_blank"} account using your UP email. Then, log-in.
-
 2. Enter your email again using this form - [Email Entry for Activity: Setting up Posit Cloud](https://forms.office.com/r/8Rm8Ni7aDG?origin=lprLink){target="_blank"} so I can add you to the course's workspace. You will be invited to this course's Workspace soon. Check your email.
-
 3. Enter the Workspace using the link in the email sent from Posit Cloud, then click on the assignment named *Calculator [First name][Last initial]*. This will create a copy for you.
-
 4. Rename your copied assignment as *Calculator [First name][Last initial]*.
-
 5. For now you can explore Posit Cloud. We will discuss more about this tool as we progress.
+
+## References
+
+::: {#refs}
+:::
