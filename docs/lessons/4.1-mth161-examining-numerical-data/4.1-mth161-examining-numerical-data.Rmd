@@ -57,7 +57,7 @@ It involves organizing, summarizing, and presenting data in an informative way. 
 * Measures of Central Tendency
     - **<span style="color:blue;">Mean (Average)</span>**, **<span style="color:blue;">Median</span>**, and Mode
 * Measures of Dispersion (Spread)
-    - **<span style="color:red;">Range</span>**, **<span style="color:red;">Variance</span>**, **<span style="color:red;">Standard Deviation</span>**, **<span style="color:red;">Interquartile Range (IQR)</span>**
+    - Range, Variance, Standard Deviation, Interquartile Range (IQR)
 ::::
 
 :::: {.column width=49%}

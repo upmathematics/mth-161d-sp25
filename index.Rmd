@@ -165,14 +165,14 @@ The following learning objectives are designed to build on one another, with som
 | **Basic Data Structures** | **BDS1:** Use R to create and manipulate basic data structures. | **BDS2:** Differentiate between vectors, matrices, data frames, and lists in R. |
 | **Sampling Principles and Strategies** | **SPS1:** Describe key sampling techniques (simple random, stratified, cluster). <br>**SPS2:** Differentiate between a population and a sample, identify examples of each, and explain how samples are used to make inferences about populations. | **SPS3:** Evaluate the strengths and limitations of various sampling strategies. |
 | **Observational and Experimental Studies** | **OES1:** Distinguish between observational studies and experiments. <br>**OES2:** Evaluate the validity of conclusions drawn from observational and experimental data. | **OES3:** Identify key components of a well-designed experiment (randomization, control, replication). |
-| **Examining Numerical Data** | **END1:** Identify patterns, outliers, and trends in numerical data. <br>**END2:** Compute and interpret key summary statistics for numerical datasets. | **END3:** Use R to create visualizations such as scatter plots and line graphs. |
-| **Considering Categorical Data** | **CCD1:** Summarize categorical data using frequency tables and bar charts. <br>**CCD2:** Compute and interpret proportions and relative frequencies. | **CCD3:** Use R to analyze and visualize categorical data. |
-| **Basic Data Visualizations** | **BDV1:** Choose appropriate visualizations for different data types and distributions. |  |
-| **Basic Probability** | **BP1:** Define and calculate probabilities using basic rules (addition and multiplication). <br>**BP2:** Interpret probability in context. |  |
+| **Examining Numerical Data** | **END1:** Identify patterns, outliers, and trends in numerical data. | **END2:** Use R to create visualizations such as scatter plots and line graphs. |
+| **Summarizing Numerical Data** | **SND1:** Compute and interpret key summary statistics for numerical datasets. | **SND2:** Use R to compute key summary statistics for numerical variables. |
+| **Considering Categorical Data** | **CCD1:** Summarize categorical data using frequency tables and bar charts. <br>**CCD2:** Compute and interpret proportions and relative frequencies. | **CCD3:** Use R to analyze and visualize categorical data. <br>**CCD3:** Use R to compute key summary statistics for categorical variables. |
+| **Inference** | **I1:** Identify and distinguish between two types of inference: parameter estimation and hypothesis testing. **I2:** Differentiate between a population and a sample based on their definitions and characteristics. |  |
+| **Basic Probability** | **BP1:** Define and calculate probabilities using basic rules. <br>**BP2:** Interpret probability in context. |  |
 | **Conditional Probability** | **CP1:** Compute conditional probabilities using contingency tables and Bayes' theorem. <br>**CP2:** Apply conditional probability to practical scenarios. |  |
 | **Binomial Distribution** | **BD1:** Define the properties of a binomial random variable. | **BD2:** Use R to compute probabilities and cumulative probabilities for binomial distributions. |
 | **Normal Distribution** | **ND1:** Explain the properties of the normal distribution. <br>**ND2:** Apply the empirical rule to estimate probabilities for normally distributed data. | **ND3:** Use R to calculate probabilities and percentiles for normal distributions. |
-| **Practical Sampling** |  | **PS1:** Simulate random sampling from data using R. |
 | **Point Estimates and Sampling Variability** | **PESV1:** Explain the concepts of point estimates and variation.  <br>**PESV2:** Explain and interpret the p-value. |  |
 | **Confidence Intervals** | **CI1:** Explain and interpret confidence intervals. |  |
 | **Decision Errors** | **DE1:** Define and explain the null and alternative hypothesis in context. <br>**DE2:** Define Type I and Type II errors and their implications in hypothesis testing. | **DE3:** Evaluate the impact of sample size and significance level on decision errors. |
@@ -209,14 +209,14 @@ The following learning objectives are designed to build on one another, with som
 |  | F 1/31 | Observational and Experimental Studies |
 | **4** | M 2/3 | **Assessments 1** |
 |  | W 2/5 | Examining Numerical Data |
-|  | F 2/7 | Considering Categorical Data |
-| **5** | M 2/10 | Inference & <br>**Homework 2** |
-|  | W 2/12 | Basic Probability |
-|  | F 2/14 | Conditional Probability |
+|  | F 2/7 | Summarizing Numerical Data |
+| **5** | M 2/10 | Considering Categorical Data & <br>**Homework 2** |
+|  | W 2/12 | Inference |
+|  | F 2/14 | Basic Probability |
 | **6** | M 2/17 | **Assessments 2** |
 |  | W 2/19 | Binomial Distribution |
 |  | F 2/21 | Normal Distribution |
-| **7** | M 2/24 | Practical Sampling & <br>**Homework 3** |
+| **7** | M 2/24 | Conditional Probability & <br>**Homework 3** |
 |  | W 2/26 | Point Estimates and Sampling Variability |
 |  | F 2/28 | Confidence Intervals |
 | **8** | M 3/3 | _Spring Vacation_ |
@@ -576,13 +576,13 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Sampling Principles and Strategies](lessons/3.2-mth161-sampling-principles-and-strategies/3.2-mth161-sampling-principles-and-strategies.html) | Pg. 22-28 @diez2012openintro |
 | [Observational and Experimental Studies](lessons/3.3-mth161-observational-and-experimental-studies/3.3-mth161-observational-and-experimental-studies.html)  | Pg. 32-34 @diez2012openintro |
 | [Examining Numerical Data](lessons/4.1-mth161-examining-numerical-data/4.1-mth161-examining-numerical-data.html) | Pg. 41-55 @diez2012openintro |
+| [Summarizing Numerical Data](lessons/4.2-mth161-summarizing-numerical-data/4.2-mth161-summarizing-numerical-data.html) | - |
 | Considering Categorical Data | Pg. 61-68 @diez2012openintro |
 | Inference | - |
 | Basic Probability | Pg. 81-91 @diez2012openintro |
-| Conditional Probability | Pg. 95-108 @diez2012openintro |
 | Binomial Distribution | Pg. 149-155 @diez2012openintro |
 | Normal Distribution | Pg. 133-141 @diez2012openintro |
-| Practical Sampling | - |
+| Conditional Probability | Pg. 95-108 @diez2012openintro |
 | Point Estimates and Sampling Variability | Pg. 170-178 @diez2012openintro |
 | Confidence Intervals | Pg. 181-186 @diez2012openintro |
 | Decision Errors | Pg. 189-201 @diez2012openintro |
