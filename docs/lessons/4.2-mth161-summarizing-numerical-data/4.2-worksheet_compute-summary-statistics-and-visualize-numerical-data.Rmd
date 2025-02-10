@@ -1,0 +1,156 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{F 2/7 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(knitr)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Compute Summary Statistics and Visualize Numerical Data
+
+### 1. Using R to Compute the Summary Statistics
+
+Consider the data set given below. This data set contains one discrete numerical variable named A. 
+
+Encode the given data into R, then use the R functions to compute the mean, standard deviation, quartiles, and interquartile range (IQR). Write them --up to three decimal places-- on the provided summary statistic table below. Then, answer the provided questions.
+
+\vspace{10px}
+
+```{r echo=FALSE, eval=TRUE}
+set.seed(seed)
+data <- tibble(A = c(rbinom(19,10,0.80),11))
+data_summary <- data |> 
+  summarise(
+    Mean = round(mean(A),3),
+    SD = round(sd(A),3),
+    Q1 = round(quantile(A,c(0.25)),3),
+    `Q2 (Median)` = round(median(A),3),
+    Q3 = round(quantile(A,c(0.75)),3),
+    IQR = round(IQR(A),3)
+  ) |> 
+  pivot_longer(c(Mean,SD,Q1,`Q2 (Median)`,Q3,IQR),
+               names_to = "Statistic",
+               values_to = ".")
+```
+
+\begin{minipage}[t]{0.20\textwidth}
+\textbf{Data Table:}
+\vspace{10px}
+
+```{r echo=FALSE, eval=TRUE}
+kable(data,align="l",format="latex",booktabs = TRUE)
+```
+\end{minipage}
+\begin{minipage}[t]{0.30\textwidth}
+\textbf{Summary Statistics:}
+\vspace{10px}
+
+\begin{tabular}{|l|llll|}
+\hline
+\multirow{2}{*}{\textbf{Mean}}                    & \textbf{} & \textbf{} &  &  \\
+                                                  &           &           &  &  \\ \hline
+\multirow{2}{*}{\textbf{SD}}                      &           &           &  &  \\
+                                                  &           &           &  &  \\ \hline
+\multirow{2}{*}{\textbf{$\mathbf{Q}_1$}}          &           &           &  &  \\
+                                                  &           &           &  &  \\ \hline
+\multirow{2}{*}{\textbf{$\mathbf{Q}_2$ (Median)}} &           &           &  &  \\
+                                                  &           &           &  &  \\ \hline
+\multirow{2}{*}{\textbf{$\mathbf{Q}_3$}}          &           &           &  &  \\
+                                                  &           &           &  &  \\ \hline
+\multirow{2}{*}{\textbf{IQR}}                     &           &           &  &  \\
+                                                  &           &           &  &  \\ \hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}[t]{0.50\textwidth}
+\textbf{Questions:}
+\vspace{10px}
+
+\begin{itemize}
+\item[a.] What R function did you use to compute the mean and standard deviation?
+\vspace{30px}
+\item[b.] What R function did you use to compute the quartiles?
+\vspace{30px}
+\item[c.] Which R function should you use to compute the 30th percentile, and what values should you input for its arguments?
+\vspace{30px}
+\item[d.] What is the 30th percentile of the given data set?
+\vspace{30px}
+\end{itemize}
+\end{minipage}
+
+\vfill
+
+\newpage
+
+### 2. Visualizing Numerical Data
+
+Consider the given data set from Problem 1 and the resulting summary statistics.
+
+a. Draw a stacked dot plot on the provided empty axis below.
+
+```{r echo=FALSE,eval=TRUE,out.width='100%',fig.width=7,fig.height=2, fig.align='center'}
+A <- 5:11
+ggplot(data,aes(x=A)) + 
+  ylab("") + 
+  scale_x_continuous("A", labels = as.character(A), breaks = A) + 
+  theme_minimal() + 
+  theme(axis.text.y=element_blank(), 
+        axis.ticks.y=element_blank())
+```
+
+b. Draw a box plot on the provided empty axis below. Label the main parts of the box plot.
+
+```{r echo=FALSE,eval=TRUE,out.width='100%',fig.width=7,fig.height=2, fig.align='center'}
+A <- 5:11
+ggplot(data,aes(x=A)) + 
+  ylab("") + 
+  scale_x_continuous("A", labels = as.character(A), breaks = A) + 
+  theme_minimal() + 
+  theme(axis.text.y=element_blank(), 
+        axis.ticks.y=element_blank())
+```
+
+c. Describe your observations on the shape of the distribution in terms of skewness and modality. Compare the dot plot and the box plot in terms of what each reveals and what limitations they have. Explain your reasoning.
+\vfill
+
+## **References**
+
+::: {#refs}
+:::

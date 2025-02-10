@@ -61,7 +61,7 @@ A survey was conducted on students in an introductory statistics course. Below a
 
 Data collected on students in a statistics class on a variety of variables:
 
-```{r data-matrix-with-labels, echo=FALSE, fig.cap="Example Data Matrix [@diez2012openintro]", fig.align='center', out.width = '70%'}
+```{r data-matrix-with-labels, echo=FALSE, fig.cap="Example Data Matrix", fig.align='center', out.width = '70%'}
 knitr::include_graphics("data-matrix-with-labels.png")
 ```
 

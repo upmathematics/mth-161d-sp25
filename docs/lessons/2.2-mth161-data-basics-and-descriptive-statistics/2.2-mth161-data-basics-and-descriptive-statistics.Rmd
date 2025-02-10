@@ -48,7 +48,7 @@ knitr::include_graphics("basic-parts-of-r-studio.png")
 
 ## Types of Variables
 
-```{r types-of-variables, echo=FALSE, fig.cap="Types of Variables [@diez2012openintro]", fig.align='center', out.width = '70%'}
+```{r types-of-variables, echo=FALSE, fig.cap="Types of Variables", fig.align='center', out.width = '70%'}
 knitr::include_graphics("variables.png")
 ```
 
@@ -130,21 +130,22 @@ knitr::include_graphics("variables.png")
 * Cumulative Frequency
 ::::
 
-## Computing the Mean (Average) (1/2)
+## The Mean
 
-The **<span style="color:red;">Mean (Average)</span>** is the *sum* of all data points divided by the *number of points*.
+The **sample mean**, denoted as $\overline{x}$, can be calculated as $$\overline{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}$$ where $x_1, x_2, \cdots, x_n$ represent the $n$ observed values.
 
-The mean is computed using the formula $$\text{mean} = \frac{\text{sum of all data points}}{\text{number of data points}}.$$
+In other words, the **mean (or average)** is the *sum* of all data points divided by the *number of points*: $$\text{mean} = \frac{\text{sum of all data points}}{\text{number of data points}}.$$
 
-## Computing the Mean (Average) (2/2)
+## Computing the Mean
 
 **Example:** What is the mean of the data set $7,1,2,4,6,3,2,7$?
 
 :::: {.column width=60%}
 * *Manual Computation:*
+
 \[
 \begin{aligned}
- \text{mean} & = \frac{7+1+2+4+6+3+2+7}{8} \\
+ \overline{x} & = \frac{7+1+2+4+6+3+2+7}{8} \\
              & = 4
 \end{aligned}
 \]
@@ -152,6 +153,7 @@ The mean is computed using the formula $$\text{mean} = \frac{\text{sum of all da
 
 :::: {.column width=39%}
 * *Using R:*
+
 ```{r mean-example}
 num_data <- c(7,1,2,4,6,3,2,7)
 mean(num_data)
@@ -160,9 +162,9 @@ mean(num_data)
 
 So, the mean is $4$.
 
-## Computing the Median (1/2)
+## The Median
 
-The **<span style="color:red;">Median</span>** is the *middle value* when the data is *sorted*.
+The **median** is the *middle value* when the data is *sorted*.
 
 The median is computed using the following cases:
 
@@ -170,7 +172,7 @@ The median is computed using the following cases:
 knitr::include_graphics("median-illustration.png")
 ```
 
-## Computing the Median (2/2)
+## Computing the Median
 
 **Example:** What is the median of the data set $7,1,2,4,6,3,2,7$?
 
@@ -191,6 +193,7 @@ $$\text{sorted data} \longrightarrow 1,2,2,\color{blue}{\mathbf{3}},\color{blue}
 
 :::: {.column width=39%}
 * *Using R:*
+
 ```{r median-example-1}
 num_data <- c(7,1,2,4,6,3,2,7)
 sort(num_data)
@@ -200,9 +203,9 @@ median(num_data)
 
 So, the median is $3.5$.
 
-## Computing the Frequency (1/2)
+## The Frequency
 
-The **<span style="color:red;">Frequency</span>** is the number of observations in each category.
+The **frequency** is the number of observations in each category.
 
 The method of computing the frequencies of a categorical variable is as follows:
 
@@ -218,7 +221,7 @@ The method of computing the frequencies of a categorical variable is as follows:
 :::: {.column width=15%}
 ::::
 
-## Computing the Frequency (2/2)
+## Computing the Frequency
 
 **Example:** How many *b* and *g* are there in the data listed below?
 
@@ -249,13 +252,13 @@ table(cat_data)
 
 So, there are $5$ *b* and $3$ *g*.
 
-## Computing the Relative Frequency (1/2)
+## The Relative Frequency
 
-The **<span style="color:red;">Relative Frequency</span>** is the proportion of observations in each category.
+The **relative frequency** is the proportion of observations in each category.
 
 The proportion is computed using the formula $$\text{proportion of a category} = \frac{\text{number of cases of a category}}{\text{total number of cases}}.$$
 
-## Computing the Relative Frequency (2/2)
+## Computing the Relative Frequency
 
 **Example:** What are the proportions of *b* and *g* in the data listed below?
 

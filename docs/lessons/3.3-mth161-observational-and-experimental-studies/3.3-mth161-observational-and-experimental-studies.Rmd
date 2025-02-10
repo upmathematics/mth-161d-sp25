@@ -75,7 +75,7 @@ knitr::include_graphics("statistical-thinking-in-data-science-lifecycle.png")
 | 
 
 ::: {style="color: red;"}
-**Key Difference:** Observational studies find patterns, while experimental studies test cause-and-effect.
+$\star$ **Key Difference:** Observational studies find patterns, while experimental studies test cause-and-effect.
 :::
 
 ## Case Study 1

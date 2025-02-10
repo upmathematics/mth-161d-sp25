@@ -1,0 +1,92 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{M 2/10 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(knitr)
+library(gridExtra)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Interpret Row and Column Proportions
+
+### 1. Contingency Tables
+
+Shown below is a contingency table of two categorical variables, `gender` and `survived`, in the Titanic data set.
+
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+# The titanic.csv data is from https://www.kaggle.com/datasets/aliaamiri/titanic-passengers-and-crew-complete-list
+# The titanic data can also be accessed using the stablelearner package
+
+titanic <- read_csv("titanic.csv") |> 
+  select(survived,gender,age,class,fare) |> 
+  mutate(age = round(age,0),
+         class = case_when(
+           class == "deck crew" ~ "crew",
+           class == "engineering crew" ~ "crew",
+           class == "restaurant staff" ~ "crew",
+           class == "victualling crew" ~ "crew",
+           TRUE ~ class
+         ))
+```
+
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+titanic_surv_gender <- titanic |> select(survived,gender) |> 
+  group_by(survived,gender) |> 
+  summarise(total = n(),
+            .groups = 'drop')
+kable(addmargins(xtabs(total ~ survived + gender, titanic_surv_gender)))
+```
+
+a. Calculate the proportion of survivors within each gender category. That is, for each gender, what percentage survived?
+\vfill
+
+b. Determine the proportion of each gender within the group of survivors and within the group of non-survivors. That is, among those who survived, what percentage were male and what percentage were female? Similarly, among those who did not survive, what percentage were male and what percentage were female?
+\vfill
+
+\newpage
+
+c. Based on your answers to the previous questions, what conclusions can you draw about the survival rates of different genders on the Titanic? What factors might explain any observed disparities?
+\vfill
+
+## **References**
+
+::: {#refs}
+:::
