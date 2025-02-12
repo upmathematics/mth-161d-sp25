@@ -45,11 +45,23 @@ set.seed(42)
 
 *These slides are derived from @diez2012openintro.*
 
-## Previously... (1/2)
+## Previously... (1/3)
+
+**Data Matrix**
+
+Data collected on students in a statistics class on a variety of variables:
+
+```{r data-matrix-with-labels, echo=FALSE, fig.cap="Example Data Matrix", fig.align='center', out.width = '70%'}
+knitr::include_graphics("data-matrix-with-labels.png")
+```
+
+## Previously... (2/3)
 
 **Exploratory Analysis**
 
 It is the process of analyzing and summarizing datasets to uncover patterns, trends, relationships, and anomalies before inference.
+
+## Previously... (3/3)
 
 **Descriptive statistics**
 
@@ -72,16 +84,6 @@ It involves organizing, summarizing, and presenting data in an informative way. 
 * **<span style="color:red;">Percentage</span>**
 * **<span style="color:red;">Cumulative Frequency</span>**
 ::::
-
-## Previously... (2/2)
-
-**Data Matrix**
-
-Data collected on students in a statistics class on a variety of variables:
-
-```{r data-matrix-with-labels, echo=FALSE, fig.cap="Example Data Matrix", fig.align='center', out.width = '70%'}
-knitr::include_graphics("data-matrix-with-labels.png")
-```
 
 ## Case Study 1: Titanic Data Set
 

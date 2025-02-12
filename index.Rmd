@@ -578,7 +578,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Examining Numerical Data](lessons/4.1-mth161-examining-numerical-data/4.1-mth161-examining-numerical-data.html) | Pg. 41-55 @diez2012openintro |
 | [Summarizing Numerical Data](lessons/4.2-mth161-summarizing-numerical-data/4.2-mth161-summarizing-numerical-data.html) | - |
 | [Considering Categorical Data](lessons/5.1-mth161-considering-categorical-data/5.1-mth161-considering-categorical-data.html) | Pg. 61-68 @diez2012openintro |
-| Inference | - |
+| [Inference](lessons/5.2-mth161-inference/5.2-mth161-inference.html) | - |
 | Basic Probability | Pg. 81-91 @diez2012openintro |
 | Binomial Distribution | Pg. 149-155 @diez2012openintro |
 | Normal Distribution | Pg. 133-141 @diez2012openintro |

@@ -1,0 +1,87 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{M 2/10 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(knitr)
+library(gridExtra)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Distinguish Between Estimation and Testing
+
+### 1. Population Parameter or Sample Statistic
+
+Identify whether each of the following statements refers to a population parameter or a sample statistic. Explain your reasoning.
+
+a. The average height of all students at the university is 5.7 fee.
+\vfill
+
+b. A survey of 100 students found that 40% prefer online classes.
+\vfill
+
+c. The true proportion of defective parts in a factory is 2%.
+\vfill
+
+d. A study uses a sample of 200 people to estimate the national unemployment rate.
+\vfill
+
+\newpage
+
+### 2. Parameter Estimation or Hypothesis Testing
+
+Consider the following scenarios and indicate whether the method used is Parameter Estimation or Hypothesis Testing. Explain your reasoning.
+
+a. A researcher wants to estimate the average IQ of students at a university based on a sample of 50 students.
+\vfill
+    
+b. A study tests whether a new drug lowers blood pressure more effectively than the current medication by analyzing a sample of 150 patients.
+\vfill
+    
+c. A political analyst predicts the proportion of voters favoring a particular candidate based on a survey.
+\vfill
+    
+d. A factory manager examines whether the defect rate in production has increased beyond the historical average of 3\%.
+\vfill
+
+## **References**
+
+::: {#refs}
+:::
