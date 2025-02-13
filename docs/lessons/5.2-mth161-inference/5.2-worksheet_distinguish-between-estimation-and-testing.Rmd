@@ -51,7 +51,7 @@ Worksheets are marked mostly on completion, and partially on correctness. It wil
 
 Identify whether each of the following statements refers to a population parameter or a sample statistic. Explain your reasoning.
 
-a. The average height of all students at the university is 5.7 fee.
+a. The average height of all students at the university is 5.7 feet.
 \vfill
 
 b. A survey of 100 students found that 40% prefer online classes.

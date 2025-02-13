@@ -210,10 +210,10 @@ The following learning objectives are designed to build on one another, with som
 | **4** | M 2/3 | **Assessments 1** |
 |  | W 2/5 | Examining Numerical Data |
 |  | F 2/7 | Summarizing Numerical Data |
-| **5** | M 2/10 | Considering Categorical Data & <br>**Homework 2** |
+| **5** | M 2/10 | Considering Categorical Data |
 |  | W 2/12 | Inference |
 |  | F 2/14 | Basic Probability |
-| **6** | M 2/17 | **Assessments 2** |
+| **6** | M 2/17 | **Assessments 2** & <br>**Homework 2** |
 |  | W 2/19 | Binomial Distribution |
 |  | F 2/21 | Normal Distribution |
 | **7** | M 2/24 | Conditional Probability & <br>**Homework 3** |
