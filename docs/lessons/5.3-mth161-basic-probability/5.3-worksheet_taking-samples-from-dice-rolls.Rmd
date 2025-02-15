@@ -1,0 +1,107 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{W 2/19 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(knitr)
+library(gridExtra)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Taking Samples from Dice Rolls
+
+### 1. Sum of Two Dice Probabilities
+
+When rolling two fair six-sided dice, the sum of the two numbers rolled can range from 2 to 12. Each outcome has a different probability of occurring.
+
+a. The left table lists all possible sums of two six-sided dice. Complete the table by summing the outcome of the two dice.
+b. The right table counts the number of ways each sum can occur (since some sums have more combinations than others). Compute the probability of each sum by dividing the count by the total number of outcomes.
+
+```{r dice-sums, echo=FALSE, fig.cap="", out.width="250px",out.height="250px",fig.show='hold',fig.align='center'}
+knitr::include_graphics("dice-sums-table-blank.pdf")
+knitr::include_graphics("dice-sums-probs-table-blank.pdf")
+```
+
+Hint: Examine the pre-entered values in the table and consider the basic probability rules that led to these values: independence, join (union), disjoint, and complement.
+
+\newpage
+
+### 2. Random Sampling Sums of Two Dice
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+dice_probs <- tibble(x=c(2,3,4,5,6,7,8,9,10,11,12),
+                     p=c(1/36,2/36,3/36,4/36,5/36,6/36,5/36,4/36,3/36,2/36,1/36))
+```
+
+a. Work in pairs. Each student rolls two six-sided dice 30 times, then combine your results. Record each sum as a dot on the blank axis below, stacking dots above each sum value to create a dot plot. As you progress, the distribution will approximate a triangular shape.
+
+```{r message=FALSE, warning=FALSE, fig.width=8, fig.height=2, out.width='100%', fig.align='center'}
+ggplot(dice_probs,aes(x,p)) + 
+  geom_point(color="gray") + 
+  geom_line(color="gray",linetype="dashed") + 
+  scale_x_discrete(limits=2:12) + 
+  xlab("Sum") + 
+  ylab("") + 
+  theme_minimal() + 
+  theme(axis.text.y=element_blank(), 
+        axis.ticks.y=element_blank())
+```
+
+b. Tally each sum and compute the sample proportions in the provided table. Include the probabilities in Problem (1) of each sum in the table.
+
+```{r dice-sums-sample, echo=FALSE, fig.cap="", out.width="520px",out.height="520px",fig.align='center'}
+knitr::include_graphics("dice-sums-sample-table-blank.pdf")
+```
+
+c. How does your dot plot compare to the probabilities?
+\vfill
+
+d. If you repeated this experiment 300 times, what do you expect to happen? Explain your reasoning.
+\vfill
+
+e. How does this activity illustrate on how frequentist probability is interpreted? Explain your reasoning.
+\vfill
+
+## **References**
+
+::: {#refs}
+:::

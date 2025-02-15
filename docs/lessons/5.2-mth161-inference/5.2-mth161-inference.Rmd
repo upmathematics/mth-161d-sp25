@@ -12,12 +12,10 @@ bibliography: ../../references.bib
 csl: ../../apa.csl
 link-citation: true
 nocite: '@*'
-header-includes:
-  - \usepackage{twemojis}
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
@@ -90,92 +88,68 @@ knitr::include_graphics("statistical-thinking-in-data-science-lifecycle.png")
 
 ## Toy Example
 
-Suppose you have two coins. Which of the two coins are fair?
+**Suppose you have two coins. Which of the two coins are fair?**
 
-```{r coin, echo=FALSE, fig.cap="", fig.align='center', out.width = '50%'}
+```{r coin, echo=FALSE, fig.cap="", fig.align='center', out.width = '30%'}
 knitr::include_graphics("coin.png")
 ```
 
+**What is a fair coin?** There are only *two possible outcomes* of each coin: *head* or *tail*, but not both. A fair coin means that if you flip it, the *chances* of getting a head or tail is *equally likely*.
+
 ::: {style="color: blue;"}
 $\dagger$ How would you know which coin is fair if they are "similar" in appearance and weight?
-::::
+:::
 
 ## Toy Example: Coin Flips
 
-**What is a fair coin?** There are only *two possible outcomes* of each coin *heads* or *tails*. A fair coin means that if you flip it the *chances* of getting a head or tail is *equally likely*.
+**Flip the coin $6$ times.**
 
-```{r coin-flips, echo=FALSE, fig.cap="", fig.align='center', out.width = '50%'}
+:::: {.column width=49%}
+**Data:**
+
+```{r coin-flips, echo=FALSE, fig.cap="", fig.align='center', out.width = '100%'}
 knitr::include_graphics("coin-flips.png")
 ```
+::::
+
+:::: {.column width=50%}
+**Sample Proportion of Heads:**
+
+* *Coin A:* $\frac{3}{6} = 0.50$.
+* *Coin B:* $\frac{4}{6} \approx 0.667$.
+::::
 
 ::: {style="color: blue;"}
-$\dagger$ Based on the coin flips, what is the proportion of heads in each coin?
-::::
+$\dagger$ If we flip the coins more and add it into the totals, will the proportion of heads change?
+:::
 
-## Toy Example: Proportion of Heads
+## Toy Example: True vs Sample Proportion
 
-The *true proportion* (or the *expected value*) of heads should be $0.50$ if the a coins are fair but each flip is random and we expect to have some variability.
+**Flip the coin $16$ times.**
 
-$$\text{Coin A} \longrightarrow \text{proportion of heads is } \frac{3}{6} \text{ or } 0.50$$
-$$\text{Coin B} \longrightarrow \text{proportion of heads is } \frac{4}{6} \text{ or } 0.667$$
+:::: {.column width=49%}
+**Data:**
 
-Well, it looks like Coin A is the fair one because the proportion is exactly $\frac{1}{2}$.
-
-::: {style="color: red;"}
-$\star$ Not so fast! If we flip the coins more and add it into the totals, will the proportion of heads change?
-::::
-
-## Toy Example: True vs Flip Proportion
-
-```{r coin-flips-more, echo=FALSE, fig.cap="", fig.align='center', out.width = '50%'}
+```{r coin-flips-more, echo=FALSE, fig.cap="", fig.align='center', out.width = '100%'}
 knitr::include_graphics("coin-flips-more.png")
 ```
+::::
 
-$$\text{Coin A} \longrightarrow \text{proportion of heads is } \frac{9}{16} \text{ or } 0.563$$
-$$\text{Coin B} \longrightarrow \text{proportion of heads is } \frac{8}{16} \text{ or } 0.50$$
+:::: {.column width=50%}
+**Sample Proportion of Heads:**
 
-Well, it looks like the proportions have changed due to sampling variability.
+* *Coin A:* $\frac{9}{16} \approx 0.563$.
+* *Coin B:* $\frac{8}{16} = 0.50$.
+
+**True Proportion of Heads:** We don't know the true proportion of heads for each coin or which one is fair, but we know a fair coin should yield a 0.50 proportion of heads.
+::::
 
 ::: {style="color: red;"}
-$\star$ **Key Idea:** The goal of parameter estimation is to estimate the true proportion of heads of coin A and coin B using the results of coin flips (or random sampling)
+$\star$ **Key Idea:** The goal of parameter estimation is to determine the true proportion of heads for coins A and B, accounting for uncertainty from random sampling (coin flips).
 :::
 
 ::: {style="color: blue;"}
 $\dagger$ How many coin flips should you do until you are certain which one is the fair coin?
-::::
-
-## Toy Example: Is Coin B more Fair than Coin A?
-
-Once we estimate the true proportion of heads, we can test which coin is fair through hypothesis testing. We can frame the comparison in two ways:
-
-:::: {.column width=49%}
-**Way 1**
-
-* *Null hypothesis:* The true proportion of heads of coin B is $0.50$.
-* *Alternative hypothesis:* the true proportion of heads of coin B is not $0.50$.
-::::
-
-:::: {.column width=50%}
-**Way 2:**
-
-* *Null Hypothesis:* The true proportion of heads of coin A is equal to coin B.
-* *Alternative Hypothesis:* The true proportion of heads of coin A is not equal to coin B
-:::
-
-::: {style="color: red;"}
-$\star$ **Key Idea:** Hypothesis testing involves two opposing statements: the null hypothesis and the alternative hypothesis, which we aim to test.
-:::
-
-## Types of Inference
-
-|  | **Parameter Estimation** | **Hypothesis Testing** |
-|:---|:------|:------|
-| _Goal_ | Estimate an unknown population value | Assess claims about a population value |
-| _Methods_ | Point Estimation: A single value estimate (e.g., sample mean) <br>Interval Estimation: A range of plausible values (e.g., confidence interval) | State a null and an alternative hypothesis <br>Compute a test statistic and compare it to a threshold (p-value or critical value) |
-| _Key Concept_ | Focuses on precision in estimation (confidence intervals) | Focuses on decision-making based on evidence (reject or fail to reject the null hypothesis) |
-
-::: {style="color: red;"}
-$\star$ **Key Idea:** Parameter estimation focuses on finding the best estimate of an unknown population value, while hypothesis testing determines whether there is enough evidence to support or reject a claim about the population.
 :::
 
 ## Probability is the Basis for Inference
@@ -188,6 +162,28 @@ $\star$ **Key Idea:** Parameter estimation focuses on finding the best estimate 
 
 ::: {style="color: red;"}
 $\star$ **Key Idea:** Probability bridges the gap between sample data and population conclusions.
+:::
+
+## Toy Example: Which of the two coins are fair?
+
+Once we estimate the true proportion of heads, we can test which coin is fair through hypothesis testing. We can frame the test in two ways:
+
+:::: {.column width=49%}
+**Way 1**
+
+* *Null hypothesis:* The true proportion of heads of coin B (or A) is $0.50$.
+* *Alternative hypothesis:* the true proportion of heads of coin B (or A) is not $0.50$.
+::::
+
+:::: {.column width=50%}
+**Way 2:**
+
+* *Null Hypothesis:* The true proportion of heads of coin A is equal to coin B.
+* *Alternative Hypothesis:* The true proportion of heads of coin A is not equal to coin B
+:::
+
+::: {style="color: red;"}
+$\star$ **Key Idea:** Hypothesis testing involves two opposing statements: the null hypothesis and the alternative hypothesis, which we aim to test.
 :::
 
 ## The P-Value is a Probability
@@ -203,6 +199,18 @@ $\star$ **Key Idea:** Probability bridges the gap between sample data and popula
 
 ::: {style="color: red;"}
 $\star$ **Key Idea:** The p-value quantifies how surprising the sample data is under the assumption that the null hypothesis is true.
+:::
+
+## Types of Inference
+
+|  | **Parameter Estimation** | **Hypothesis Testing** |
+|:---|:------|:------|
+| _Goal_ | Estimate an unknown population value | Assess claims about a population value |
+| _Methods_ | Point Estimation: A single value estimate (e.g., sample mean) <br>Interval Estimation: A range of plausible values (e.g., confidence interval) | State a null and an alternative hypothesis <br>Compute a test statistic and compare it to a threshold (p-value or critical value) |
+| _Key Concept_ | Focuses on precision in estimation (confidence intervals) | Focuses on decision-making based on evidence (reject or fail to reject the null hypothesis) |
+
+::: {style="color: red;"}
+$\star$ **Key Idea:** Parameter estimation focuses on finding the best estimate of an unknown population value, while hypothesis testing determines whether there is enough evidence to support or reject a claim about the population.
 :::
 
 ## Activity: Distinguish Between Estimation and Testing

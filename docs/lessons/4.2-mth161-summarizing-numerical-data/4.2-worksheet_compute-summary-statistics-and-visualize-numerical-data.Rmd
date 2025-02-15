@@ -28,6 +28,7 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(openintro)
 library(knitr)
+library(kableExtra)
 data(COL)
 seed = 42
 ```
@@ -68,7 +69,8 @@ data_summary <- data |>
   ) |> 
   pivot_longer(c(Mean,SD,Q1,`Q2 (Median)`,Q3,IQR),
                names_to = "Statistic",
-               values_to = ".")
+               values_to = "Value") |> 
+  mutate(Value = text_spec(".", color = "white"))
 ```
 
 \begin{minipage}[t]{0.20\textwidth}
@@ -83,21 +85,9 @@ kable(data,align="l",format="latex",booktabs = TRUE)
 \textbf{Summary Statistics:}
 \vspace{10px}
 
-\begin{tabular}{|l|llll|}
-\hline
-\multirow{2}{*}{\textbf{Mean}}                    & \textbf{} & \textbf{} &  &  \\
-                                                  &           &           &  &  \\ \hline
-\multirow{2}{*}{\textbf{SD}}                      &           &           &  &  \\
-                                                  &           &           &  &  \\ \hline
-\multirow{2}{*}{\textbf{$\mathbf{Q}_1$}}          &           &           &  &  \\
-                                                  &           &           &  &  \\ \hline
-\multirow{2}{*}{\textbf{$\mathbf{Q}_2$ (Median)}} &           &           &  &  \\
-                                                  &           &           &  &  \\ \hline
-\multirow{2}{*}{\textbf{$\mathbf{Q}_3$}}          &           &           &  &  \\
-                                                  &           &           &  &  \\ \hline
-\multirow{2}{*}{\textbf{IQR}}                     &           &           &  &  \\
-                                                  &           &           &  &  \\ \hline
-\end{tabular}
+```{r echo=FALSE, eval=TRUE}
+kable(data_summary,align="l",format="latex",escape=FALSE)
+```
 \end{minipage}
 \begin{minipage}[t]{0.50\textwidth}
 \textbf{Questions:}
@@ -125,11 +115,10 @@ Consider the given data set from Problem 1 and the resulting summary statistics.
 
 a. Draw a stacked dot plot on the provided empty axis below.
 
-```{r echo=FALSE,eval=TRUE,out.width='100%',fig.width=7,fig.height=2, fig.align='center'}
-A <- 5:11
+```{r eval=TRUE, echo=FALSE, fig.align='center', fig.height=2, fig.width=7, message=FALSE, warning=FALSE, out.width='100%'}
 ggplot(data,aes(x=A)) + 
   ylab("") + 
-  scale_x_continuous("A", labels = as.character(A), breaks = A) + 
+  xlim(min(data$A)-1,max(data$A)+1) + 
   theme_minimal() + 
   theme(axis.text.y=element_blank(), 
         axis.ticks.y=element_blank())
@@ -137,11 +126,10 @@ ggplot(data,aes(x=A)) +
 
 b. Draw a box plot on the provided empty axis below. Label the main parts of the box plot.
 
-```{r echo=FALSE,eval=TRUE,out.width='100%',fig.width=7,fig.height=2, fig.align='center'}
-A <- 5:11
+```{r eval=TRUE, echo=FALSE, fig.align='center', fig.height=2, fig.width=7, message=FALSE, warning=FALSE, out.width='100%'}
 ggplot(data,aes(x=A)) + 
   ylab("") + 
-  scale_x_continuous("A", labels = as.character(A), breaks = A) + 
+  xlim(min(data$A)-1,max(data$A)+1) + 
   theme_minimal() + 
   theme(axis.text.y=element_blank(), 
         axis.ticks.y=element_blank())

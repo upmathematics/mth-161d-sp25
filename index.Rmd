@@ -212,24 +212,24 @@ The following learning objectives are designed to build on one another, with som
 |  | F 2/7 | Summarizing Numerical Data |
 | **5** | M 2/10 | Considering Categorical Data |
 |  | W 2/12 | Inference |
-|  | F 2/14 | Basic Probability |
+|  | F 2/14 | _Cancelled_ |
 | **6** | M 2/17 | **Assessments 2** & <br>**Homework 2** |
-|  | W 2/19 | Binomial Distribution |
-|  | F 2/21 | Normal Distribution |
-| **7** | M 2/24 | Conditional Probability & <br>**Homework 3** |
-|  | W 2/26 | Point Estimates and Sampling Variability |
-|  | F 2/28 | Confidence Intervals |
+|  | W 2/19 | Basic Probability |
+|  | F 2/21 | Binomial Distribution |
+| **7** | M 2/24 | Normal Distribution & <br>**Homework 3** |
+|  | W 2/26 | Conditional Probability  |
+|  | F 2/28 | Point Estimates and Sampling Variability |
 | **8** | M 3/3 | _Spring Vacation_ |
 |  | W 3/5 | _Spring Vacation_ |
 |  | F 3/7 | _Spring Vacation_ |
 | **9** | M 3/10 | **Assessments 3** |
-|  | W 3/12 | Decision Errors |
-|  | F 3/14 | Inference for One Proportion |
-| **10** | M 3/17 | Hypothesis Testing for Proportions & <br>**Homework 4** |
-|  | W 3/19 | Inference for Difference of Two Proportions |
-|  | F 3/21 | Testing for Goodness of Fit |
+|  | W 3/12 | Confidence Intervals |
+|  | F 3/14 | Decision Errors |
+| **10** | M 3/17 | Inference for One Proportion & <br>**Homework 4** |
+|  | W 3/19 | Hypothesis Testing for Proportions |
+|  | F 3/21 | Inference for Difference of Two Proportions |
 | **11** | M 3/24 | **Assessments 4** |
-|  | W 3/26 | Testing Independence in Two-Way Tables |
+|  | W 3/26 | Testing for Goodness of Fit & <br> Testing Independence in Two-Way Tables |
 |  | F 3/28 | Inference for One Mean |
 | **12** | M 3/31 | Hypothesis Testing for Means & <br>**Homework 5** |
 |  | W 4/2 | Inference for Difference of Two Means |
@@ -490,11 +490,13 @@ You are expected to turn in all completed assignments on time. Circumstances tha
 
 It is the student's responsibility to drop the course if he or she is no longer planning on attending the course or filling the other course requirements. In order to drop, the student must use and Add/Drop form available at the Registration Office. If a student does not properly withdraw from a course, he or she may receive an **F** for the course. A properly withdrawn student will receive a **W**. The last day to withdraw is **Monday, April 14th**.
 
-### Appointment Cancelation Policies
+### Appointment Cancellation Policy
 
 You can cancel your appointments, but it is strongly recommended that you cancel 24 hours before your scheduled time so that other students can schedule when a spot opens. You can reschedule for a different day and time if you need to.
 
 Please try to show-up to any of your appointments. If you have extenuating circumstances, please let me know as soon as possible to discuss next steps.
+
+*Amendment 9: The title was changed from "Appointment Cancelation Policies" to "Appointment Cancellation Policy".*
 
 ### Attendance and Participation
 
@@ -589,8 +591,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | Inference for One Proportion | Pg. 208-213 @diez2012openintro |
 | Hypothesis Testing for Proportions | - |
 | Inference for Difference of Two Proportions | Pg. 217-224 @diez2012openintro |
-| Testing for Goodness of Fit | Pg. 229-238 @diez2012openintro |
-| Testing Independence in Two-Way Tables | Pg. 240-244 @diez2012openintro |
+| Testing for Goodness of Fit & <br>Testing Independence in Two-Way Tables | Pg. 229-238 & Pg. 240-244 @diez2012openintro |
 | Inference for One Mean | Pg. 251-258 @diez2012openintro |
 | Hypothesis Testing for Means | - |
 | Inference for Difference of Two Means | Pg. 267-273 @diez2012openintro |
