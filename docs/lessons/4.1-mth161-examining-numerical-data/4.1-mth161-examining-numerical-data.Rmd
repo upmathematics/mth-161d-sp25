@@ -73,8 +73,7 @@ It involves organizing, summarizing, and presenting data in an informative way. 
 
 * **<span style="color:blue;">Frequency</span>**
 * **<span style="color:blue;">Relative Frequency (Proportion)</span>**
-* Percentage
-* Cumulative Frequency
+* **<span style="color:blue;">Percentage</span>**
 ::::
 
 ## Previously... (3/3)
@@ -173,8 +172,6 @@ axis(1)
 ::::
 
 :::: {.column width=49%}
-**Example:**
-
 ```{r histogram-gpa, echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE,  fig.align='center', out.width = '100%'}
 d = read.csv("extracurr_hrs.csv")
 extracurr_hrs = d$extracurr_hrs[!is.na(d$extracurr_hrs)]

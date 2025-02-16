@@ -51,21 +51,17 @@ Worksheets are marked mostly on completion, and partially on correctness. It wil
 
 When rolling two fair six-sided dice, the sum of the two numbers rolled can range from 2 to 12. Each outcome has a different probability of occurring.
 
-a. The left table lists all possible sums of two six-sided dice. Complete the table by summing the outcome of the two dice.
-b. The right table counts the number of ways each sum can occur (since some sums have more combinations than others). Compute the probability of each sum by dividing the count by the total number of outcomes.
+a. The left table below lists all possible sums of two six-sided dice. Complete the table by summing the outcome of the two dice.
+b. The right table below counts the number of ways each sum can occur. Compute the probability of each sum by dividing the count by the total number of outcomes. Does the probability axiom requiring a total sum of 1 hold? Explain your reasoning.
 
 ```{r dice-sums, echo=FALSE, fig.cap="", out.width="250px",out.height="250px",fig.show='hold',fig.align='center'}
 knitr::include_graphics("dice-sums-table-blank.pdf")
 knitr::include_graphics("dice-sums-probs-table-blank.pdf")
 ```
 
-Hint: Examine the pre-entered values in the table and consider the basic probability rules that led to these values: independence, join (union), disjoint, and complement.
-
 \newpage
 
 ### 2. Random Sampling Sums of Two Dice
-
-
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 dice_probs <- tibble(x=c(2,3,4,5,6,7,8,9,10,11,12),
@@ -78,6 +74,7 @@ a. Work in pairs. Each student rolls two six-sided dice 30 times, then combine y
 ggplot(dice_probs,aes(x,p)) + 
   geom_point(color="gray") + 
   geom_line(color="gray",linetype="dashed") + 
+  ylim(-0.05,0.20) + 
   scale_x_discrete(limits=2:12) + 
   xlab("Sum") + 
   ylab("") + 

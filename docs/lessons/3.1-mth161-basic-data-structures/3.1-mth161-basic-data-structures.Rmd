@@ -38,7 +38,7 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::include_graphics("variables.png")
 ```
 
-## Case Study
+## Case Study 1
 
 A survey was conducted on students in an introductory statistics course. Below are a few of the questions on the survey, and the corresponding variables the data from the responses were stored in:
 
@@ -57,7 +57,7 @@ A survey was conducted on students in an introductory statistics course. Below a
 :::: {.column width=15%}
 ::::
 
-## Data Matrix
+## Case Study 1: Data Matrix
 
 Data collected on students in a statistics class on a variety of variables:
 
@@ -65,7 +65,7 @@ Data collected on students in a statistics class on a variety of variables:
 knitr::include_graphics("data-matrix-with-labels.png")
 ```
 
-## Identify Types of Variables
+## Case Study 1: Identify Types of Variables
 
 :::: {.column width=50%}
 ```{r data-matrix, echo=FALSE, fig.cap="", fig.align='center', out.width = '100%'}
@@ -90,12 +90,8 @@ library(openintro)
 plot(gpa_study_hours$gpa ~ gpa_study_hours$study_hours, pch = 19, col = COL[1,3], xlab = "Hours of study / week", ylab = "GPA", cex.lab = 1.5, cex.axis = 1.5)
 ```
 
-::: {style="color: blue;"}
-$\dagger$ Can you spot anything unusual about any of the data points?
-:::
-
 ::: {style="color: red;"}
-$\star$ There is one student with GPA > 4.0, this is likely a data error.
+$\star$ As hours of study increases, the GPA also increases but for study hours around 0 to 30 hours, there is a lot of variation. There is one student with GPA > 4.0, this is likely a data error.
 :::
 
 ## Explanatory vs Response Variables

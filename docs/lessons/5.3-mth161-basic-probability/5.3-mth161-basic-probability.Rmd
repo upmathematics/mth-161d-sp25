@@ -207,17 +207,9 @@ $\star$ **Key Idea:** The probability of the union is the sum of individual prob
 
 ## Joint vs Disjoint Venn Diagram
 
-:::: {.column width=49%}
-```{r joint, echo=FALSE, fig.cap="", out.width="100%", fig.align="center"}
-knitr::include_graphics("events-A-and-B-joint.png")
+```{r join-disjoint-venn-diagram, echo=FALSE, fig.cap="", out.width="90%", fig.align="center"}
+knitr::include_graphics("join-disjoint-venn-diagram.png")
 ```
-::::
-
-:::: {.column width=50%}
-```{r disjoint, echo=FALSE, fig.cap="", out.width="100%", fig.align="center"}
-knitr::include_graphics("events-A-and-B-disjoint.png")
-```
-::::
 
 ## Drawing Cards
 
@@ -243,11 +235,10 @@ Suppose we conduct an experiment of rolling two six-sided dice and sum the outco
 * Let $A$ be the event of the 1st dice.
 * Let $B$ be the event of the 2nd dice.
 * The outcome we are interested in is the sum of $A$ and $B$. So, the sample space has 36 total possible outcomes.
-    - The probability of getting a sum of 2 is $P(A=1 \text{ and } B=1) = P(A=1)P(B=2) = \left( \frac{1}{6} \right) \left( \frac{1}{6} \right) = \frac{1}{36}$ because the two events are independent.
-    - The probability of getting a sum of 3 is  $P(1 \text{ and } 2) + P(2 \text{ and } 1) = P(1)P(2) + P(2)P(1) = \left( \frac{1}{6} \right) \left( \frac{1}{6} \right) + \left( \frac{1}{6} \right) \left( \frac{1}{6} \right) = 2 \times \left( \frac{1}{6} \right) \left( \frac{1}{6} \right) = \frac{2}{36}$ because of independence and joint events.
+    - The probability of getting a sum of 3 is $$\begin{aligned} P(3) & = P(1 \text{ and } 2) + P(2 \text{ and } 1) \\ & = P(1)P(2) + P(2)P(1) \\ & = \left( \frac{1}{6} \right) \left( \frac{1}{6} \right) + \left( \frac{1}{6} \right) \left( \frac{1}{6} \right) \\ & = 2 \times \left( \frac{1}{6} \right) \left( \frac{1}{6} \right) \\ & = \frac{2}{36} \end{aligned}$$ because of independence and joint events.
 
 ::: {style="color: blue;"}
-$\dagger$ Can you compute the probability of rolling a sum of 3?
+$\dagger$ Can you compute the probability of rolling a sum of 1? What about a sum of 3?
 :::
 
 ## Summary of Basic Probability Rules

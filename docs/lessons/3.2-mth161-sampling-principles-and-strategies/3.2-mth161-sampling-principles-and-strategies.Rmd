@@ -242,7 +242,7 @@ knitr::include_graphics("simple.png")
 
 ## Stratified Sample
 
-**What is stratified sampling?** <span style="color:red">**Strata**</span> are made up of similar observations. We take a simple random sample from each stratum.
+**What is stratified sampling?** **Strata**are made up of similar observations. We take a simple random sample from each stratum.
 
 ```{r stratified-diagram, echo=FALSE, fig.cap="", fig.align='center', out.width = '80%'}
 knitr::include_graphics("stratified.png")
@@ -250,7 +250,7 @@ knitr::include_graphics("stratified.png")
 
 ## Cluster Sample
 
-**What is cluster sampling?** <span style="color:red">**Clusters**</span> are usually not made up of homogeneous observations. We take a simple random sample of clusters, and then sample all observations in that cluster.
+**What is cluster sampling?** **Clusters** are usually not made up of homogeneous observations. We take a simple random sample of clusters, and then sample all observations in that cluster.
 
 ```{r cluster-diagram, echo=FALSE, fig.cap="", fig.align='center', out.width = '80%'}
 knitr::include_graphics("cluster.png")

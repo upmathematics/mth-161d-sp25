@@ -82,7 +82,6 @@ It involves organizing, summarizing, and presenting data in an informative way. 
 * **<span style="color:blue;">Frequency</span>**
 * **<span style="color:blue;">Relative Frequency (Proportion)</span>**
 * **<span style="color:red;">Percentage</span>**
-* **<span style="color:red;">Cumulative Frequency</span>**
 ::::
 
 ## Case Study 1: Titanic Data Set

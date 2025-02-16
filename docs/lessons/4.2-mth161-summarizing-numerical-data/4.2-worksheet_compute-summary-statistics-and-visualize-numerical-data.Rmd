@@ -49,7 +49,7 @@ Worksheets are marked mostly on completion, and partially on correctness. It wil
 
 ### 1. Using R to Compute the Summary Statistics
 
-Consider the data set given below. This data set contains one discrete numerical variable named A. 
+Consider the data set given below. This data set contains one discrete numerical variable named A.
 
 Encode the given data into R, then use the R functions to compute the mean, standard deviation, quartiles, and interquartile range (IQR). Write them --up to three decimal places-- on the provided summary statistic table below. Then, answer the provided questions.
 

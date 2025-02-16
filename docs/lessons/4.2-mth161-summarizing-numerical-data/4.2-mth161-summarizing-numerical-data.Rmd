@@ -68,8 +68,7 @@ It involves organizing, summarizing, and presenting data in an informative way. 
 
 * **<span style="color:blue;">Frequency</span>**
 * **<span style="color:blue;">Relative Frequency (Proportion)</span>**
-* Percentage
-* Cumulative Frequency
+* **<span style="color:blue;">Percentage</span>**
 ::::
 
 ## Previously... (2/2)
@@ -312,7 +311,7 @@ max(num_data) - min(num_data)
 
 So, the range is $6$.
 
-## Percentiles {.smaller}
+## Percentiles
 
 A **percentile** is a measure used to indicate the value below which a given percentage of observations fall.
 
@@ -399,7 +398,7 @@ $$\text{IQR} = Q_3 - Q_1$$
 $\star$ **Key Idea:** The numerical data is divided into four sections (quartiles), which is saying that the data is split into four equal parts, each containing 25\% ($Q_1$), 50\% ($Q_2$), and 75\% ($Q_3$) of the observations when arranged in ascending order.
 :::
 
-## Quantiles {.smaller}
+## Quantiles
 
 In general, quartiles are called quantiles, which are values that split sorted data into equal parts. Quartiles are just quantiles where we split the data into four parts.
 
