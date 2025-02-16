@@ -9,7 +9,7 @@ output:
     footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
     css: ../_style.css
 bibliography: ../../references.bib
-csl: ../../mbe.csl
+csl: ../../apa.csl
 nocite: '@*'
 ---
 
