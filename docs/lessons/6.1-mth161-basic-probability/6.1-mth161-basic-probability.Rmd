@@ -266,34 +266,10 @@ $\dagger$ Can you compute the probability of rolling a sum of 1? What about a su
 
 **Coin Flipping Example**
 
-Suppose we conduct an experiment where we repeatedly flip a fair coin ($P(H) = 0.50$), tracking the cumulative count of Heads and its proportion after each flip.
+Suppose we conduct an experiment where we repeatedly flip a fair coin ($P(H) = 0.50$), tracking the cumulative count of $H$ and its proportion after each flip.
 
-```{r fig.align='center', out.width='80%', fig.width=7, fig.height=2, message=FALSE, warning=FALSE}
-# generate flips and track proportion of H
-n <- seq(1:100)
-coin <- c(1,0) # 1=H, 0=T
-true_prop <- 0.50
-flips <- c()
-h_props <- c()
-set.seed(seed)
-for (i in n){
-  flip <- sample(coin,i,prob=c(true_prop,1-true_prop),replace=TRUE)
-  flips <- c(flips,flip[i-1])
-  h_prop <- sum(flips)/i
-  h_props <- c(h_props,h_prop)
-}
-df <- tibble(n=n,prop=h_props)
-
-# plot the flips vs proportion of H
-ggplot(df,aes(x=n,y=prop)) + 
-  geom_hline(aes(yintercept = true_prop), color = "black", linetype="dashed", linewidth=1) + 
-  geom_text(aes(0,true_prop),label = "P(H) = 0.50", vjust = 2, hjust=-6,color="black") +
-  geom_line(color=COL[1,1],linewidth=1) +  
-  ylim(0,1) + 
-  xlab("flips") + 
-  ylab("proportion of H") + 
-  ggtitle("Simulation of Coin Flips") + 
-  theme_minimal()
+```{r echo=FALSE, eval=TRUE, fig.align='center', out.width='70%', message=FALSE, warning=FALSE}
+knitr::include_graphics("cumulative-fair-coin-flips-sim.gif")
 ```
 
 ::: {style="color: red;"}
