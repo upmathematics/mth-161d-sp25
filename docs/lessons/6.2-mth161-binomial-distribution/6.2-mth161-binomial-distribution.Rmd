@@ -1,5 +1,5 @@
 ---
-title: "Binomial Distibution"
+title: "Binomial Distribution"
 subtitle: "Elementary Statistics"
 author: "MTH-161D | Spring 2025 | University of Portland"
 date: "February 21, 2025"
