@@ -94,13 +94,17 @@ knitr::include_graphics("statistical-thinking-in-data-science-lifecycle.png")
 
 A hospital is conducting a study on two different diseases: Disease A and Disease B. Among a randomly selected group of patients, the probabilities are as follows:
 
+:::: {.column width=49%}
 * The probability that a patient has Disease A is $P(A) = 0.35$.
 * The probability that a patient has Disease B is $P(B) = 0.25$.
 * The probability that a patient has both Disease A and Disease B is $P(A \text{ and } B) = 0.10$
+::::
 
+:::: {.column width=50%}
 1. Are having Disease A and Disease B independent events? Justify your answer mathematically.
 2. What is the probability that a randomly chosen patient has at least one of the two diseases?
 3. What is the probability that a randomly chosen patient has neither Disease A nor Disease B?
+::::
 
 ## Random Variables
 
