@@ -238,7 +238,7 @@ Suppose we conduct an experiment of rolling two six-sided dice and sum the outco
     - The probability of getting a sum of 3 is $$\begin{aligned} P(3) & = P(1 \text{ and } 2) + P(2 \text{ and } 1) \\ & = P(1)P(2) + P(2)P(1) \\ & = \left( \frac{1}{6} \right) \left( \frac{1}{6} \right) + \left( \frac{1}{6} \right) \left( \frac{1}{6} \right) \\ & = 2 \times \left( \frac{1}{6} \right) \left( \frac{1}{6} \right) \\ & = \frac{2}{36} \end{aligned}$$ because of independence and joint events.
 
 ::: {style="color: blue;"}
-$\dagger$ Can you compute the probability of rolling a sum of 1? What about a sum of 3?
+$\dagger$ Can you compute the probability of rolling a sum of 4?
 :::
 
 ## Summary of Basic Probability Rules

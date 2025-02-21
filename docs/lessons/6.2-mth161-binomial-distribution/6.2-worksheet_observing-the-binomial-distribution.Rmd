@@ -1,0 +1,104 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{F 2/21 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(knitr)
+library(gridExtra)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Observing the Binomial Distribution
+
+### 1. "Success" Probability and Expectation
+
+Suppose you have 10 fair six-sided dice. Each dice has these sides $1$, $2$, $3$, $4$, $5$, and $6$.
+
+a. What is the probability of rolling a $1$ or $6$ for one dice? Explain your reasoning.
+\vfill
+
+b. If you count the number of times a $1$ or $6$ appears when rolling 10 dice, explain why this count follows a Binomial distribution.
+\vfill
+
+c. Suppose that the 10 fair six-sided dice are rolled, what is the expected value given that the "success" probability in Part (a)? Explain your reasoning.
+\vfill
+
+\newpage
+
+### 2. Estimate Probabilities
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+dice_probs <- tibble(x=c(2,3,4,5,6,7,8,9,10,11,12),
+                     p=c(1/36,2/36,3/36,4/36,5/36,6/36,5/36,4/36,3/36,2/36,1/36))
+k_possible <- tibble(k=0:10)
+```
+
+a. Data Collection
+
+    - Work in pairs. Roll 10 six-sided dice 30 times.
+    - For each roll, count the number of times a 1 or 6 appears. This will be your "success" outcomes.
+    - Record each count as a dot on the blank axis below, stacking dots above each number value to create a dot plot. As you progress, a distribution will appear.
+
+```{r message=FALSE, warning=FALSE, fig.width=8, fig.height=2, out.width='100%', fig.align='center'}
+ggplot(k_possible,aes(k)) + 
+  ylim(-0.05,0.20) + 
+  scale_x_discrete(limits=k_possible$k) + 
+  xlab("Number of 1 or 6 Occurence") + 
+  ylab("") + 
+  theme_minimal() + 
+  theme(axis.text.y=element_blank(), 
+        axis.ticks.y=element_blank())
+```
+
+b. Recall the expected value (rounded to the nearest integer) from Problem (1c). Compare this expected value to the center (sample mean) of your distribution. Explain why this result makes sense in terms of probability. Why might your data deviate slightly from the expectation? Consider sample size and randomness.
+\vfill
+
+c. Count how many times the expected value (rounded to the nearest integer) appears in your data. Compute the sample proportion by dividing this count by the total number of rolls.
+\vfill
+
+d. Would you expect this proportion in Part (c) to be closer to the true probability if you increased the number of rolls? Explain your reasoning.
+\vfill
+
+*Extra Credit: If you rolled where you have all 1, all 6, or all 1 or 6 in 10 dice (meaning you have 10 "success" occurrences in all 10 dice), then a +1 will be added to your worksheet totals.*
+
+## **References**
+
+::: {#refs}
+:::

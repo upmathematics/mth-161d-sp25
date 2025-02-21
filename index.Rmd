@@ -582,7 +582,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Considering Categorical Data](lessons/5.1-mth161-considering-categorical-data/5.1-mth161-considering-categorical-data.html) | Pg. 61-68 @diez2012openintro |
 | [Inference](lessons/5.2-mth161-inference/5.2-mth161-inference.html) | - |
 | [Basic Probability](lessons/6.1-mth161-basic-probability/6.1-mth161-basic-probability.html) | Pg. 81-91 @diez2012openintro |
-| Binomial Distribution | Pg. 149-155 @diez2012openintro |
+| [Binomial Distribution](lessons/6.2-mth161-binomial-distribution/6.2-mth161-binomial-distribution.html) | Pg. 149-155 @diez2012openintro |
 | Normal Distribution | Pg. 133-141 @diez2012openintro |
 | Conditional Probability | Pg. 95-108 @diez2012openintro |
 | Point Estimates and Sampling Variability | Pg. 170-178 @diez2012openintro |
