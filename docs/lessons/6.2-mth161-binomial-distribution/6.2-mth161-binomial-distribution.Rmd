@@ -21,6 +21,8 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
 library(tidyverse)
 library(openintro)
+library(gghighlight)
+library(latex2exp)
 data(COL)
 seed <- 42
 ```
@@ -298,7 +300,7 @@ $\dagger$ Can you determine the probabilities of observing $H$ outcomes in $4$ t
 
 ## Flipping $\mathbf{n}$ Coins: The Expected Number of $H$ outcomes in $n$ Trials
 
-How many $H$ outcomes do we expect to have in $n$ independent Bernoulli trials?
+How many $H$ outcomes do we expect to have in $n$ independent Bernoulli trials with "success" probability $p$?
 
 :::: {.column width=50%}
 **Example**
@@ -313,13 +315,12 @@ How many $H$ outcomes do we expect to have in $n$ independent Bernoulli trials?
 :::: {.column width=49%}
 **In general:**
 
-- Let $p$ be the probability of "success" for each independent Bernoulli trial.
-- Let $n$ be the number of trials.
-- The expected value of "success" outcomes is $n \times p$.
+- The expected value of "success" outcomes is $\text{E}(X) = n \times p$.
+- The binomial coefficient tells you how many ways $k$ "success" outcomes can occur in $n$ trials, corresponding to the $k$-th column in the $n$-th row of Pascal’s Triangle.
 ::::
 
 ::: {style="color: red;"}
-$\star$ **Key Idea:** expected number of successes in $n$ trials with success probability $p$. Over many repetitions, the long-run average number of successes is $n \times p$, reflecting the frequentist interpretation of probability.
+$\star$ **Key Idea:** Over many repetitions, the long-run average number of "success" outcomes is $n \times p$, reflecting the frequentist interpretation of probability.
 :::
 
 ## The Binomial R.V. and PMF
@@ -379,7 +380,7 @@ Suppose a hospital receives 10 flu-positive patients at a given time. Based on a
 $\star$ **Key Idea:** While the rate was originally estimated from a study involving 100 patients, we are applying it to a smaller sample of only 10 patients, meaning that the actual number of hospitalizations may vary due to random fluctuations.
 :::
 
-## Case Study 2: Probability of Observations
+## Case Study 2: Binomial Probability
 
 Consider the same scenario where a small hospital receives 10 flu-positive patients at a given time with estimated hospitalization rate of $\frac{1}{3}$.
 
@@ -389,7 +390,9 @@ What is the probability that a hospital get $3$ patients to be hospitalized?
 **Computation**
 
 * Use the Binomial PMF
-* $\begin{aligned}P(X=3) & = \binom{10}{3} \left( \frac{1}{3} \right)^3 \left(1-\frac{1}{3} \right)^{10-3} \\ & \approx 0.2601 \end{aligned}$
+* $\begin{aligned}P(X=3) & = \binom{10}{3} \left( \frac{1}{3} \right)^3 \left(1-\frac{1}{3} \right)^{10-3} \\ 
+                         & = 120 \left( \frac{1}{3} \right)^3 \left(\frac{2}{3} \right)^{7} \\
+                         & \approx 0.2601 \end{aligned}$
 ::::
 
 :::: {.column width=50%}
@@ -400,6 +403,158 @@ What is the probability that a hospital get $3$ patients to be hospitalized?
 
 ::: {style="color: blue;"}
 $\dagger$ How would you write the binomial probability that a hospital get $4$ patients to be hospitalized? What about $3$ or $4$ patients? What rules of probability are applied?
+:::
+
+## Visualizing the Binomial Distribution
+
+:::: {.column width=50%}
+**Binomial Distribution**
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=5,fig.height=3,out.width='100%'}
+# set parameters, outcomes, and probabilities
+n <- 10 # number of trials
+p <- 1/3 # set "success" probability
+x_outcomes <- seq(0,n,1) # set outcome from 0 to n
+binom_pmf <- dbinom(x_outcomes,n,p) # function `dbinom()` is the Binomial PMF 
+df <- tibble(x=x_outcomes, pmf=binom_pmf) # convert to tibble
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df,aes(x=x,y=pmf)) + 
+  geom_point(size=3,color="black") + # size here is defined for all points
+  geom_segment(aes(x=x,xend=x, # draws a line between two defined points
+                   y=rep(0,length(x)),yend=pmf), 
+                   color="black") + 
+  ggtitle(paste("Binomial PMF (n=",n,", p=",round(p,3),")",sep="")) + # sets the title of the plot
+  scale_x_discrete(limits=x_outcomes) + 
+  theme_minimal() # set theme of entire plot
+
+# display plot
+p1
+```
+::::
+
+:::: {.column width=49%}
+**Binomial R.V.**
+
+Let $p=\frac{1}{3}$ be the "success" probability and $n=10$ the number of trials.
+
+\[
+\begin{aligned}
+\text{R.V. } & \longrightarrow X \sim \text{Binom}(p) \\
+\text{PMF } & \longrightarrow P(X=k) = \binom{n}{k} p^k (1-p)^{n-k} \\
+\text{for } & k = 0,1,2,3, \cdots, n
+\end{aligned}
+\]
+::::
+
+## Binomial Probabilities (1/2)
+
+:::: {.column width=50%}
+**Binomial Distribution**
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=5,fig.height=3,out.width='100%'}
+# set parameters, outcomes, and probabilities
+n <- 10 # number of trials
+p <- 1/3 # set "success" probability
+x_outcomes <- seq(0,n,1) # set outcome from 0 to n
+binom_pmf <- dbinom(x_outcomes,n,p) # function `dbinom()` is the Binomial PMF 
+df <- tibble(x=x_outcomes, pmf=binom_pmf) # convert to tibble
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df,aes(x=x,y=pmf)) + 
+  geom_point(size=3,color="blue") + # size here is defined for all points
+  geom_segment(aes(x=x,xend=x, # draws a line between two defined points
+                   y=rep(0,length(x)),yend=pmf), 
+                   color="blue") + 
+  gghighlight(x==3,unhighlighted_colour = "black") + 
+  ggtitle(paste("Binomial PMF (n=",n,", p=",round(p,3),")",sep="")) + # sets the title of the plot
+  scale_x_discrete(limits=x_outcomes) + 
+  theme_minimal() # set theme of entire plot
+
+# display plot
+p1
+```
+::::
+
+:::: {.column width=49%}
+**Example:**
+
+What is the probability of getting 3 "success" in 10 trials with $p=\frac{1}{3}$?
+$$
+\begin{aligned}
+P(X=3) & = \binom{10}{3} \left( \frac{1}{3} \right)^3 \left( 1-\frac{1}{3} \right)^{10-3} \\
+       & = 120 \left( \frac{1}{3} \right)^3 \left( \frac{2}{3} \right)^7 \\
+P(X=3) & \approx 0.2601
+\end{aligned}
+$$
+
+**Using R:**
+
+```{r echo=TRUE, eval=TRUE}
+n <- 10
+p <- 1/3
+k <- 3
+dbinom(k,n,p)
+```
+::::
+
+::: {style="color: red;"}
+$\star$ Note that the `dbinom()` function computes the probability $P(X = k)$, meaning it computes the probability at exactly $X=k$ using the Binomial PMF.
+:::
+
+## Binomial Probabilities (2/2)
+
+:::: {.column width=50%}
+**Binomial Distribution**
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=5,fig.height=3,out.width='100%'}
+# set parameters, outcomes, and probabilities
+n <- 10 # number of trials
+p <- 1/3 # set "success" probability
+x_outcomes <- seq(0,n,1) # set outcome from 0 to n
+binom_pmf <- dbinom(x_outcomes,n,p) # function `dbinom()` is the Binomial PMF 
+df <- tibble(x=x_outcomes, pmf=binom_pmf) # convert to tibble
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df,aes(x=x,y=pmf)) + 
+  geom_point(size=3,color="blue") + # size here is defined for all points
+  geom_segment(aes(x=x,xend=x, # draws a line between two defined points
+                   y=rep(0,length(x)),yend=pmf), 
+                   color="blue") + 
+  gghighlight(x<=3,unhighlighted_colour = "black") + 
+  ggtitle(paste("Binomial PMF (n=",n,", p=",round(p,3),")",sep="")) + # sets the title of the plot
+  scale_x_discrete(limits=x_outcomes) + 
+  theme_minimal() # set theme of entire plot
+
+# display plot
+p1
+```
+::::
+
+:::: {.column width=49%}
+**Example:**
+
+What is the probability of getting at most 3 "success" in 10 trials with $p=\frac{1}{3}$?
+$$
+\begin{aligned}
+P(X \le 3) & = P(X = 0) + P(X = 1) + P(X=2) + P(X = 3) \\ 
+           & = \sum_{k=0}^3 \binom{10}{k} \left( \frac{1}{3} \right)^k \left( 1-\frac{1}{3} \right)^{10-k} \\
+P(X \le 3) & \approx 0.5593 \\
+\end{aligned}
+$$
+
+**Using R:**
+
+```{r echo=TRUE, eval=TRUE}
+n <- 10
+p <- 1/3
+k <- 3
+pbinom(3,n,p)
+```
+::::
+
+::: {style="color: red;"}
+$\star$ Note that the `pbinom()` function computes the probability $P(X \le k)$, meaning it computes the sum of all probabilities from $X=0$ to $X=k$ using the Binomial PMF.
 :::
 
 ## Activity: Observing the Binomial Distribution
