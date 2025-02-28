@@ -218,12 +218,12 @@ The following learning objectives are designed to build on one another, with som
 |  | F 2/21 | Binomial Distribution |
 | **7** | M 2/24 | Normal Distribution & <br>**Homework 3** |
 |  | W 2/26 | Conditional Probability |
-|  | F 2/28 | Point Estimates and Sampling Variability |
+|  | F 2/28 | _Cancelled_  |
 | **8** | M 3/3 | _Spring Vacation_ |
 |  | W 3/5 | _Spring Vacation_ |
 |  | F 3/7 | _Spring Vacation_ |
 | **9** | M 3/10 | **Assessments 3** |
-|  | W 3/12 | Confidence Intervals |
+|  | W 3/12 | Point Estimates and Sampling Variability & <br>Confidence Intervals |
 |  | F 3/14 | Decision Errors |
 | **10** | M 3/17 | Inference for One Proportion & <br>**Homework 4** |
 |  | W 3/19 | Hypothesis Testing for Proportions |
