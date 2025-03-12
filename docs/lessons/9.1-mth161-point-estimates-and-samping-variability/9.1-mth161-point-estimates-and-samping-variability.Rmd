@@ -1,0 +1,399 @@
+---
+title: "Point Estimates and Sampling Variability"
+subtitle: "Elementary Statistics"
+author: "MTH-161D | Spring 2025 | University of Portland"
+date: "March 12, 2025"
+output:
+  slidy_presentation:
+    font_adjustment: +5
+    footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
+bibliography: ../../references.bib
+csl: ../../apa.csl
+link-citation: true
+nocite: '@*'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(gghighlight)
+library(latex2exp)
+data(COL)
+seed <- 42
+```
+
+## Objectives
+
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
+- **Introduce the Central Limit Theorem (CLT)**
+- **Know how to determine a point estimate**
+- **Develop an understanding of the sampling distribution**
+- **Activity: Understanding the CLT**
+::::
+
+:::: {.column width=15%}
+::::
+
+*These slides are derived from @diez2012openintro.*
+
+## Previously... (1/3)
+
+The guiding principle of statistics is statistical thinking.
+
+```{r statistical-thinking-1, echo=FALSE, fig.cap="Statistical Thinking in the Data Science Life Cycle", fig.align='center', out.width = '55%'}
+knitr::include_graphics("statistical-thinking-in-data-science-lifecycle.png")
+```
+
+## Previously... (2/3)
+
+**Types of Inference**
+
+|  | **Parameter Estimation** | **Hypothesis Testing** |
+|:---|:------|:------|
+| _Goal_ | Estimate an unknown population value | Assess claims about a population value |
+| _Methods_ | Point Estimation: A single value estimate (e.g., sample mean) <br>Interval Estimation: A range of plausible values (e.g., confidence interval) | State a null and an alternative hypothesis <br>Compute a test statistic and compare it to a threshold (p-value or critical value) |
+| _Key Concept_ | Focuses on precision in estimation (confidence intervals) | Focuses on decision-making based on evidence (reject or fail to reject the null hypothesis) |
+
+## Previously... (3/3)
+
+The normal r.v. $X \sim \text{N}(\mu,\sigma^2)$ has infinite possible outcomes (or infinite sized sample space) where $\mu$ is the mean and $\sigma^2$ is the variance ($\sigma$ is the standard deviation) with PDF given the continuous curve below.
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(x=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=x,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  ylab("density") + 
+  ggtitle("Normal Distribution") + # sets the title of the plot
+  scale_x_discrete(limits=c(0),label=c(TeX("$\\mu$"))) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+## The Central Limit Theorem (CLT)
+
+```{r data-science-life-cycle, echo=FALSE, fig.cap="Key idea the Central Limit Theorem (CLT). Image source: Medium--AI/Data Science Digest", fig.align='center', out.width = '70%'}
+knitr::include_graphics("clt-diagram.png")
+```
+
+::: {style="color: red;"}
+$\star$ **Key Idea:** CLT says that the sample mean (or sum) of many independent and identically distributed random variables approaches a normal distribution, regardless of the original distribution.
+:::
+
+## Parameter Estimation
+
+* We are often interested in **population parameters**.
+* Since complete populations are difficult (or impossible) to collect data on, we use **sample statistics** as **point estimates** for the unknown population parameters of interest.
+* Sample statistics vary from sample to sample.
+* Quantifying how sample statistics vary provides a way to estimate the **margin of error** associated with our point estimate.
+
+## Example 1
+
+If we randomly sample 1,000 adults from each U.S. state, would the sample means of their heights be
+
+a. They are all very different
+b. They are all the same
+c. Not the same, but only somewhat different
+d. Not possible to determine
+
+## Example 2
+
+Suppose the proportion of American adults who support the expansion of solar energy is $p = 0.88$. 
+
+a. Is the provided $p$ a population parameter or a sample statistic?
+
+b. Is a randomly selected American adult more or less likely to support the expansion of solar energy?
+
+## Example 2: Unknown Population Parameter
+
+Suppose that you don’t have access to the population of all American adults, which is a quite likely scenario. In order to estimate the proportion of American adults who support solar power expansion, you might sample from the population and use your sample proportion as the best guess for the unknown population proportion.
+
+* Sample, with replacement, 1000 American adults from the population, and record whether they support solar power or not expansion.
+* Find the sample proportion.
+* Plot the distribution of the sample proportions.
+
+::: {style="color: red;"}
+$\star$ **Key Idea:** After many repeated sampling of the same process as described, the resulting distribution of proportions will be normal.
+:::
+
+## Example 2: Point Estimate
+
+```{r out.width='80%', fig.width=7, fig.height=4, fig.align='center'}
+set.seed(123)  # For reproducibility
+p_true <- 0.88  # True population proportion
+n <- 1000        # Sample size
+num_samples <- 10000  # Number of samples
+
+# Simulate sampling distribution of the sample proportion
+sample_proportions <- replicate(num_samples, {
+  sample_data <- rbinom(n, size = 1, prob = p_true)  # Generate sample
+  mean(sample_data)  # Compute sample proportion
+})
+
+# Plot the sampling distribution
+hist(sample_proportions, breaks = 30, probability = TRUE, 
+     col = "lightblue", border = "white", 
+     main = "Sampling Distribution of Sample Proportion",
+     xlab = "Sample Proportion", ylab = "Density")
+
+# Overlay normal approximation
+curve(dnorm(x, mean = p_true, sd = sqrt(p_true * (1 - p_true) / n)), 
+      col = "#009159", lwd = 2, add = TRUE)
+```
+
+::: {style="color: blue;"}
+$\dagger$ Based on this distribution, what do you think is the true population proportion?
+:::
+
+## Sampling Distributions
+
+**Sampling distributions are never observed**
+
+* In real-world applications, we never actually observe the **sampling distribution**, yet it is useful to always think of a **point estimate** as coming from such a **hypothetical distribution**.
+
+::: {style="color: red;"}
+$\star$ **Key Idea:** Understanding the sampling distribution will help us characterize and make sense of the point estimates that we do observe.
+:::
+
+## The Normal Distribution (Revisited)
+
+The normal r.v. $X \sim \text{N}(\mu,\sigma^2)$ has infinite possible outcomes (or infinite sized sample space) where $\mu$ is the mean and $\sigma^2$ is the variance ($\sigma$ is the standard deviation) with PDF given the continuous curve below.
+
+Assume the sample size is large.
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(x=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=x,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  ylab("density") + 
+  ggtitle("Normal Distribution") + # sets the title of the plot
+  scale_x_discrete(limits=c(-3,-2,-1,0,1,2,3),label=c(TeX("$\\mu-3\\sigma$"),TeX("$\\mu-2\\sigma$"),TeX("$\\mu-1\\sigma$"),TeX("$\\mu$"),TeX("$\\mu+1\\sigma$"),TeX("$\\mu+2\\sigma$"),TeX("$\\mu+3\\sigma$"))) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+## The 68-95-99.7 Rule (1/3)
+
+**1st standard deviation from the mean**
+
+$$P(\mu - \sigma \le X \le \mu + \sigma) \approx 0.68$$
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(x=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=x,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  geom_ribbon(data=subset(df_norm,x>=-1 & x<=1),aes(x=x,ymax=dnorm(x,mu,sigma)),ymin=0,alpha=0.3,fill="#009159") +
+  ylab("density") + 
+  ggtitle("Normal Distribution") + # sets the title of the plot
+  scale_x_discrete(limits=c(-3,-2,-1,0,1,2,3),label=c(TeX("$\\mu-3\\sigma$"),TeX("$\\mu-2\\sigma$"),TeX("$\\mu-1\\sigma$"),TeX("$\\mu$"),TeX("$\\mu+1\\sigma$"),TeX("$\\mu+2\\sigma$"),TeX("$\\mu+3\\sigma$"))) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+## The 68-95-99.7 Rule (2/3)
+
+**2nd standard deviation from the mean**
+
+$$P(\mu - 2\sigma \le X \le \mu + 2\sigma) \approx 0.95$$
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(x=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=x,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  geom_ribbon(data=subset(df_norm,x>=-2 & x<=2),aes(x=x,ymax=dnorm(x,mu,sigma)),ymin=0,alpha=0.3,fill="#009159") +
+  ylab("density") + 
+  ggtitle("Normal Distribution") + # sets the title of the plot
+  scale_x_discrete(limits=c(-3,-2,-1,0,1,2,3),label=c(TeX("$\\mu-3\\sigma$"),TeX("$\\mu-2\\sigma$"),TeX("$\\mu-1\\sigma$"),TeX("$\\mu$"),TeX("$\\mu+1\\sigma$"),TeX("$\\mu+2\\sigma$"),TeX("$\\mu+3\\sigma$"))) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+## The 68-95-99.7 Rule (3/3)
+
+**3rd standard deviation from the mean**
+
+$$P(\mu - 3\sigma \le X \le \mu + 3\sigma) \approx 0.997$$
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(x=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=x,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  geom_ribbon(data=subset(df_norm,x>=-3 & x<=3),aes(x=x,ymax=dnorm(x,mu,sigma)),ymin=0,alpha=0.3,fill="#009159") +
+  ylab("density") + 
+  ggtitle("Normal Distribution") + # sets the title of the plot
+  scale_x_discrete(limits=c(-3,-2,-1,0,1,2,3),label=c(TeX("$\\mu-3\\sigma$"),TeX("$\\mu-2\\sigma$"),TeX("$\\mu-1\\sigma$"),TeX("$\\mu$"),TeX("$\\mu+1\\sigma$"),TeX("$\\mu+2\\sigma$"),TeX("$\\mu+3\\sigma$"))) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+## Total Area Under the Curve
+
+**The Normal PDF satisfies the probability axioms**
+
+$$P(\mu - \infty \le X \le \mu + \infty) \approx 1$$
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(x=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=x,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  geom_ribbon(data=subset(df_norm,x>=-4 & x<=4),aes(x=x,ymax=dnorm(x,mu,sigma)),ymin=0,alpha=0.3,fill="#009159") +
+  ylab("density") + 
+  ggtitle("Normal Distribution") + # sets the title of the plot
+  scale_x_discrete(limits=c(-3,-2,-1,0,1,2,3),label=c(TeX("$\\mu-3\\sigma$"),TeX("$\\mu-2\\sigma$"),TeX("$\\mu-1\\sigma$"),TeX("$\\mu$"),TeX("$\\mu+1\\sigma$"),TeX("$\\mu+2\\sigma$"),TeX("$\\mu+3\\sigma$"))) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+::: {style="color: red;"}
+$\star$ **Key Idea:** Because of the axiom that the sum of the probabilities for all outcomes in the sample space is equal to 1, the total area under the Normal PDF is always 1.
+:::
+
+## Standard Normal Distribution (1/2)
+
+The **standard normal distribution** is when $\mu=0$ and $s=1$ or $Z \sim \text{N}(0,1)$.
+
+**The transformation formula (the z-score)**
+
+Standardized scores that measure how many standard deviations a value is from the mean. $$Z = \frac{X - \mu}{\sigma}$$
+
+## Standard Normal Distribution (2/2)
+
+**The standard normal distribution, $Z \sim \text{N}(0,1)$.**
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(z=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  ylab("density") + 
+  ggtitle("Standard Normal Distribution") + # sets the title of the plot
+  scale_x_discrete(limits=c(-4,-3,-2,-1,0,1,2,3,4)) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+::: {style="color: red;"}
+$\star$ **Key Idea:** The standard normal distribution is that it is a normal distribution with a mean of 0 and a standard deviation of 1. It serves as a reference distribution, allowing any normally distributed variable to be standardized.
+:::
+
+## CLT Conditions
+
+* **Independence** – Sample values must be independent
+* **Identical Distribution** – Variables should be from the same distribution
+* **Finite Variance** – The population must have a finite variance
+* **Large Sample Size** – A larger sample size improves approximation
+
+## Extending the Framework for other Descriptive Statistics
+
+* The strategy of using a sample statistic to estimate a parameter is quite common, and it’s a strategy that we can apply to other statistics besides a proportion.
+
+**Example:**
+
+Take a random sample of students at a college and ask them how many extracurricular activities they are involved in to estimate the average number (or median number) of extra curricular activities all students in this college are interested in.
+
+::: {style="color: red;"}
+$\star$ **Key Idea:**  The principles and general ideas of CLT apply to other parameters as well, even if the details change a little.
+:::
+
+## Activity: Understanding the CLT
+
+1. Make sure you have a copy of the *W 3/12 Worksheet*. This will be handed out physically and it is also digitally available on Moodle.
+2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
+3. Get together with another student.
+4. Discuss your results.
+5. Submit your worksheet on Moodle as a `.pdf` file.
+
+## References
+
+::: {#refs}
+:::

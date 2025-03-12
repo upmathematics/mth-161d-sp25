@@ -65,8 +65,6 @@ c. Suppose that the 10 fair six-sided dice are rolled, what is the expected valu
 ### 2. Estimate Probabilities
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-dice_probs <- tibble(x=c(2,3,4,5,6,7,8,9,10,11,12),
-                     p=c(1/36,2/36,3/36,4/36,5/36,6/36,5/36,4/36,3/36,2/36,1/36))
 k_possible <- tibble(k=0:10)
 ```
 

@@ -168,8 +168,8 @@ The following learning objectives are designed to build on one another, with som
 | **Examining Numerical Data** | **END1:** Identify patterns, outliers, and trends in numerical data. | **END2:** Use R to create visualizations such as scatter plots and line graphs. |
 | **Summarizing Numerical Data** | **SND1:** Compute and interpret key summary statistics for numerical datasets. | **SND2:** Use R to compute key summary statistics for numerical variables. |
 | **Considering Categorical Data** | **CCD1:** Summarize categorical data using frequency tables and bar charts. <br>**CCD2:** Compute and interpret proportions and relative frequencies. | **CCD3:** Use R to analyze and visualize categorical data. <br>**CCD3:** Use R to compute key summary statistics for categorical variables. |
-| **Inference** | **I1:** Identify and distinguish between two types of inference: parameter estimation and hypothesis testing. **I2:** Differentiate between a population and a sample based on their definitions and characteristics. |  |
-| **Basic Probability** | **BP1:** Define and calculate probabilities using basic rules. <br>**BP2:** Interpret probability in context. |  |
+| **Inference** | **I1:** Identify and distinguish between two types of inference: parameter estimation and hypothesis testing. <br>**I2:** Differentiate between a population and a sample based on their definitions and characteristics. |  |
+| **Basic Probability** | **BP1:** Define and calculate probabilities using basic rules. | **BP2:** Interpret probability in context. |
 | **Binomial Distribution** | **BD1:** Define the properties of a binomial random variable. | **BD2:** Use R to compute probabilities and cumulative probabilities for binomial distributions. |
 | **Normal Distribution** | **ND1:** Explain the properties of the normal distribution. <br>**ND2:** Apply the empirical rule to estimate probabilities for normally distributed data. | **ND3:** Use R to calculate probabilities and percentiles for normal distributions. |
 | **Conditional Probability** | **CP1:** Compute conditional probabilities using contingency tables and Bayes' theorem. <br>**CP2:** Apply conditional probability to practical scenarios. |  |
@@ -223,11 +223,11 @@ The following learning objectives are designed to build on one another, with som
 |  | W 3/5 | _Spring Vacation_ |
 |  | F 3/7 | _Spring Vacation_ |
 | **9** | M 3/10 | **Assessments 3** |
-|  | W 3/12 | Point Estimates and Sampling Variability & <br>Confidence Intervals |
-|  | F 3/14 | Decision Errors |
+|  | W 3/12 | Point Estimates and Sampling Variability |
+|  | F 3/14 | Confidence Intervals |
 | **10** | M 3/17 | Inference for One Proportion & <br>**Homework 4** |
 |  | W 3/19 | Hypothesis Testing for Proportions |
-|  | F 3/21 | Inference for Difference of Two Proportions |
+|  | F 3/21 | Decision Errors & <br>Inference for Difference of Two Proportions |
 | **11** | M 3/24 | **Assessments 4** |
 |  | W 3/26 | Testing for Goodness of Fit & <br> Testing Independence in Two-Way Tables |
 |  | F 3/28 | Inference for One Mean |
@@ -585,7 +585,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Binomial Distribution](lessons/6.2-mth161-binomial-distribution/6.2-mth161-binomial-distribution.html) | Pg. 149-155 @diez2012openintro |
 | [Normal Distribution](lessons/7.1-mth161-normal-distribution/7.1-mth161-normal-distribution.html) | Pg. 133-141 @diez2012openintro |
 | Conditional Probability | Pg. 95-108 @diez2012openintro |
-| Point Estimates and Sampling Variability | Pg. 170-178 @diez2012openintro |
+| [Point Estimates and Sampling Variability](lessons/9.1-mth161-point-estimates-and-samping-variability/9.1-mth161-point-estimates-and-samping-variability.html) | Pg. 170-178 @diez2012openintro |
 | Confidence Intervals | Pg. 181-186 @diez2012openintro |
 | Decision Errors | Pg. 189-201 @diez2012openintro |
 | Inference for One Proportion | Pg. 208-213 @diez2012openintro |
