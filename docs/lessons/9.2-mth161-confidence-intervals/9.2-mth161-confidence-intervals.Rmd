@@ -1,0 +1,266 @@
+---
+title: "Confidence Intervals"
+subtitle: "Elementary Statistics"
+author: "MTH-161D | Spring 2025 | University of Portland"
+date: "March 14, 2025"
+output:
+  slidy_presentation:
+    font_adjustment: +5
+    footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
+bibliography: ../../references.bib
+csl: ../../apa.csl
+link-citation: true
+nocite: '@*'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(gghighlight)
+library(latex2exp)
+data(COL)
+seed <- 42
+```
+
+## Objectives
+
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
+- **Introduce confidence intervals**
+- **Know how to compute confidence intervals**
+- **Develop an understanding of interpreting confidence intervals**
+- **Activity: Determine and Interpret Confidence Intervals**
+::::
+
+:::: {.column width=15%}
+::::
+
+*These slides are derived from @diez2012openintro.*
+
+## Previously... (1/3)
+
+The **standard normal distribution** is when $\mu=0$ and $s=1$ or $Z \sim \text{N}(0,1)$.
+
+**The transformation formula (the z-score)**
+
+Standardized scores that measure how many standard deviations a value is from the mean. $$Z = \frac{X - \mu}{\sigma}$$
+
+## Previously... (2/3)
+
+**The standard normal distribution, $Z \sim \text{N}(0,1)$.**
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(z=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  ylab("density") + 
+  ggtitle("Standard Normal Distribution") + # sets the title of the plot
+  scale_x_discrete(limits=c(-4,-3,-2,-1,0,1,2,3,4)) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+## Previously... (3/3)
+
+**Parameter Estimation**
+
+* We are often interested in **population parameters**.
+* Since complete populations are difficult (or impossible) to collect data on, we use **sample statistics** as **point estimates** for the unknown population parameters of interest.
+* Sample statistics vary from sample to sample.
+* Quantifying how sample statistics vary provides a way to estimate the **margin of error** associated with our point estimate.
+
+## Confidence Intervals
+
+A plausible range of values for the population parameter is called a **confidence interval**.
+
+**Analogy**
+
+* Using only a sample statistic to estimate a parameter is like fishing in a murky lake with a spear, and using a confidence interval is like fishing with a net.
+* We can throw a spear where we saw a fish but we will probably miss. If we toss a net in that area, we have a good chance of catching the fish.
+
+::: {style="color: red;"}
+$\star$ **Key Idea:** If we report a point estimate, we probably won't hit the exact population parameter. If we report a range of plausible values we have a good shot at capturing the parameter.
+:::
+
+## Case Study I
+
+**Facebook’s categorization of user interests**
+
+Most commercial websites (e.g. social media platforms, news out- lets, online retailers) collect a data about their users’ behaviors and use these data to deliver targeted content, recommendations, and ads.
+
+To understand whether Americans think their lives line up with how the algorithm-driven classification systems categorizes them, Pew Research asked **a representative sample of 850 American Facebook users** how accurately they feel the list of categories Facebook has listed for them on the page of their supposed interests actually represents them and their interests. **67% of the respondents said that the listed categories were accurate**.
+
+Estimate the true proportion of American Facebook users who think the Facebook categorizes their interests accurately.
+
+## Case Study I: Point Estimate and Standard Error
+
+The goal of parameter estimation is to find a range of possible values (confidence interval).
+
+**Given information**
+
+* $\hat{p} = 0.67 \longleftarrow \text{point estimate}$
+* $n = 850 \longleftarrow \text{sample size}$
+    - The expected number of users who think the Facebook categorizes their interests accurately is $850 \times 0.67 \approx 569.5$ (569 or 570).
+    - There around 280.5 (280 or 281) users think the opposite.
+* Let $p$ bet he true population proportion and $\hat{p}$ be the sample proportion.
+    
+**The Confidence Interval**
+
+We want to find the 95% confidence interval using the formula: $$\text{point estimate} \pm 1.96 \times \text{SE}$$ where **SE is the standard error**.
+
+This can be written as 
+\[
+\begin{aligned}
+0.67 & \pm 1.96 \times \sqrt{\frac{0.67 (1-0.67)}{850}} \\
+0.67 & \pm 1.96 \times 0.0161 \\
+& \longrightarrow (0.67-0.0316,0.67+0.0316) \\
+& \longrightarrow (0.6384,0.7016)
+\end{aligned}
+\]
+
+Thus, the 95% interval for estimating the true $p$ is between 0.6384 and 0.7016.
+
+## Case Study I: Interpretation
+
+Which of the following is the correct interpretation of this confidence interval? We are 95% confident that:
+
+i. 64% to 67% of American Facebook users in this sample think Facebook categorizes their interests accurately.
+ii. 64% to 67% of all American Facebook users think Facebook categorizes their interests accurately
+iii. there is a 64% to 67% chance that a randomly chosen American Facebook user’s interests are categorized accurately.
+vi. there is a 64% to 67% chance that 95% of American Facebook users’ interests are categorized accurately.
+
+::: {style="color: red;"}
+$\star$ 64% to 67% of all American Facebook users think Facebook categorizes their interests accurately.
+:::
+
+::: {style="color: blue;"}
+$\dagger$ Why do we interpret the confidence interval this way?
+:::
+
+## What does 95% Confident Mean?
+
+Suppose we took many samples and built a confidence interval from each sample using the equation $$\text{point estimate} \pm 1.96 \times \text{standard error}.$$
+Then about 95% of those intervals would contain the true population proportion ($p$).
+
+## Width of an interval
+
+If we want to be more certain that we capture the population parameter, i.e. increase our confidence level, should we use a wider interval or a smaller interval?
+
+::: {style="color: red;"}
+$\star$ A wider interval.
+:::
+
+Can you see any drawbacks to using a wider interval?
+
+::: {style="color: red;"}
+$\star$ If the interval is too wide it may not be very informative.
+:::
+
+## Changing the Confidence Level
+
+$$\text{point estimate} \pm z^{\star} \times \text{SE}.$$
+
+* In a confidence interval, $z^{\star} \times \text{SE}$ is called the **margin of error**, and for a given sample, the margin of error changes as the confidence level changes.
+* In order to change the confidence level we need to adjust $z^{\star}$ in the above formula.
+* Commonly used confidence levels in practice are 90%, 95%, 98%, and 99%.
+* For a 95% confidence interval, $z^{\star} = 1.96$.
+* However, using the standard normal distribution, it is possible to find the appropriate $z^{\star}$ for any confidence level.
+
+## 95% Confidence Interval
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(z=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  geom_ribbon(data=subset(df_norm,z>=-1.96 & z<=1.96),aes(x=z,ymax=dnorm(z,mu,sigma)),ymin=0,alpha=0.3,fill="#009159") +
+  ylab("density") + 
+  ylab("density") + 
+  ggtitle("0.95 Probability is Between -1.96 to 1.96") + # sets the title of the plot
+  scale_x_discrete(limits=c(-1.96,0,1.96)) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+## Example 1
+
+Which of the below Z scores is the appropriate $z^{\star}$ when calculating a 99.7% confidence interval?
+
+(a) Z = 2.05
+(b) Z = 2.33
+(c) Z = 2.97
+(d) Z = 1.96
+
+::: {style="color: red;"}
+$\star$ Estimating the $z^{\star}$ can be done using the 68-95-99.7 rule. We know that $P(- 3 \le Z \le 3) \approx 0.997$. So, the closest answer is $Z = 2.97$.
+:::
+
+## Example 1: 99.7% Confidence Interval
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(z=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  geom_ribbon(data=subset(df_norm,z>=-2.97 & z<=2.97),aes(x=z,ymax=dnorm(z,mu,sigma)),ymin=0,alpha=0.3,fill="#009159") +
+  ylab("density") + 
+  ylab("density") + 
+  ggtitle("0.997 Probability is Between -2.97 to 2.97") + # sets the title of the plot
+  scale_x_discrete(limits=c(-2.97,0,2.97)) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+## Activity: Determine and Interpret Confidence Intervals
+
+1. Make sure you have a copy of the *F 3/14 Worksheet*. This will be handed out physically and it is also digitally available on Moodle.
+2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
+3. Get together with another student.
+4. Discuss your results.
+5. Submit your worksheet on Moodle as a `.pdf` file.
+
+## References
+
+::: {#refs}
+:::

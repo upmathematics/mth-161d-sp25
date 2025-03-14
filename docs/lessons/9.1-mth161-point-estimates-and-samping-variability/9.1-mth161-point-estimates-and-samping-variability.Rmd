@@ -108,20 +108,26 @@ $\star$ **Key Idea:** CLT says that the sample mean (or sum) of many independent
 
 ## Example 1
 
-If we randomly sample 1,000 adults from each U.S. state, would the sample means of their heights be
+If we randomly sample 1,000 adults from each U.S. state, would the sample means of their heights be:
 
-a. They are all very different
-b. They are all the same
-c. Not the same, but only somewhat different
-d. Not possible to determine
+a. very different
+b. the same
+c. not the same, but only somewhat different
+
+::: {style="color: red;"}
+$\star$ The answer is *not the same, but only somewhat different* because of sampling variability.
+:::
 
 ## Example 2
 
 Suppose the proportion of American adults who support the expansion of solar energy is $p = 0.88$. 
 
-a. Is the provided $p$ a population parameter or a sample statistic?
-
-b. Is a randomly selected American adult more or less likely to support the expansion of solar energy?
+  1. Is the provided $p$ a population parameter or a sample statistic?
+  2. Is a randomly selected American adult more or less likely to support the expansion of solar energy?
+  
+::: {style="color: red;"}
+$\star$ $p=0.88$ is a population parameter because it is talking about all american adults. The proportion is considered a high proportion of support. Thus, a randomly selected american adult is more likely to support solar energy expansion.
+:::
 
 ## Example 2: Unknown Population Parameter
 
@@ -177,8 +183,6 @@ $\star$ **Key Idea:** Understanding the sampling distribution will help us chara
 ## The Normal Distribution (Revisited)
 
 The normal r.v. $X \sim \text{N}(\mu,\sigma^2)$ has infinite possible outcomes (or infinite sized sample space) where $\mu$ is the mean and $\sigma^2$ is the variance ($\sigma$ is the standard deviation) with PDF given the continuous curve below.
-
-Assume the sample size is large.
 
 ```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
 # normal pdf

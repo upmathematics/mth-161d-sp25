@@ -1,0 +1,119 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{F 3/14 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Determine and Interpret Confidence Intervals
+
+### 1. Standard Normal Distribution and Probability Intervals
+
+Suppose that we given a 90% confidence interval of $(0.5945,0.7055)$ with a point estimate of $\hat{p}=0.65$ and margin of error $z^{\star} \times \text{SE} = 1.645 \times 0.0337$.
+
+a. What is the $z^{\star}$? Explain your reasoning.
+\vfill
+
+b. Locate and shade the middle 90% probability in the standard normal distribution shown below and label the end points.
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(z=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  ylab("density") + 
+  ggtitle("Standard Normal Distribution") + # sets the title of the plot
+  scale_x_discrete(limits=c(-4,-3,-2,-1,0,1,2,3,4)) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+### 2. Confidence Interval Width and Tail Probabilities
+
+a. Based on the results from Problem 1, what is the probability of left and right tail of the distribution? Explain your reasoning.
+\vfill
+
+b. Using the results of Part (a), shade the left and right tail of the distribution for a 90% confidence interval.
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='80%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(z=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  ylab("density") + 
+  ggtitle("Standard Normal Distribution") + # sets the title of the plot
+  scale_x_discrete(limits=c(-4,-3,-2,-1,0,1,2,3,4)) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+c. How do the left and right tails of the standard normal distribution influence the choice of the critical value $z^{\star}$?
+\vfill
+
+d. If the confidence level were increased to 99%, what would happen to the left and right tail areas, and how would that affect the width of the confidence interval?
+\vfill
+
+## **References**
+
+::: {#refs}
+:::
