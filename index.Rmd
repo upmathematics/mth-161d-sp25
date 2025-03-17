@@ -587,7 +587,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | Conditional Probability | Pg. 95-108 @diez2012openintro |
 | [Point Estimates and Sampling Variability](lessons/9.1-mth161-point-estimates-and-samping-variability/9.1-mth161-point-estimates-and-samping-variability.html) | Pg. 170-178 @diez2012openintro |
 | [Confidence Intervals](lessons/9.2-mth161-confidence-intervals/9.2-mth161-confidence-intervals.html) | Pg. 181-186 @diez2012openintro |
-| Inference for One Proportion | Pg. 208-213 @diez2012openintro |
+| [Inference for One Proportion](lessons/10.1-mth161-inference-for-one-proportion/10.1-mth161-inference-for-one-proportion.html) | Pg. 208-213 @diez2012openintro |
 | Hypothesis Testing for Proportions | - |
 | Decision Errors | Pg. 189-201 @diez2012openintro |
 | Inference for Difference of Two Proportions | Pg. 217-224 @diez2012openintro |

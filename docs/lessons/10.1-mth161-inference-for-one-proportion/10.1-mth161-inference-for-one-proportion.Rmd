@@ -1,0 +1,254 @@
+---
+title: "Inference for One Proportion"
+subtitle: "Elementary Statistics"
+author: "MTH-161D | Spring 2025 | University of Portland"
+date: "March 17, 2025"
+output:
+  slidy_presentation:
+    font_adjustment: +5
+    footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
+bibliography: ../../references.bib
+csl: ../../apa.csl
+link-citation: true
+nocite: '@*'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(gghighlight)
+library(latex2exp)
+data(COL)
+seed <- 42
+```
+
+## Objectives
+
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
+- **Develop an understanding of inference for one proportion**
+- **Know how to compute the confidence interval of one proportion**
+- **Activity: Determine Confidence Intervals of One Proportion**
+::::
+
+:::: {.column width=15%}
+::::
+
+*These slides are derived from @diez2012openintro.*
+
+## Previously... (1/3)
+
+The guiding principle of statistics is statistical thinking.
+
+```{r statistical-thinking-1, echo=FALSE, fig.cap="Statistical Thinking in the Data Science Life Cycle", fig.align='center', out.width = '55%'}
+knitr::include_graphics("statistical-thinking-in-data-science-lifecycle.png")
+```
+
+## Previously... (2/3)
+
+**Types of Inference**
+
+|  | **Parameter Estimation** | **Hypothesis Testing** |
+|:---|:------|:------|
+| _Goal_ | Estimate an unknown population value | Assess claims about a population value |
+| _Methods_ | Point Estimation: A single value estimate (e.g., sample mean) <br>Interval Estimation: A range of plausible values (e.g., confidence interval) | State a null and an alternative hypothesis <br>Compute a test statistic and compare it to a threshold (p-value or critical value) |
+| _Key Concept_ | Focuses on precision in estimation (confidence intervals) | Focuses on decision-making based on evidence (reject or fail to reject the null hypothesis) |
+
+## Previously... (3/3)
+
+**Confidence Intervals**
+
+$$\text{point estimate} \pm z^{\star} \times \text{SE}.$$
+
+* In a confidence interval, $z^{\star} \times \text{SE}$ is called the **margin of error**, and for a given sample, the margin of error changes as the confidence level changes.
+* Using the standard normal distribution, it is possible to find the appropriate $z^{\star}$ for any confidence level.
+
+## Finding $z^{\star}$ Exactly
+
+Find the $z^{\star}$ for a 92\% confidence level.
+
+:::: {.column width=50%}
+**Process:**
+
+* Confidence level is 0.92.
+* Lower tail of the $Z \sim N(0,1)$ is $\frac{(1-0.92)}{2} = 0.04$.
+* We want to find the $z$ score that would yield a 0.04 probability.
+* Use the `qnorm()` function in R.
+
+**Using R:**
+
+```{r echo=TRUE}
+cl <- 0.92 # confidence level
+lt <- (1-cl)/2 # lower tail probability
+qnorm(lt,0,1) # computes the z star
+```
+::::
+
+:::: {.column width=49%}
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='100%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(z=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  geom_ribbon(data=subset(df_norm,z<=-1.75),aes(x=z,ymax=dnorm(z,mu,sigma)),ymin=0,alpha=0.3,fill="#009159") +
+  ylab("density") + 
+  ggtitle("0.04 Probability is up to -1.75") + # sets the title of the plot
+  scale_x_discrete(limits=c(-1.75)) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='100%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(z=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  geom_ribbon(data=subset(df_norm,z>=-1.75 & z<=1.75),aes(x=z,ymax=dnorm(z,mu,sigma)),ymin=0,alpha=0.3,fill="#009159") +
+  ylab("density") + 
+  ggtitle("0.92 Probability is Between -1.75 to 1.75") + # sets the title of the plot
+  scale_x_discrete(limits=c(-1.75,0,1.75)) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+::::
+
+
+## Case Study I
+
+Two scientists want to know if a certain drug is effective against high blood pressure. 
+
+1. The first scientist wants to give the drug to **1000 people with high blood pressure and see how many of them experience lower blood pressure levels.** 
+2. The second scientist wants to **give the drug to 500 people** with high blood pressure, and **not give the drug to another 500 people** with high blood pressure, and see how many in both groups experience lower blood pressure levels. 
+
+Which is the better way to test this drug?
+
+::: {style="color: red;"}
+$\star$ Answer: The second scientist that want 500 get the drug, 500 don’t.
+:::
+
+## Results from the GSS
+
+The GSS (General Social Survey) asks the same question, below is the distribution of responses from the 2010 survey:
+
+| Answer | Count |
+|:---|:---:|
+| All 1000 get the drug | 99 |
+| 500 get the drug 500 don't | 571 |
+| Total | 670 |
+
+## Parameter and Point Estimate
+
+We would like to estimate the proportion of all Americans who have good intuition about experimental design, i.e. would answer “500 get the drug 500 don't”? What are the parameter of interest and the point estimate?
+
+* **Parameter of interest:** proportion of all Americans who have good intuition about experimental design. $$p \longrightarrow \text{a population proportion}$$
+
+* **Point estimate:** proportion of sampled Americans who have good intuition about experimental design. $$\hat{p} \longrightarrow \text{a sample proportion}$$
+
+## Inference on a Proportion
+
+What percent of all Americans have good intuition about experimental design, i.e. would answer "500 get the drug
+500 don't"?
+
+We can answer this research question using a confidence interval, which we know is always of the form $$\text{point estimate} \pm z^{\star} \times \text{SE}.$$
+
+Standard error (SE) of a sample proportion $$SE_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}.$$
+
+## Central Limit Theorem for Proportions
+
+Sample proportions will be nearly normally distributed with mean equal to the population mean, $p$, and standard error equal to $\sqrt{\frac{p(1-p)}{n}}$.
+
+This is true only under certain conditions:
+
+* independent observations, at least 10 successes and 10 failures
+
+Note:
+
+* If $p$ is unknown (most cases), we use $\hat{p}$ in the calculation of the standard error.
+
+## Case Study I: Infering the True Proportion
+
+The GSS found that 571 out of 670 (85%) of Americans answered the question on experimental design correctly. Estimate (using a 95% confidence interval) the proportion of all Americans who have good intuition about experimental design?
+
+Given: $n = 670$, $\hat{p} = 0.85$. First check conditions.
+
+* **Independence:** The sample is random, and $670$ which is less than $10%$ of all Americans, therefore we can assume that one respondent's response is independent of another.
+* **Success-failure:** 571 people answered correctly (successes) and 99 answered incorrectly (failures), both are greater than 10.
+
+## Case Study I: Confidence Interval
+
+We are given that $n = 670$, $\hat{p} = 0.85$, we also just learned that the standard error of the sample proportion is $$SE_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}.$$
+
+Which of the below is the correct calculation of the 95\% confidence interval?
+
+1. $0.85 \pm 1.65 \times \sqrt{\frac{0.85 \times 0.15}{670}}$
+2. $0.85 \pm 1.96 \times \sqrt{\frac{0.85 \times 0.15}{670}}$
+3. $0.85 \pm 1.96 \times \frac{0.85 \times 0.15}{\sqrt{670}}$
+4. $571 \pm 1.96 \times \sqrt{\frac{571 \times 99}{670}}$
+
+::: {style="color: red;"}
+$\star$ Answer: $0.85 \pm 1.96 \times \sqrt{\frac{0.85 \times 0.15}{670}} \longrightarrow (0.82,0.88)$
+:::
+
+## Case Study I: Choosing a sample size
+
+Previously, for $n=670$ the margin of error is $1.96 \times \sqrt{\frac{0.85 \times 0.15}{670}} \approx 0.027$.
+
+How many people should you sample in order to cut the margin of error of a 95\% confidence interval down to 0.01?
+
+$$z^{\star} \times SE_{\hat{p}}$$
+
+\[
+\begin{aligned}
+1.96 \times \sqrt{\frac{0.85 \times 0.15}{n}} & \le 0.01 \\
+1.96^2 \times \frac{0.85 \times 0.15}{n} & \le 0.01^2 \\
+n & \ge \frac{1.96^2 \times 0.85 \times 0.15}{0.01^2} \\
+n & \ge 4898.04
+\end{aligned}
+\]
+
+::: {style="color: red;"}
+$\star$ The sample size should be at least 4,899 to have a 0.01 margin of error for 95\% confidence interval.
+:::
+
+## Activity: Determine Confidence Intervals of One Proportion
+
+1. Make sure you have a copy of the *M 3/17 Worksheet*. This will be handed out physically and it is also digitally available on Moodle.
+2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
+3. Get together with another student.
+4. Discuss your results.
+5. Submit your worksheet on Moodle as a `.pdf` file.
+
+## References
+
+::: {#refs}
+:::

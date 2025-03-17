@@ -1,0 +1,105 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{M 3/17 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Determine Confidence Intervals of One Proportion
+
+### 1. Public Opinion Research
+
+A researcher plans to conduct a survey to estimate the proportion of people who support a new policy. They want a margin of error of 4% at a 99% confidence level. They have a prior estimate of the population proportion to be $\hat{p} = 0.55$.
+
+a. Determine the $z^{\star}$ for a 99% confidence level.
+\vfill
+
+b. Calculate the minimum sample size required.
+\vfill
+
+c. How does increasing the sample size impact the margin of error?
+\vfill
+
+\newpage
+
+### 2. Vaccination Rates
+
+A health organization surveyed 1,200 individuals, and 900 reported receiving the flu vaccine last year.
+
+a. Calculate a 90% confidence interval for the proportion of individuals who received the flu vaccine.
+
+    i. Determine the $z^{\star}$ for a 90% confidence level.
+    \vfill
+    ii. Determine the point estimate and the standard error.
+    \vfill
+    iii. Determine the end points of the 90% confidence interval.
+    \vfill
+
+b. Using the results of Part (a), shade the 90% probability with correct labels of the point estimate and the end points of the confidence interval.
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='70%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(z=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  xlab("") + 
+  ylab("density") + 
+  ggtitle("Standard Normal Distribution") + # sets the title of the plot
+  scale_x_discrete(limits=c()) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+## **References**
+
+::: {#refs}
+:::

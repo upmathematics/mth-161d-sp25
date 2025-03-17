@@ -202,7 +202,6 @@ p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) +
   geom_line(color="#009159",linewidth=1) + 
   geom_ribbon(data=subset(df_norm,z>=-1.96 & z<=1.96),aes(x=z,ymax=dnorm(z,mu,sigma)),ymin=0,alpha=0.3,fill="#009159") +
   ylab("density") + 
-  ylab("density") + 
   ggtitle("0.95 Probability is Between -1.96 to 1.96") + # sets the title of the plot
   scale_x_discrete(limits=c(-1.96,0,1.96)) + 
   theme_minimal() + # set theme of entire plot
@@ -222,7 +221,7 @@ Which of the below Z scores is the appropriate $z^{\star}$ when calculating a 99
 (d) Z = 1.96
 
 ::: {style="color: red;"}
-$\star$ Estimating the $z^{\star}$ can be done using the 68-95-99.7 rule. We know that $P(- 3 \le Z \le 3) \approx 0.997$. So, the closest answer is $Z = 2.97$.
+$\star$ Estimating the $z^{\star}$ can be done using the 68-95-99.7 rule. We know that $P(-3 \le Z \le 3) \approx 0.997$. So, the closest answer is $Z = 2.97$.
 :::
 
 ## Example 1: 99.7% Confidence Interval
@@ -241,7 +240,6 @@ df_norm <- tibble(z=x_norm, norm_pdf=norm_pdf)
 p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) + 
   geom_line(color="#009159",linewidth=1) + 
   geom_ribbon(data=subset(df_norm,z>=-2.97 & z<=2.97),aes(x=z,ymax=dnorm(z,mu,sigma)),ymin=0,alpha=0.3,fill="#009159") +
-  ylab("density") + 
   ylab("density") + 
   ggtitle("0.997 Probability is Between -2.97 to 2.97") + # sets the title of the plot
   scale_x_discrete(limits=c(-2.97,0,2.97)) + 
