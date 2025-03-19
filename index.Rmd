@@ -588,7 +588,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Point Estimates and Sampling Variability](lessons/9.1-mth161-point-estimates-and-samping-variability/9.1-mth161-point-estimates-and-samping-variability.html) | Pg. 170-178 @diez2012openintro |
 | [Confidence Intervals](lessons/9.2-mth161-confidence-intervals/9.2-mth161-confidence-intervals.html) | Pg. 181-186 @diez2012openintro |
 | [Inference for One Proportion](lessons/10.1-mth161-inference-for-one-proportion/10.1-mth161-inference-for-one-proportion.html) | Pg. 208-213 @diez2012openintro |
-| Hypothesis Testing for Proportions | - |
+| [Hypothesis Testing for One Proportion](lessons/10.2-mth161-hypothesis-testing-for-one-proportion/10.2-mth161-hypothesis-testing-for-one-proportion.html) | - |
 | Decision Errors | Pg. 189-201 @diez2012openintro |
 | Inference for Difference of Two Proportions | Pg. 217-224 @diez2012openintro |
 | Testing for Goodness of Fit & <br>Testing Independence in Two-Way Tables | Pg. 229-238 & Pg. 240-244 @diez2012openintro |

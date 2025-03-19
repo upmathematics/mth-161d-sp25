@@ -116,7 +116,6 @@ p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) +
 p1
 ```
 
-
 ```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='100%'}
 # normal pdf
 mu <- 0
@@ -141,7 +140,6 @@ p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) +
 p1
 ```
 ::::
-
 
 ## Case Study I
 

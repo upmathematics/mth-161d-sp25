@@ -1,0 +1,203 @@
+---
+title: "Hypothesis Testing for One Proportion"
+subtitle: "Elementary Statistics"
+author: "MTH-161D | Spring 2025 | University of Portland"
+date: "March 19, 2025"
+output:
+  slidy_presentation:
+    font_adjustment: +5
+    footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
+bibliography: ../../references.bib
+csl: ../../apa.csl
+link-citation: true
+nocite: '@*'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(gghighlight)
+library(latex2exp)
+data(COL)
+seed <- 42
+```
+
+## Objectives
+
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
+- **Develop an understanding of hypothesis testing**
+- **Know how to conduct a hypothesis test for one proportion**
+- **Activity: Apply One-Proportion Test**
+::::
+
+:::: {.column width=15%}
+::::
+
+*These slides are derived from @diez2012openintro.*
+
+## Previously... (1/2)
+
+**Population vs Sample Proportion**
+
+* **Parameter of interest:** $$p \longrightarrow \text{population proportion}$$
+
+* **Point estimate:** $$\hat{p} \longrightarrow \text{sample proportion}$$
+
+## Previously... (2/2)
+
+**Confidence Interval for One Proportion**
+
+$$\text{point estimate} \pm z^{\star} \text{SE}$$
+
+* The point estimate is $\hat{p}$.
+* SE is the standard error defined for proportions as $$SE_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}.$$
+* $z^{\star}$ is the critical z-score for a given confidence level.
+
+## Case Study I
+
+**Customer Satisfaction at a Coffee Shop**
+
+**Background:** A local coffee shop prides itself on high customer satisfaction. The shop’s management claims that at least 85% of its customers are satisfied with their service. A market research firm is hired to assess this claim by conducting a survey.
+
+**Data Collection:** The research firm randomly surveys 200 customers who visited Brew Haven in the past month. Among them, 160 reported being satisfied with the service.
+
+**Objective:** Use hypothesis testing for one proportion to determine whether the claim that at least 85% of customers are satisfied is supported by the survey data.
+
+## Define Hypotheses
+
+Let $p$ represent the true proportion of satisfied customers.
+
+* **Null Hypothesis $H_0$:** $p = 0.85$ (The satisfaction rate is equal to 85%.)
+
+* **Alternative Hypothesis $H_A$:** $p < 0.85$ (The satisfaction rate is less than 85%.)
+
+* **Choose Significance Level:** A significance level of $\alpha = 0.05$ is chosen.
+
+::: {style="color: red;"}
+$\star$ This is a one-tailed test because the $H_A$ is using the $<$ sign.
+:::
+
+## Compute the Test Statistic
+
+The **sample proportion** is $$\hat{p} = \frac{160}{200} = 0.80.$$
+
+**Test statistic formula for one proportion:** $$z = \frac{\hat{p} - p_0}{SE_{p}}$$
+
+* $p_0 = 0.85$ (claimed proportion or the null value)
+* $SE_{p} = \sqrt{\frac{p_0(1-p_0)}{n}}$ (standard error)
+* $n = 200$ (sample size)
+
+**Substituting values:** $$z = \frac{0.80 - 0.85}{\sqrt{\frac{0.85(1-0.85)}{200}}} \approx -1.9803$$
+
+::: {style="color: red;"}
+$\star$ The standard error formula $SE_{p}$ is the Binomial standard error and here we used the null value.
+:::
+
+## Determine the P-Value
+
+Determine the probability associated with the computed test statistic.
+
+:::: {.column width=50%}
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='100%'}
+# normal pdf
+mu <- 0
+sigma <- 1
+x_norm <- seq(-4,4,0.10)
+norm_pdf <- dnorm(x_norm,mu,sigma)
+
+# convert pdf into tibble
+df_norm <- tibble(z=x_norm, norm_pdf=norm_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_norm,aes(x=z,y=norm_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  geom_vline(xintercept=-1.9803,color="blue") + 
+  geom_ribbon(data=subset(df_norm,z<=-1.9803),aes(x=z,ymax=dnorm(z,mu,sigma)),ymin=0,alpha=0.3,fill="#009159") +
+  ylab("density") + 
+  ggtitle("0.0238 Probability up to -1.9803") + # sets the title of the plot
+  scale_x_discrete(limits=c(-1.9803,0)) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+::::
+
+:::: {.column width=49%}
+**Using R:**
+
+```{r echo=TRUE}
+pe <- 0.80 # point estimate
+p_0 <- 0.85 # null value
+n <- 200 # sample size
+SE_p <- sqrt((p_0*(1-p_0))/(n)) # standard error
+Z <- (pe-p_0)/SE_p # test statistic
+
+# p-value
+pnorm(Z,0,1) 
+```
+::::
+
+::: {style="color: red;"}
+$\star$ The p-value is the probability $P(Z \le -1.9803) = 0.0238$ using $Z \sim N(0,1$, the standard normal distribution. Since this is one-tailed test, we only use the left tail probability.
+:::
+
+## Make a Conclusion
+
+We compare the p-value to our chosen significance level of $\alpha = 0.05$.
+
+**Conclusion:**
+
+* **If $\text{p-value} < \alpha$, reject the null hypothesis and conclude that the satisfaction rate is significantly less than 85%.**
+
+* If $\text{p-value} \ge \alpha$, do not reject the null hypothesis; there is not enough evidence to claim that the satisfaction rate is lower than 85%.
+
+::: {style="color: red;"}
+$\star$ Since $0.0238 < 0.05$, we reject the null hypothesis ($H_0$).
+:::
+
+## What does the Significance Level Mean?
+
+Remember that we defined $\alpha = 0.05$ arbitrarily before we conducted the hypothesis test.
+
+The significance value $\alpha$ is related to the confidence level of the confidence interval of the point estimate, which is $1-\alpha$.
+
+::: {style="color: red;"}
+$\star$ **Key Idea:** The significance level $\alpha$ is the probability of rejecting the null hypothesis when it is actually true. In other words, it is the probability of making an error.
+:::
+
+## One Proportion Confidence Interval
+
+If we set a significance level $\alpha = 0.05$, then the confidence level for the sample proportion is $1-\alpha = 1 - 0.05 = 0.95$.
+
+That is a 95% confidence interval of the sample proportion $\hat{p} = 0.80$.
+
+* The critical z-value of a 0.95 confidence level is $z^{\star} = 1.96$.
+* Standard error of the null value is $SE_{p} = \sqrt{\frac{0.85(1-0.85)}{200}} \approx 0.0252$.
+* 95% confidence interval is $0.80 \pm 1.96 \times 0.0252$ or $(0.7506,0.8494)$.
+
+::: {style="color: red;"}
+$\star$ **Key Idea:** The null value of $0.85$ is not within the 95% confidence interval. We would reject the null hypothesis at the 5% significance level.
+:::
+
+## Activity: Apply One-Proportion Test
+
+1. Make sure you have a copy of the *W 3/19 Worksheet*. This will be handed out physically and it is also digitally available on Moodle.
+2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
+3. Get together with another student.
+4. Discuss your results.
+5. Submit your worksheet on Moodle as a `.pdf` file.
+
+## References
+
+::: {#refs}
+:::

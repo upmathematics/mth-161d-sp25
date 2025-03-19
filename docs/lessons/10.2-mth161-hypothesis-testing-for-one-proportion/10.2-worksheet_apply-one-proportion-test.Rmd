@@ -1,0 +1,86 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{W 3/19 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Apply One-Proportion Test
+
+### 1. Are University Students Getting Enough Sleep?
+
+A health study suggests that college students should get at least 7 hours of sleep per night for optimal cognitive performance and overall well-being. A national survey in past years found that about 65% of college students reported getting at least 7 hours of sleep regularly.
+
+You are interested in whether students at your university are getting enough sleep compared to this national proportion. To investigate, you conduct a survey and randomly sample 150 students, finding that 84 of them report getting at least 7 hours of sleep on average.
+
+Determine whether the proportion of students at your university who get at least 7 hours of sleep is less than the national proportion of 65%.
+
+a. State the null hypothesis in words and in mathematical symbols.
+\vfill
+
+b. State the alternative hypothesis in words and in mathematical symbols.
+\vfill
+
+c. Set the significance level of $\alpha=0.01$. Is the hypothesis test one-sided or two-sided test? Explain your reasoning.
+\vfill
+
+\newpage
+
+### 2. One-Proportion Test
+
+Continuing from Problem (1). Assume that the conditions for using a normal approximation to the binomial distribution are satisfied: random samples, independence, and large enough samples.
+
+a. Compute the test statistic. Explain your reasoning.
+\vfill
+
+b. Find the p-value and make a conclusion. Explain your reasoning.
+\vfill
+
+c. Determine confidence interval based on the significance level of $\alpha=0.01$. Explain your reasoning.
+\vfill
+
+d. Based on the test results, what could be some reasons why students at this university sleep differently from the national average? Explain your reasoning.
+\vfill
+
+## **References**
+
+::: {#refs}
+:::
