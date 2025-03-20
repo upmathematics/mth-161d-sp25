@@ -225,11 +225,11 @@ The following learning objectives are designed to build on one another, with som
 | **9** | M 3/10 | **Assessments 3** |
 |  | W 3/12 | Point Estimates and Sampling Variability |
 |  | F 3/14 | Confidence Intervals |
-| **10** | M 3/17 | Inference for One Proportion & <br>**Homework 4** |
+| **10** | M 3/17 | Inference for One Proportion |
 |  | W 3/19 | Hypothesis Testing for Proportions |
-|  | F 3/21 | Decision Errors & <br>Inference for Difference of Two Proportions |
-| **11** | M 3/24 | **Assessments 4** |
-|  | W 3/26 | Testing for Goodness of Fit & <br> Testing Independence in Two-Way Tables |
+|  | F 3/21 | Decision Errors |
+| **11** | M 3/24 | **Assessments 4** & <br>**Homework 4** |
+|  | W 3/26 | Inference for Difference of Two Proportions & <br> Testing Independence in Two-Way Tables |
 |  | F 3/28 | Inference for One Mean |
 | **12** | M 3/31 | Hypothesis Testing for Means & <br>**Homework 5** |
 |  | W 4/2 | Inference for Difference of Two Means |
@@ -589,9 +589,9 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Confidence Intervals](lessons/9.2-mth161-confidence-intervals/9.2-mth161-confidence-intervals.html) | Pg. 181-186 @diez2012openintro |
 | [Inference for One Proportion](lessons/10.1-mth161-inference-for-one-proportion/10.1-mth161-inference-for-one-proportion.html) | Pg. 208-213 @diez2012openintro |
 | [Hypothesis Testing for One Proportion](lessons/10.2-mth161-hypothesis-testing-for-one-proportion/10.2-mth161-hypothesis-testing-for-one-proportion.html) | - |
-| Decision Errors | Pg. 189-201 @diez2012openintro |
+| [Decision Errors](lessons/10.3-mth161-decision-errors/10.3-mth161-decision-errors.html) | Pg. 189-201 @diez2012openintro |
 | Inference for Difference of Two Proportions | Pg. 217-224 @diez2012openintro |
-| Testing for Goodness of Fit & <br>Testing Independence in Two-Way Tables | Pg. 229-238 & Pg. 240-244 @diez2012openintro |
+| Testing Independence in Two-Way Tables | Pg. 240-244 @diez2012openintro |
 | Inference for One Mean | Pg. 251-258 @diez2012openintro |
 | Hypothesis Testing for Means | - |
 | Inference for Difference of Two Means | Pg. 267-273 @diez2012openintro |

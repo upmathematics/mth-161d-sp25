@@ -1,0 +1,85 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{F 3/21 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Determine Claims and Error Types
+
+### 1. Testing for food safety
+
+A food safety inspector is called upon to investigate a restaurant with a few customer reports of poor sanitation practices. The food safety inspector uses a hypothesis testing framework to evaluate whether regulations are not being met. If he decides the restaurant is in gross violation, its license to serve food will be revoked.
+
+a. Write the null hypothesis.
+\vfill
+
+b. Write the alternative hypothesis.
+\vfill
+
+c. Based on the inspector’s investigation, the null hypothesis is rejected. What does this decision imply about the restaurant’s adherence to food safety regulations, and what consequences might follow?
+\vfill
+
+\newpage
+
+### 2. Decision Errors on Food Regulations
+
+Continued from Problem (1). When conducting a hypothesis test to determine whether a restaurant is in violation of food safety regulations, there is a risk of making decision errors.
+
+a. What is a Type I Error in this context?
+\vfill
+
+b. What is a Type II Error in this context?
+\vfill
+
+c. Which error is more problematic for the restaurant owner? Why?
+\vfill
+
+d. Which error is more problematic for the diners? Why?
+\vfill
+
+e. As a diner, would you prefer that the food safety inspector requires strong evidence or very strong evidence of health concerns before revoking a restaurant’s license? Explain your reasoning.
+\vfill
+
+## **References**
+
+::: {#refs}
+:::
