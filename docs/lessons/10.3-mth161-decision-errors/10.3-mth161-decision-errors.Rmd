@@ -138,9 +138,6 @@ There are two possible outcomes of the hypothesis test:
   
 Making statistical decisions means that you have to deal with uncertainties.
 
-## Decision Errors
-
-
 ## The Significance Level and Decisions Errors
 
 **What does this all mean?** When the p-value is small, i.e., less than a previously set threshold ($\alpha$), we say the results are **statistically significant**.  The value of $\alpha$ represents how rare an event needs to be in order for the null hypothesis to be rejected. The $\alpha$ also represents the probability of committing a type I error.
