@@ -228,21 +228,21 @@ The following learning objectives are designed to build on one another, with som
 | **10** | M 3/17 | Inference for One Proportion |
 |  | W 3/19 | Hypothesis Testing for Proportions |
 |  | F 3/21 | Decision Errors |
-| **11** | M 3/24 | **Assessments 4** & <br>**Homework 4** |
-|  | W 3/26 | Inference for Difference of Two Proportions & <br> Testing Independence in Two-Way Tables |
-|  | F 3/28 | Inference for One Mean |
-| **12** | M 3/31 | Hypothesis Testing for Means & <br>**Homework 5** |
+| **11** | M 3/24 | **Assessments 4** |
+|  | W 3/26 | _Cancelled_ |
+|  | F 3/28 | Inference for One-Way and Two-Way Tables |
+| **12** | M 3/31 | Inference for One Mean & <br>**Homework 4** |
 |  | W 4/2 | Inference for Difference of Two Means |
-|  | F 4/4 | Inference for Paired Means |
+|  | F 4/4 | Hypothesis Testing for Means |
 | **13** | M 4/7 | **Assessments 5** |
-|  | W 4/9 | Introduction to Linear Regression, <br>Correlation, & <br>Residuals |
-|  | F 4/11 | Inference for Linear Regression |
-| **14** | M 4/14 | Hypothesis Testing for Linear Regression & <br>**Homework 6** |
-|  | W 4/16 | Least-Squares Regression |
+|  | W 4/9 | Linear Regression |
+|  | F 4/11 | Least-Squares Regression |
+| **14** | M 4/14 | Inference for Linear Regression & <br>**Homework 5** |
+|  | W 4/16 | Hypothesis Testing for Linear Regression |
 |  | F 4/18 | _Easter vacation_ |
 | **15** | M 4/21 | _Easter Vacation_ |
-|  | W 4/23 | Points of Leverage |
-|  | F 4/25 | Comparing Many Means, <br>Multiple Linear Regression, & <br>Logistic Regression |
+|  | W 4/23 | Comparing Many Means |
+|  | F 4/25 | Multiple Linear Regression |
 | **16** | Th 5/1 | **Final Assessments <br>(10:30 AM to 12:30 PM)** |
 
 <br>
@@ -590,18 +590,17 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Inference for One Proportion](lessons/10.1-mth161-inference-for-one-proportion/10.1-mth161-inference-for-one-proportion.html) | Pg. 208-213 @diez2012openintro |
 | [Hypothesis Testing for One Proportion](lessons/10.2-mth161-hypothesis-testing-for-one-proportion/10.2-mth161-hypothesis-testing-for-one-proportion.html) | - |
 | [Decision Errors](lessons/10.3-mth161-decision-errors/10.3-mth161-decision-errors.html) | Pg. 189-201 @diez2012openintro |
-| Inference for Difference of Two Proportions | Pg. 217-224 @diez2012openintro |
-| Testing Independence in Two-Way Tables | Pg. 240-244 @diez2012openintro |
+| Inference for One-Way and Two-Way Tables | Pg. 229-238 & Pg. 240-244 @diez2012openintro |
 | Inference for One Mean | Pg. 251-258 @diez2012openintro |
-| Hypothesis Testing for Means | - |
 | Inference for Difference of Two Means | Pg. 267-273 @diez2012openintro |
 | Inference for Paired Means | Pg. 262-264 @diez2012openintro |
-| Introduction to Linear Regression, <br>Correlation, & <br>Residuals | Pg. 305-311 @diez2012openintro |
+| Hypothesis Testing for Means | - |
+| Introduction to Linear Regression | Pg. 305-311 @diez2012openintro |
+| Least-Squares Regression | Pg. 317-324 @diez2012openintro |
 | Inference for Linear Regression | Pg. 331-334 @diez2012openintro |
 | Hypothesis Testing for Linear Regression | - |
-| Least-Squares Regression | Pg. 317-324 @diez2012openintro |
-| Points of Leverage | Pg. 328-329 @diez2012openintro |
-| Comparing Many Means, <br>Multiple Linear Regression, & <br>Logistic Regression | - |
+| Comparing Many Means | Pg. 285-294 @diez2012openintro |
+| Multiple Linear Regression | Pg. 343-349 @diez2012openintro |
 
 ## Books \& Online Resources Lists
 
