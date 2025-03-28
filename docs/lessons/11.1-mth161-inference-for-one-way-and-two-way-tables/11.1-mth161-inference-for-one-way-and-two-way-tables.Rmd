@@ -162,7 +162,7 @@ titanic_surv_class <- titanic |> select(survived,class) |>
 kable(xtabs(total ~ survived + class, titanic_surv_class))
 ```
 
-* The expected proportion are $\frac{1}{2}$ assuming the passengers are equally likely to survive.
+* The expected proportions are $\frac{1}{2}$ assuming the passengers are equally likely to survive.
 * The expected frequency based on the data is $\left( \frac{1}{2} \right) 324 = 126$ for each survived category.
 ::::
 
