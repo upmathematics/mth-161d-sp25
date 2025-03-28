@@ -88,7 +88,7 @@ b. Determine the degrees of freedom $df$.
 
 Continued from Problem (1).
 
-a. Compute the expected values of each cell of the contingency table relative to the class variable.
+a. Compute the expected values of each cell of the contingency table.
 \vfill
 
 b. Compute the $\chi^2$ test statistic.
