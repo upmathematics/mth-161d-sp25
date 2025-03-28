@@ -1,0 +1,420 @@
+---
+title: "Inference for One-Way and Two-Way Tables"
+subtitle: "Elementary Statistics"
+author: "MTH-161D | Spring 2025 | University of Portland"
+date: "March 28, 2025"
+output:
+  slidy_presentation:
+    font_adjustment: +5
+    footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
+bibliography: ../../references.bib
+csl: ../../apa.csl
+link-citation: true
+nocite: '@*'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(gghighlight)
+library(kableExtra)
+library(latex2exp)
+data(COL)
+seed <- 42
+```
+
+## Objectives
+
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
+- **Develop an understanding of inference for contingency tables**
+- **Know how to compute the chi-square test statistic**
+- **Practice on applying the chi-square test**
+- **Activity: Test for Independence**
+::::
+
+:::: {.column width=15%}
+::::
+
+*These slides are derived from @diez2012openintro.*
+
+## Previously... (1/2)
+
+**Confidence Interval for One Proportion**
+
+$$\hat{p} \pm z^{\star} \text{SE}_{\hat{p}}$$
+
+\[
+\begin{aligned}
+\hat{p} & \longrightarrow \text{sample proportion (or the point estimate)} \\
+z^{\star} & \longrightarrow \text{critical z-score at a given confidence level} \\
+\text{SE}_{\hat{p}} & \longrightarrow \text{standard error of the sampling distribution} \\
+\end{aligned}
+\]
+
+## Previously... (2/2)
+
+**Hypothesis Testing for One Proportion**
+
+\[
+\begin{aligned}
+p & \longrightarrow \text{population proportion} \\
+\hat{p} & \longrightarrow \text{sample proportion (or the point estimate)} \\
+H_0: p = p_0 & \longrightarrow \text{null hypothesis}  \\
+H_A: p \ne p_0 & \longrightarrow \text{alternative hypothesis (can be } < \text{ or } > \text{)} \\
+z & \longrightarrow \text{test statistic} \\
+\text{SE}_{p} & \longrightarrow \text{standard error of the null distribution} \\
+\end{aligned}
+\]
+
+## Example 1
+
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+# The titanic.csv data is from https://www.kaggle.com/datasets/aliaamiri/titanic-passengers-and-crew-complete-list
+# The titanic data can also be accessed using the stablelearner package
+
+titanic <- read_csv("titanic.csv") |> 
+  select(survived,gender,age,class,fare) |> 
+  mutate(age = round(age,0),
+         class = case_when(
+           class == "deck crew" ~ "crew",
+           class == "engineering crew" ~ "crew",
+           class == "restaurant staff" ~ "crew",
+           class == "victualling crew" ~ "crew",
+           TRUE ~ class
+         ))
+```
+
+The contingency table below shows the distribution of survival and different classes of passengers on the Titanic.
+
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+titanic_surv_class <- titanic |> select(survived,class) |> 
+  group_by(survived,class) |> 
+  summarise(total = n(),
+            .groups = 'drop')
+kable(addmargins(xtabs(total ~ survived + class, titanic_surv_class)))
+```
+::::
+
+:::: {.column width=15%}
+::::
+
+Goals:
+
+1. To analyze whether the observed frequencies of class differ significantly from the expected frequencies of survived.
+2. To test whether class and survived are independent by comparing observed and expected frequencies in a two-way table.
+
+## The Chi-Squared Test
+
+The **Chi-Square statistic** is used in hypothesis testing to determine whether observed data differs significantly from expected data. Commonly used for categorical data analysis.
+
+$$\chi^2 = \sum \frac{(O-E)^2}{E}$$
+
+* $O$ is the observed frequency
+* $E$ is the expected frequency
+
+The **degrees of freedom (df)** in a **chi-square test** depend on the type of test being conducted:
+
+* *For a One-Way Table*: $df = r - 1$ where \( r \) is the number of categories.
+* *For a Two-Way Table*: $df = (r - 1) \times (c - 1)$ where \( r \) is the number of rows and \( c \) is the number of columns.
+
+## Example 1
+
+**1st Class Distribution**
+
+\[
+\begin{aligned}
+H_0: & \text{The observed distribution of survived among 1st class passengers follows the expectation.} \\
+H_A: & \text{The observed distribution of survived among 1st class passengers differs from the expectation.}
+\end{aligned}
+\]
+
+:::: {.column width=39%}
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+titanic_surv_class <- titanic |> select(survived,class) |> 
+  group_by(survived,class) |> 
+  summarise(total = n(),
+            .groups = 'drop') |> 
+  filter(class == "1st")
+kable(xtabs(total ~ survived + class, titanic_surv_class))
+```
+
+* The expected proportion are $\frac{1}{2}$ assuming the passengers are equally likely to survive.
+* The expected frequency based on the data is $\left( \frac{1}{2} \right) 324 = 126$ for each survived category.
+::::
+
+:::: {.column width=60%}
+* Set $\alpha = 0.05$ and compute the $\chi^2$ statistic.
+
+\[
+\begin{aligned}
+\chi^2 & = \frac{(123 - 126)^2}{126} + \frac{(201 - 126)^2}{126} \\
+       & = 44
+\end{aligned}
+\]
+
+* Determine degrees of freedom, which is $df = 1$.
+
+* Compute the p-value using R.
+
+```{r echo=TRUE, eval=TRUE}
+df <- 1 # define degrees of freedom
+chisq <- 44 # set chi-square statistic
+1-pchisq(44,df) # compute the p-value
+```
+
+* Since the p-value is less than $\alpha$, then we reject $H_0$. We can conclude that we have enough evidence to support $H_A$.
+::::
+
+## Example 1: The Chi-Square Sampling Distribution
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='100%'}
+# normal pdf
+df <- 1
+x_chisq <- seq(0,50,0.10)
+chisq_pdf <- dchisq(x_chisq,df)
+
+# convert pdf into tibble
+df_chisq <- tibble(z=x_chisq, chisq_pdf=chisq_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_chisq,aes(x=z,y=chisq_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  geom_ribbon(data=subset(df_chisq,z>=44),aes(x=z,ymax=dchisq(z,df)),ymin=0,alpha=0.3,fill="#009159") +
+  xlab(TeX("$\\chi^2$")) +
+  ylab("density") + 
+  ggtitle("Chi-Squared Distribution with 1 Degree of Freedom") + # sets the title of the plot
+  scale_x_discrete(limits=c(44)) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+## Example 2: Inference for One-Way Table
+
+**2nd Class Distribution**
+
+\[
+\begin{aligned}
+H_0: & \text{The observed distribution of survived among 2nd class passengers follows the expectation.} \\
+H_A: & \text{The observed distribution of survived among 2nd class passengers differs from the expectation.}
+\end{aligned}
+\]
+
+:::: {.column width=39%}
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+titanic_surv_class <- titanic |> select(survived,class) |> 
+  group_by(survived,class) |> 
+  summarise(total = n(),
+            .groups = 'drop') |> 
+  filter(class == "2nd")
+kable(xtabs(total ~ survived + class, titanic_surv_class))
+```
+::::
+
+:::: {.column width=60%}
+* The expected proportion are $\frac{1}{2}$ assuming the passengers are equally likely to survive.
+* The expected frequency based on the data is $\left( \frac{1}{2} \right) 284 = 142$ for each survived category.
+::::
+
+::: {style="color: blue;"}
+$\dagger$ Determine the $\chi^2$ test statistic and the p-value. What is your conclusion?
+:::
+
+## Example 3
+
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+titanic_surv_class <- titanic |> select(survived,class) |> 
+  group_by(survived,class) |> 
+  summarise(total = n(),
+            .groups = 'drop')
+kable(addmargins(xtabs(total ~ survived + class, titanic_surv_class)))
+```
+::::
+
+:::: {.column width=15%}
+::::
+
+\[
+\begin{aligned}
+H_0: & \text{There is no association between class and survived. The variables are independent.} \\
+H_A: & \text{There is an association between class and survived. The variables are dependent.}
+\end{aligned}
+\]
+
+## Example 3
+
+Consider the following problem description.
+
+> Students in grades 4-6 were asked whether good grades, athletic ability, or popularity was most important to them. A two-way table separating the students by grade and by choice of most important factor is shown below. Do these data provide evidence to suggest that goals vary by grade?
+
+<center>
+|  | Grade | Popular | Sports |
+|:---:|:---:|:---:|:---:|
+| 4th | 63 | 31 | 23 |
+| 5th | 88 | 55 | 33 |
+| 6th | 96 | 55 | 32 |
+</center>
+
+Source: [Popular Kids Dataset](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/popular.html){target="_blank"}. This is from a 1992 study and was revisited 30 years later.
+
+## Example 3: The Chi-Squared Test for Independence (1/2)
+
+  * The null and alternative Hypothesis
+    $$H_0: \text{Grade and goals are independent.  Goals do not vary by grade.}$$
+  	$$H_A: \text{Grade and goals are dependent.  Goals vary by grade}$$
+  	
+## Example 3: The Chi-Squared Test for Independence (2/2)	
+  	
+  * The Chi-Squared test statistic
+    $$\chi^2_{k} = \sum_{i=1}^n \frac{(O_i - E_i)^2}{E_i}$$
+    - $O_i$ is the number of observations of type $i$
+    - $E_i$ is the expected frequency of type $i$
+    - $n$ is the number of cells in the table
+    - $k = (R-1)(C-1)$ is the degrees of freedom where $R$ is the number of rows and C is the number of columns.
+
+## Example 3: Computing the $\chi^2$ statistic - Expected Frequency (1/3)
+
+  * Start with the expected frequency of type $i$
+
+<div class='left' style='float:left;width:48%'>
+  <center>
+|  | Grade | Popular | Sports | Total |
+|:---:|:---:|:---:|:---:|:---:|
+| 4th | $\color{blue}{63}$ | $\color{orange}{31}$ | 23 | 119 |
+| 5th | 88 | 55 | 33 | 176 |
+| 6th | 96 | 55 | $\color{red}{32}$ | 183 |
+| Total | 247 | 141 | 90 | 478 |
+</center>
+
+Note: Color corresponds to the cell and we are rounding to the nearest integer for computing the expected frequencies.
+</div>
+
+<div class='right' style='float:right;width:48%'>
+$$\color{blue}{E_{4th,Grade} = \frac{(119)(247)}{478} = 61}$$
+$$\color{orange}{E_{4th,Popular} = \frac{(119)(141)}{478} = 35}$$
+$$\vdots$$
+$$\color{red}{E_{6th,Sports} = \frac{(183)(90)}{478} = 34}$$
+</div>
+
+## Example 3: Computing the $\chi^2$ statistic - Expected Frequency (2/3)
+
+  * Question - What is the expected count for the highlighted cell?
+  
+<center>
+|  | Grade | Popular | Sports | Total |
+|:---:|:---:|:---:|:---:|:---:|
+| 4th | 63 | 31 | 23 | 119 |
+| 5th | 88 | $\color{green}{55}$ | 33 | 176 |
+| 6th | 96 | 55 | 32 | 183 |
+| Total | 247 | 141 | 90 | 478 |
+</center>
+
+  >- $$\color{green}{E_{5th,Popular} = \frac{(176)(141)}{478} = 52}$$
+
+## Example 3: Computing the $\chi^2$ statistic - Expected Frequency (3/3)
+
+  * The expected frequency for each $\color{blue}{[cell]}$.
+
+|  | Grade | Popular | Sports | Total |
+|:---:|:---:|:---:|:---:|:---:|
+| 4th | 63 $\color{blue}{[61]}$ | 31 $\color{blue}{[35]}$ | 23 $\color{blue}{[23]}$ | 119 |
+| 5th | 88 $\color{blue}{[91]}$ | 55 $\color{blue}{[52]}$ | 33 $\color{blue}{[33]}$ | 176 |
+| 6th | 96 $\color{blue}{[95]}$ | 55 $\color{blue}{[54]}$ | 32 $\color{blue}{[34]}$ | 183 |
+| Total | 247 | 141 | 90 | 478 |
+
+## Example 3: Computing the $\chi^2$ statistic
+
+  * The $\chi^2$ statistic.
+    $$\chi^2_{k} = \frac{(63-61)^2}{61} + \frac{(31-35)^2}{35} + \cdots + \frac{(32-34)^2}{34} = 0.967$$
+    
+  * Degrees of freedom.
+    $$k = (3-1) \times (3-1) = 2(2) = 4$$
+
+## Example 3: Computing the p-value
+
+  * $\chi^2_{k} = 1.3121$ and $k = 4$
+  
+  * We can use the `pchisq` function in R.
+  
+```{r echo=TRUE}
+df <- 4
+1-pchisq(0.967,df)
+```
+    The p-value of 0.9148.
+    
+  * Note that **in a chi-squared analysis, the p-value is the probability of obtaining a chi-square as large or larger than that in the current experiment.**
+    
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='100%'}
+# normal pdf
+df <- 4
+x_chisq <- seq(0,30,0.10)
+chisq_pdf <- dchisq(x_chisq,df)
+
+# convert pdf into tibble
+df_chisq <- tibble(z=x_chisq, chisq_pdf=chisq_pdf)
+
+# plot the Bernoulli distribution and store it into a R variable
+p1 <- ggplot(df_chisq,aes(x=z,y=chisq_pdf)) + 
+  geom_line(color="#009159",linewidth=1) + 
+  geom_ribbon(data=subset(df_chisq,z>=0.967),aes(x=z,ymax=dchisq(z,df)),ymin=0,alpha=0.3,fill="#009159") +
+  xlab(TeX("$\\chi^2$")) +
+  ylab("density") + 
+  ggtitle("Chi-Squared Distribution with 4 Degrees of Freedom") + # sets the title of the plot
+  scale_x_discrete(limits=c(0.967)) + 
+  theme_minimal() + # set theme of entire plot
+  theme(legend.title=element_blank())
+
+# display plot
+p1
+```
+
+## Example 3: Conclusion
+
+  * Do these data provide evidence to suggest that goals vary by grade?
+    $$H_0: \text{Grade and goals are independent. Goals do not vary by grade.}$$
+  	$$H_A: \text{Grade and goals are dependent. Goals vary by grade}$$
+  	
+  * Since the p-value is large, we fail to reject $H_0$. The data do not provide convincing evidence that grade and goals are dependent. It doesn't appear that goals vary by grade.
+
+## Summary: Steps for $\chi^2$ Tests
+
+* Compute the expected value relative to the independent variable.
+* Set the significance value $\alpha$.
+* Compute the $\chi^2$ test statistic and the degrees of freedom $df$.
+* Determine the p-value using the $\chi^2$ test statistic.
+* Make a conclusion.
+
+::: {style="color: red;"}
+$\star$ **Key Idea:** The chi-square test assumes independent categorical data with sufficiently large expected counts and compares observed vs. expected frequencies to assess whether deviations are due to chance.
+:::
+
+## Activity: 
+
+1. Make sure you have a copy of the *F 3/28 Worksheet*. This will be handed out physically and it is also digitally available on Moodle.
+2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
+3. Get together with another student.
+4. Discuss your results.
+5. Submit your worksheet on Moodle as a `.pdf` file.
+
+## References
+
+::: {#refs}
+:::

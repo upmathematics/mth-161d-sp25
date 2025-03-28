@@ -590,7 +590,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Inference for One Proportion](lessons/10.1-mth161-inference-for-one-proportion/10.1-mth161-inference-for-one-proportion.html) | Pg. 208-213 @diez2012openintro |
 | [Hypothesis Testing for One Proportion](lessons/10.2-mth161-hypothesis-testing-for-one-proportion/10.2-mth161-hypothesis-testing-for-one-proportion.html) | - |
 | [Decision Errors](lessons/10.3-mth161-decision-errors/10.3-mth161-decision-errors.html) | Pg. 189-201 @diez2012openintro |
-| Inference for One-Way and Two-Way Tables | Pg. 229-238 & Pg. 240-244 @diez2012openintro |
+| [Inference for One-Way and Two-Way Tables](lessons/11.1-mth161-inference-for-one-way-and-two-way-tables/11.1-mth161-inference-for-one-way-and-two-way-tables.html) | Pg. 229-238 & Pg. 240-244 @diez2012openintro |
 | Inference for One Mean | Pg. 251-258 @diez2012openintro |
 | Inference for Difference of Two Means | Pg. 267-273 @diez2012openintro |
 | Inference for Paired Means | Pg. 262-264 @diez2012openintro |

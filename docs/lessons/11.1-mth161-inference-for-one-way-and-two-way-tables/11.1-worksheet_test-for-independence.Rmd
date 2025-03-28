@@ -1,0 +1,106 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{F 3/28 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(kableExtra)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Test for Independence
+
+### 1. Titanic Class Survival
+
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+# The titanic.csv data is from https://www.kaggle.com/datasets/aliaamiri/titanic-passengers-and-crew-complete-list
+# The titanic data can also be accessed using the stablelearner package
+
+titanic <- read_csv("titanic.csv") |> 
+  select(survived,gender,age,class,fare) |> 
+  mutate(age = round(age,0),
+         class = case_when(
+           class == "deck crew" ~ "crew",
+           class == "engineering crew" ~ "crew",
+           class == "restaurant staff" ~ "crew",
+           class == "victualling crew" ~ "crew",
+           TRUE ~ class
+         ))
+```
+
+The contingency table below shows the number of Titanic passengers who survived (Yes) or did not survive (No) in each class (1st, 2nd, 3rd, Crew).
+
+The objective is to determine whether survival status depends on passenger class.
+
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+titanic_surv_class <- titanic |> select(survived,class) |> 
+  group_by(survived,class) |> 
+  summarise(total = n(),
+            .groups = 'drop')
+kable(addmargins(xtabs(total ~ survived + class, titanic_surv_class)))
+```
+
+a. Let the significance value be $\alpha = 0.05$, then state the null and alternative hypothesis.
+\vfill
+
+b. Determine the degrees of freedom $df$.
+\vfill
+
+\newpage
+
+### 2. Apply the $\chi^2$ Test
+
+Continued from Problem (1).
+
+a. Compute the expected values of each cell of the contingency table relative to the class variable.
+\vfill
+
+b. Compute the $\chi^2$ test statistic.
+\vfill
+
+c. Determine the p-value.
+\vfill
+
+d. Based on your results in Part (c), what is the conclusion?
+\vfill
+
+## **References**
+
+::: {#refs}
+:::
