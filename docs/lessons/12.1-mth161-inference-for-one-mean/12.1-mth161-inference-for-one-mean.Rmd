@@ -1,0 +1,265 @@
+---
+title: "Inference for One Mean"
+subtitle: "Elementary Statistics"
+author: "MTH-161D | Spring 2025 | University of Portland"
+date: "March 31, 2025"
+output:
+  slidy_presentation:
+    font_adjustment: +5
+    footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
+bibliography: ../../references.bib
+csl: ../../apa.csl
+link-citation: true
+nocite: '@*'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(gghighlight)
+library(kableExtra)
+library(latex2exp)
+library(gridExtra)
+data(COL)
+seed <- 42
+```
+
+## Objectives
+
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
+- **Develop an understanding of t-distributions**
+- **Know how to compute confidence intervals for one mean**
+- **Understand the conditions for the Central Limit Theorem (CLT) for sample means.**
+- **Activity: Determine Confidence Intervals for One Mean**
+::::
+
+:::: {.column width=15%}
+::::
+
+*These slides are derived from @diez2012openintro.*
+
+## Previously... 
+
+**Central Limit Theorem (CLT)**
+
+CLT says that the sample mean (or sum) of many independent and identically distributed random variables approaches a normal distribution, regardless of the original distribution.
+
+**CLT Conditions**
+
+* **Independence** – Sample values must be independent
+* **Identical Distribution** – Variables should be from the same distribution
+* **Finite Variance** – The population must have a finite variance
+* **Large Sample Size** – A larger sample size improves approximation
+
+## Central Limit Theorem for the Sample Mean
+
+When we collect a sufficiently large sample of $n$ independent observations from a population with mean $\mu$ and standard deviation $\sigma,$ the sampling distribution of $\bar{x}$ will be nearly normal with $$\text{Mean} \longrightarrow \mu \text{ and } \text{Standard Error} \longrightarrow SE = \frac{\sigma}{\sqrt{n}}.$$
+
+## Evaluating the two conditions required for modeling $\bar{x}$
+
+Two conditions are required to apply the Central Limit Theorem\index{Central Limit Theorem} for a sample mean $\bar{x}:$
+
+- **Independence.** The sample observations must be independent. The most common way to satisfy this condition is when the sample is a simple random sample from the population.
+
+- **Normality.** When a sample is small, we also require that the sample observations come from a normally distributed population. We can relax this condition more and more for larger and larger sample sizes. *This condition is obviously vague, making it difficult to evaluate, so next we introduce a couple rules of thumb to make checking this condition easier.*
+
+## General rule for performing the normality check
+
+Note, it often takes practice to get a sense for whether or not a normal approximation is appropriate.
+
+-   $\mathbf{n < 30}:$ If the sample size $n$ is less than 30 and there are **no clear outliers** in the data, then we typically assume the data come from a nearly normal distribution to satisfy the condition.
+-   $\mathbf{n \geq 30}:$ If the sample size $n$ is at least 30 and there are no **particularly extreme** outliers, then we typically assume the sampling distribution of $\bar{x}$ is nearly normal, even if the underlying distribution of individual observations is not.
+
+## Normality Assesment (1/2)
+
+Consider the four plots provided that come from simple random samples from different populations.
+
+*Are the independence and normality conditions met in each case?*
+
+```{r outliersandsscondition, fig.align='center', fig.cap="Histograms of samples from two different populations.", message=FALSE, warning=FALSE, out.width="50%"}
+set.seed(3456)
+df1 <- tibble(x = rnorm(15, 3, 2))
+df2 <- tibble(x = c(exp(rnorm(49, 0, 0.7)), 22))
+
+p1 <- ggplot(df1, aes(x = x)) +
+  geom_histogram(binwidth = 1) +
+  labs(x = NULL, y = "Count", title = "Sample 1", subtitle = expression(n[1]~"="~15))
+
+p2 <- ggplot(df2, aes(x = x)) +
+  geom_histogram(binwidth = 1) +
+  labs(x = NULL, y = "Count", title = "Sample 2", subtitle = expression(n[2]~"="~50))
+
+p3 <- ggplot(df1, aes(x = x)) +
+  geom_boxplot() +
+  theme(
+    axis.text.y = element_blank(), 
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    ) +
+  labs(x = NULL)
+
+p4 <- ggplot(df2, aes(x = x)) +
+  geom_boxplot() +
+  theme(
+    axis.text.y = element_blank(), 
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    )+
+  labs(x = NULL)
+
+grid.arrange(p1,p2,p3,p4,nrow=2)
+```
+
+## Normality Assesment (2/2)
+
+  * The **first sample** has fewer than 30 observations, so we are watching for any clear outliers. *With no clear outliers, the normality condition can be reasonably assumed to be met.*
+
+  * The **second sample** has a sample size greater than 30 and includes an outlier. *This is an example of a particularly extreme outlier, so the normality condition would not be satisfied.*
+  
+## The t-distribution (1/2)
+
+```{r tDistCompareToNormalDist, fig.asp=0.5, fig.cap="Comparison of a $t$-distribution and a normal distribution.", message=FALSE, warning=FALSE, out.width="90%", fig.align='center'}
+df <- tibble(
+  x = rep(seq(-5, 5, 0.01), 2),
+  distribution = c(rep("Normal distribution", 1001), rep("t-distribution", 1001))
+) %>%
+  mutate(y = if_else(distribution == "Normal distribution", dnorm(x), dt(x, df = 1)))
+
+ggplot(df, aes(x = x, y = y, color = distribution, linetype = distribution, size = distribution)) +
+  geom_hline(yintercept = 0) +
+  geom_line() +
+  scale_color_manual(values = c(IMSCOL["blue", "full"], IMSCOL["red", "full"])) +
+  scale_linetype_manual(values = c("dashed", "solid")) +
+  scale_size_manual(values = c(0.5, 1)) +
+  theme(
+    axis.text = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    legend.position = c(0.2, 0.7),
+    legend.background = element_rect(fill = "white", color = NA),
+    legend.text = element_text(size = 12)
+  ) +
+  labs(x = NULL, y = NULL, color = NULL, linetype = NULL, size = NULL)
+```
+
+The $t$-distribution is always centered at zero and has a single parameter: degrees of freedom. The **degrees of freedom** describes the precise form of the bell-shaped $t$-distribution. In general, we'll use a $t$-distribution with $df = n - 1$ to model the sample mean when the sample size is $n$.
+
+## The t-distribution (2/2)
+
+```{r tDistConvergeToNormalDist, fig.cap="The larger the degrees of freedom the more closely the $t$-distribution resembles the standard normal distribution.", fig.asp=0.5, fig.align='center', message=FALSE, warning=FALSE, out.width="90%"}
+
+plot(c(-5, 5),
+  c(0, dnorm(0)),
+  type = "n", ylab = "", xlab = "",
+  axes = FALSE
+)
+at <- seq(-10, 10, 2)
+axis(1, at)
+axis(1, at - 1, rep("", length(at)), tcl = -0.1)
+abline(h = 0)
+
+COL. <- fadeColor(IMSCOL["blue", "full"], c("FF", "89", "68", "4C", "33"))
+COLt <- fadeColor(IMSCOL["blue", "full"], c("FF", "AA", "85", "60", "45"))
+DF <- c("normal", 8, 4, 2, 1)
+
+X <- seq(-10, 10, 0.02)
+Y <- dnorm(X)
+lines(X, Y, col = COL.[1])
+
+for (i in 2:5) {
+  Y <- dt(X, as.numeric(DF[i]))
+  lines(X, Y, col = COL.[i], lwd = 1.5)
+}
+
+legend(2.5, 0.4,
+  legend = c(
+    DF[1],
+    paste("t, df = ", DF[2:5], sep = "")
+  ),
+  col = COL.,
+  text.col = COLt,
+  lty = rep(1, 5),
+  lwd = 1.5
+)
+```
+
+## Case Study I: Mercury content in Risso’s dolphins
+
+We will identify a confidence interval for the average mercury content in dolphin muscle using a sample of 19 Risso's dolphins from the Taiji area in Japan.
+
+```{r summaryStatsOfHgInMuscleOfRissosDolphins}
+dolphin_summary_stats <- tribble(
+  ~n, ~Mean, ~SD, ~Min, ~Max,
+  19,    4.4,   2.3,   1.7,   9.2
+)
+
+dolphin_summary_stats %>%
+  kbl(linesep = "", booktabs = TRUE, 
+      caption = "Summary of mercury content in the muscle of 19 Risso's dolphins from the Taiji area. Measurements are in micrograms of mercury per wet gram of muscle $(\\mu$g/wet g).", 
+      align = "ccccc") %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+               latex_options = c("striped", "hold_position"), full_width = FALSE) %>%
+  column_spec(1:5, width = "6em")
+```
+
+**Are the independence and normality conditions satisfied for this dataset?**
+
+* The observations are a simple random sample, therefore it is reasonable to assume that the dolphins are independent.
+* The summary statistics do not suggest any clear outliers, with all observations within 3 standard deviations of the mean.
+* Based on this evidence, the normality condition seems reasonable.
+  
+## Case Study I: One-sample t-interval (1/2)
+
+**One sample t-intervals**
+
+$$
+\begin{aligned}
+\text{point estimate} \ &\pm\  t^*_{df} \times SE \\
+\bar{x} \ &\pm\  t^*_{df} \times \frac{s}{\sqrt{n}}
+\end{aligned}
+$$
+
+* We plug in $s$ and $n$ into the formula: $SE = \frac{s}{\sqrt{n}} = \frac{2.3}{\sqrt{19}} = 0.528.$
+* The degrees of freedom is easy to calculate: $df = n-1 = 19-1 = 18.$
+* We find the cutoff where the upper tail is equal to 2.5%: $t^*_{18} = 2.10.$ The area below -2.10 will also be equal to 2.5%.
+
+**Using R to find $t^*$**
+
+```{r echo = TRUE}
+qt(0.025, df = 18)
+```
+
+## Case Study I: One-sample t-interval (2/2)
+
+**One sample t-intervals**
+
+\[
+\begin{aligned}
+\bar{x} \ &\pm\  t^*_{18} \times SE \\
+4.4 \ &\pm\  2.10 \times 0.528 \\
+\end{aligned} 
+\]
+$$(3.29,5.51)$$
+
+We are 95% confident the average mercury content of muscles in Risso's dolphins is between 3.29 and 5.51 $\mu$g/wet gram, which is considered extremely high.
+
+## Activity: Determine Confidence Intervals for One Mean
+
+1. Make sure you have a copy of the *M 3/31 Worksheet*. This will be handed out physically.
+2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
+3. Get together with another student.
+4. Discuss your results.
+5. Submit your worksheet on Moodle as a `.pdf` file.
+
+## References
+
+::: {#refs}
+:::

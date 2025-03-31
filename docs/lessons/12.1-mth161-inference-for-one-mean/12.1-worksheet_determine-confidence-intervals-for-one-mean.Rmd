@@ -1,0 +1,109 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{M 3/31 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(kableExtra)
+library(gridExtra)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Determine Confidence Intervals for One Mean
+
+### 1. Heights of Adults
+
+Researchers studying anthropometry collected body measurements, as well as age, weight, height and gender, for 507 physically active individuals. Summary statistics for the distribution of heights (measured in centimeters), along with a histogram and boxplot of the same numerical variable, are provided below.
+
+```{r out.width = "80%", fig.align='center', fig.width=8,fig.height=2}
+bdims %>%
+  summarise(
+    Min    = round(min(hgt), 1),
+    Q1     = round(quantile(hgt, 0.25), 1),
+    Median = round(median(hgt), 1),
+    Mean   = round(mean(hgt), 1),
+    Q3     = round(quantile(hgt, 0.75), 1),
+    Max    = round(max(hgt), 1),
+    SD     = round(sd(hgt), 1),
+    IQR    = round(IQR(hgt), 1)
+  ) %>%
+  kbl(linesep = "", booktabs = TRUE, align = "cccccccc") %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                latex_options = "HOLD_position",
+                full_width = FALSE)
+
+p1 <- ggplot(bdims, aes(x = hgt)) +
+  geom_histogram(bins=40) + 
+  labs(x = "Height (centimeters)", y = "Count")
+
+p2 <- ggplot(bdims, aes(x = hgt)) +
+  geom_boxplot() + 
+  labs(x = "Height (centimeters)") + 
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+
+grid.arrange(p1,p2,nrow=1)
+```
+
+a. use the given summary statistics and data visualizations to check if the conditions of CLT are satisfied. Assume that the observations are a simple random sample.
+\vfill
+
+\newpage
+
+b. Compute the 90\% confidence interval for the average heights of adults.
+
+    i. What is the point estimate?
+    \vfill
+    
+    ii. Determine the standard error $SE$.
+    \vfill
+    
+    iii. Compute the degrees of freedom $df$ and critical $t^*_{df}$ using a confidence level of $0.90$. 
+    \vfill
+    
+    vi. Compute the 90\% confidence interval.
+    \vfill
+
+c. Interpret the confidence interval computed from Part (b) in context.
+\vfill
+
+## **References**
+
+::: {#refs}
+:::
