@@ -89,7 +89,7 @@ a. Use the given summary statistics and data visualizations to check if the cond
 
 \newpage
 
-b. Compute the 99\% confidence interval for the average heights of adults.
+b. Compute the 99\% confidence interval for the average weights of chickens.
 
     i. What is the point estimate?
     \vfill
@@ -100,7 +100,7 @@ b. Compute the 99\% confidence interval for the average heights of adults.
     iii. Determine the appropriate degrees of freedom $df$.
     \vfill
     
-    iii. Compute critical $t^*_{df}$ using a confidence level of $0.90$. 
+    iii. Compute critical $t^*_{df}$ using a confidence level of $0.99$. 
     \vfill
     
     vi. Determine the 99\% confidence interval.

@@ -1706,7 +1706,7 @@ of the sampling distribution of the means.</p>
 \end{aligned}
 \]</span></p>
 <ul>
-<li>The <strong>margin of error</strong> is <span class="math inline">\(t^*_{df} \sqrt{\frac{s_1^2}{n_1} +
+<li>The <strong>margin of error</strong> is <span class="math inline">\(ME = t^*_{df} \times \sqrt{\frac{s_1^2}{n_1} +
 \frac{s_2^2}{n_2}}\)</span> where <span class="math inline">\(t^*_{df}\)</span> is calculated from a specified
 percentile on the t-distribution with <em>df</em> degrees of
 freedom.</li>
@@ -1750,6 +1750,8 @@ equal sample sizes in each group. So, the degrees of freedom is <span class="mat
 <li>The 95% Confidence interval is computed as. <span class="math display">\[
   \begin{aligned}
   \bar{x}_{automatic} - \bar{x}_{manual} &amp; \pm ME \\
+                         17.4 - 22.7 &amp; \pm t^*_{df} \times
+\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
                          17.4 - 22.7 &amp; \pm 2.0639 \times 1.1456 \\
                                 -5.3 &amp; \pm 2.3644
   \end{aligned}

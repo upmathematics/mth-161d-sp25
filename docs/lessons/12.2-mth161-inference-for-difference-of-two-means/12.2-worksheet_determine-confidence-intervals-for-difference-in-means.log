@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.28)  2 APR 2025 08:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.28)  2 APR 2025 10:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -717,7 +717,7 @@ Here is how much of TeX's memory you used:
 type1/public/lm/lmmi8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr
 12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
 Output written on 12.2-worksheet_determine-confidence-intervals-for-difference-
-in-means.pdf (2 pages, 82749 bytes).
+in-means.pdf (2 pages, 82754 bytes).
 PDF statistics:
  84 PDF objects out of 1000 (max. 8388607)
  65 compressed objects within 1 object stream
