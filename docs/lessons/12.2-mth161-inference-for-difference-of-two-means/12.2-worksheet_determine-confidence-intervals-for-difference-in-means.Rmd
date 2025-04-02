@@ -1,0 +1,115 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{W 4/2 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(kableExtra)
+library(gridExtra)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Determine Confidence Intervals for Difference in Means
+
+### 1. Chicken Diet
+
+An experiment was conducted to measure and compare the effectiveness of various feed supplements on the growth rate of chickens. Newly hatched chicks were randomly allocated into groups, and each group was given a different feed supplement. We consider chicks that were fed horsebean and linseed. Below are some summary statistics from this dataset along with box plots showing the distribution of weights by feed type.
+
+```{r message=FALSE, warning=FALSE, out.width="50%",fig.align='center', fig.height=3,fig.width=6}
+library(patchwork)
+chickwts_h_l <- chickwts %>%
+  filter(feed %in% c("horsebean", "linseed"))
+
+chickwts_h_l %>%
+  group_by(feed) %>%
+  summarise(
+    mean = format(mean(weight), digits = 2, nsmall = 2),
+    sd   = format(sd(weight), digits = 2, nsmall = 2),
+    n    = n()
+  ) %>%
+  kbl(linesep = "", booktabs = TRUE, align = "lccc", 
+      col.names = c("Feed type", "Mean", "SD", "n")) %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                latex_options = "HOLD_position",
+                full_width = FALSE) %>%
+  column_spec(1:4, width = "6em")
+
+p_box <- chickwts_h_l %>%
+  ggplot(aes(y = fct_rev(feed), x = weight)) +
+  geom_boxplot() +
+  labs(y = "Feed type", x = "Weight (in grams)")
+
+p_hist <- chickwts_h_l %>%
+  ggplot(aes(x = weight)) +
+  geom_histogram(binwidth = 25) +
+  facet_wrap(~feed, ncol = 1) +
+  labs(y = "Feed type", x = "Weight (in grams)")    
+
+p_box + p_hist
+```
+
+a. Use the given summary statistics and data visualizations to check if the conditions of CLT are satisfied. Assume that the observations are a simple random sample.
+\vfill
+
+\newpage
+
+b. Compute the 99\% confidence interval for the average heights of adults.
+
+    i. What is the point estimate?
+    \vfill
+    
+    ii. Determine the standard error $SE$.
+    \vfill
+    
+    iii. Determine the appropriate degrees of freedom $df$.
+    \vfill
+    
+    iii. Compute critical $t^*_{df}$ using a confidence level of $0.90$. 
+    \vfill
+    
+    vi. Determine the 99\% confidence interval.
+    \vfill
+
+c. What is the conclusion? Interpret the confidence interval computed in Part (b).
+\vfill
+
+## **References**
+
+::: {#refs}
+:::

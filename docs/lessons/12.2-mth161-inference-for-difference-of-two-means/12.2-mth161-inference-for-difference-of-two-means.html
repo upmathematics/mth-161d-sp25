@@ -6,10 +6,10 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="MTH-161D | Spring 2025 | University of Portland" />
-  <meta name="date" content="2025-03-28" />
+  <meta name="date" content="2025-04-02" />
   <meta name="copyright" content="| MTH-161D Spring 2025 | &lt;a href=&#39;../../index.html&#39;&gt;Back to the Course Website&lt;/a&gt;" />
   <meta name="font-size-adjustment" content="5" />
-  <title>Inference for One-Way and Two-Way Tables</title>
+  <title>Inference for Difference of Two Means</title>
   <style type="text/css">
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -521,16 +521,1045 @@ list-style-type: none;
   });
 })()
 </script>
+  <script>$(document).ready(function(){
+    if (typeof $('[data-toggle="tooltip"]').tooltip === 'function') {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+    if ($('[data-toggle="popover"]').popover === 'function') {
+        $('[data-toggle="popover"]').popover();
+    }
+});
+</script>
+  <style type="text/css">
+.lightable-minimal {
+border-collapse: separate;
+border-spacing: 16px 1px;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-minimal td {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal th {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal thead tr:last-child th {
+border-bottom: 2px solid #00000050;
+empty-cells: hide;
+}
+.lightable-minimal tbody tr:first-child td {
+padding-top: 0.5em;
+}
+.lightable-minimal.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-minimal.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic {
+border-top: 0.16em solid #111111;
+border-bottom: 0.16em solid #111111;
+width: 100%;
+margin-bottom: 10px;
+margin: 10px 5px;
+}
+.lightable-classic tfoot tr td {
+border: 0;
+}
+.lightable-classic tfoot tr:first-child td {
+border-top: 0.14em solid #111111;
+}
+.lightable-classic caption {
+color: #222222;
+}
+.lightable-classic td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic thead tr:last-child th {
+border-bottom: 0.10em solid #111111;
+}
+.lightable-classic.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic-2 {
+border-top: 3px double #111111;
+border-bottom: 3px double #111111;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-classic-2 tfoot tr td {
+border: 0;
+}
+.lightable-classic-2 tfoot tr:first-child td {
+border-top: 3px double #111111;
+}
+.lightable-classic-2 caption {
+color: #222222;
+}
+.lightable-classic-2 td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic-2 th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic-2 tbody tr:last-child td {
+border-bottom: 3px double #111111;
+}
+.lightable-classic-2 thead tr:last-child th {
+border-bottom: 1px solid #111111;
+}
+.lightable-classic-2.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic-2.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #EEE;
+border-collapse: collapse;
+margin-bottom: 10px;
+}
+.lightable-material tfoot tr td {
+border: 0;
+}
+.lightable-material tfoot tr:first-child td {
+border-top: 1px solid #EEE;
+}
+.lightable-material th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+}
+.lightable-material td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+border-top: 1px solid #eeeeee;
+}
+.lightable-material.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #ddd;
+}
+.lightable-material-dark {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #FFFFFF12;
+border-collapse: collapse;
+margin-bottom: 10px;
+background-color: #363640;
+}
+.lightable-material-dark tfoot tr td {
+border: 0;
+}
+.lightable-material-dark tfoot tr:first-child td {
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF60;
+}
+.lightable-material-dark td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF;
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark.lightable-hover tbody tr:hover {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody tr:nth-child(even) {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material-dark.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #FFFFFF12;
+}
+.lightable-paper {
+width: 100%;
+margin-bottom: 10px;
+color: #444;
+}
+.lightable-paper tfoot tr td {
+border: 0;
+}
+.lightable-paper tfoot tr:first-child td {
+border-top: 1px solid #00000020;
+}
+.lightable-paper thead tr:last-child th {
+color: #666;
+vertical-align: bottom;
+border-bottom: 1px solid #00000020;
+line-height: 1.15em;
+padding: 10px 5px;
+}
+.lightable-paper td {
+vertical-align: middle;
+border-bottom: 1px solid #00000010;
+line-height: 1.15em;
+padding: 7px 5px;
+}
+.lightable-paper.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-paper.lightable-striped tbody tr:nth-child(even) {
+background-color: #00000008;
+}
+.lightable-paper.lightable-striped tbody td {
+border: 0;
+}
+</style>
+  <style type="text/css">
+table{border-collapse:collapse;border-spacing:0}td,th{padding:0}*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}table{background-color:transparent}caption{padding-top:8px;padding-bottom:8px;color:#777;text-align:left}th{text-align:left}.table{width:100%;max-width:100%;margin-bottom:20px}.table>thead>tr>th,.table>tbody>tr>th,.table>tfoot>tr>th,.table>thead>tr>td,.table>tbody>tr>td,.table>tfoot>tr>td{padding:8px;line-height:1.42857143;vertical-align:top;border-top:1px solid #ddd}.table>thead>tr>th{vertical-align:bottom;border-bottom:2px solid #ddd}.table>caption+thead>tr:first-child>th,.table>colgroup+thead>tr:first-child>th,.table>thead:first-child>tr:first-child>th,.table>caption+thead>tr:first-child>td,.table>colgroup+thead>tr:first-child>td,.table>thead:first-child>tr:first-child>td{border-top:0}.table>tbody+tbody{border-top:2px solid #ddd}.table .table{background-color:#fff}.table-condensed>thead>tr>th,.table-condensed>tbody>tr>th,.table-condensed>tfoot>tr>th,.table-condensed>thead>tr>td,.table-condensed>tbody>tr>td,.table-condensed>tfoot>tr>td{padding:5px}.table-bordered{border:1px solid #ddd}.table-bordered>thead>tr>th,.table-bordered>tbody>tr>th,.table-bordered>tfoot>tr>th,.table-bordered>thead>tr>td,.table-bordered>tbody>tr>td,.table-bordered>tfoot>tr>td{border:1px solid #ddd}.table-bordered>thead>tr>th,.table-bordered>thead>tr>td{border-bottom-width:2px}.table-striped>tbody>tr:nth-of-type(odd){background-color:#f9f9f9}.table-hover>tbody>tr:hover{background-color:#f5f5f5}table col[class*="col-"]{position:static;float:none;display:table-column}table td[class*="col-"],table th[class*="col-"]{position:static;float:none;display:table-cell}.table>thead>tr>td.active,.table>tbody>tr>td.active,.table>tfoot>tr>td.active,.table>thead>tr>th.active,.table>tbody>tr>th.active,.table>tfoot>tr>th.active,.table>thead>tr.active>td,.table>tbody>tr.active>td,.table>tfoot>tr.active>td,.table>thead>tr.active>th,.table>tbody>tr.active>th,.table>tfoot>tr.active>th{background-color:#f5f5f5}.table-hover>tbody>tr>td.active:hover,.table-hover>tbody>tr>th.active:hover,.table-hover>tbody>tr.active:hover>td,.table-hover>tbody>tr:hover>.active,.table-hover>tbody>tr.active:hover>th{background-color:#e8e8e8}.table>thead>tr>td.success,.table>tbody>tr>td.success,.table>tfoot>tr>td.success,.table>thead>tr>th.success,.table>tbody>tr>th.success,.table>tfoot>tr>th.success,.table>thead>tr.success>td,.table>tbody>tr.success>td,.table>tfoot>tr.success>td,.table>thead>tr.success>th,.table>tbody>tr.success>th,.table>tfoot>tr.success>th{background-color:#dff0d8}.table-hover>tbody>tr>td.success:hover,.table-hover>tbody>tr>th.success:hover,.table-hover>tbody>tr.success:hover>td,.table-hover>tbody>tr:hover>.success,.table-hover>tbody>tr.success:hover>th{background-color:#d0e9c6}.table>thead>tr>td.info,.table>tbody>tr>td.info,.table>tfoot>tr>td.info,.table>thead>tr>th.info,.table>tbody>tr>th.info,.table>tfoot>tr>th.info,.table>thead>tr.info>td,.table>tbody>tr.info>td,.table>tfoot>tr.info>td,.table>thead>tr.info>th,.table>tbody>tr.info>th,.table>tfoot>tr.info>th{background-color:#d9edf7}.table-hover>tbody>tr>td.info:hover,.table-hover>tbody>tr>th.info:hover,.table-hover>tbody>tr.info:hover>td,.table-hover>tbody>tr:hover>.info,.table-hover>tbody>tr.info:hover>th{background-color:#c4e3f3}.table>thead>tr>td.warning,.table>tbody>tr>td.warning,.table>tfoot>tr>td.warning,.table>thead>tr>th.warning,.table>tbody>tr>th.warning,.table>tfoot>tr>th.warning,.table>thead>tr.warning>td,.table>tbody>tr.warning>td,.table>tfoot>tr.warning>td,.table>thead>tr.warning>th,.table>tbody>tr.warning>th,.table>tfoot>tr.warning>th{background-color:#fcf8e3}.table-hover>tbody>tr>td.warning:hover,.table-hover>tbody>tr>th.warning:hover,.table-hover>tbody>tr.warning:hover>td,.table-hover>tbody>tr:hover>.warning,.table-hover>tbody>tr.warning:hover>th{background-color:#faf2cc}.table>thead>tr>td.danger,.table>tbody>tr>td.danger,.table>tfoot>tr>td.danger,.table>thead>tr>th.danger,.table>tbody>tr>th.danger,.table>tfoot>tr>th.danger,.table>thead>tr.danger>td,.table>tbody>tr.danger>td,.table>tfoot>tr.danger>td,.table>thead>tr.danger>th,.table>tbody>tr.danger>th,.table>tfoot>tr.danger>th{background-color:#f2dede}.table-hover>tbody>tr>td.danger:hover,.table-hover>tbody>tr>th.danger:hover,.table-hover>tbody>tr.danger:hover>td,.table-hover>tbody>tr:hover>.danger,.table-hover>tbody>tr.danger:hover>th{background-color:#ebcccc}.table-responsive{overflow-x:auto;min-height:0.01%}@media screen and (max-width:767px){.table-responsive{width:100%;margin-bottom:15px;overflow-y:hidden;-ms-overflow-style:-ms-autohiding-scrollbar;border:1px solid #ddd}.table-responsive>.table{margin-bottom:0}.table-responsive>.table>thead>tr>th,.table-responsive>.table>tbody>tr>th,.table-responsive>.table>tfoot>tr>th,.table-responsive>.table>thead>tr>td,.table-responsive>.table>tbody>tr>td,.table-responsive>.table>tfoot>tr>td{white-space:nowrap}.table-responsive>.table-bordered{border:0}.table-responsive>.table-bordered>thead>tr>th:first-child,.table-responsive>.table-bordered>tbody>tr>th:first-child,.table-responsive>.table-bordered>tfoot>tr>th:first-child,.table-responsive>.table-bordered>thead>tr>td:first-child,.table-responsive>.table-bordered>tbody>tr>td:first-child,.table-responsive>.table-bordered>tfoot>tr>td:first-child{border-left:0}.table-responsive>.table-bordered>thead>tr>th:last-child,.table-responsive>.table-bordered>tbody>tr>th:last-child,.table-responsive>.table-bordered>tfoot>tr>th:last-child,.table-responsive>.table-bordered>thead>tr>td:last-child,.table-responsive>.table-bordered>tbody>tr>td:last-child,.table-responsive>.table-bordered>tfoot>tr>td:last-child{border-right:0}.table-responsive>.table-bordered>tbody>tr:last-child>th,.table-responsive>.table-bordered>tfoot>tr:last-child>th,.table-responsive>.table-bordered>tbody>tr:last-child>td,.table-responsive>.table-bordered>tfoot>tr:last-child>td{border-bottom:0}}.tooltip{position:absolute;z-index:1070;display:block;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-style:normal;font-weight:normal;letter-spacing:normal;line-break:auto;line-height:1.42857143;text-align:left;text-align:start;text-decoration:none;text-shadow:none;text-transform:none;white-space:normal;word-break:normal;word-spacing:normal;word-wrap:normal;font-size:12px;opacity:0;filter:alpha(opacity=0)}.tooltip.in{opacity:.9;filter:alpha(opacity=90)}.tooltip.top{margin-top:-3px;padding:5px 0}.tooltip.right{margin-left:3px;padding:0 5px}.tooltip.bottom{margin-top:3px;padding:5px 0}.tooltip.left{margin-left:-3px;padding:0 5px}.tooltip-inner{max-width:200px;padding:3px 8px;color:#fff;text-align:center;background-color:#000;border-radius:4px}.tooltip-arrow{position:absolute;width:0;height:0;border-color:transparent;border-style:solid}.tooltip.top .tooltip-arrow{bottom:0;left:50%;margin-left:-5px;border-width:5px 5px 0;border-top-color:#000}.tooltip.top-left .tooltip-arrow{bottom:0;right:5px;margin-bottom:-5px;border-width:5px 5px 0;border-top-color:#000}.tooltip.top-right .tooltip-arrow{bottom:0;left:5px;margin-bottom:-5px;border-width:5px 5px 0;border-top-color:#000}.tooltip.right .tooltip-arrow{top:50%;left:0;margin-top:-5px;border-width:5px 5px 5px 0;border-right-color:#000}.tooltip.left .tooltip-arrow{top:50%;right:0;margin-top:-5px;border-width:5px 0 5px 5px;border-left-color:#000}.tooltip.bottom .tooltip-arrow{top:0;left:50%;margin-left:-5px;border-width:0 5px 5px;border-bottom-color:#000}.tooltip.bottom-left .tooltip-arrow{top:0;right:5px;margin-top:-5px;border-width:0 5px 5px;border-bottom-color:#000}.tooltip.bottom-right .tooltip-arrow{top:0;left:5px;margin-top:-5px;border-width:0 5px 5px;border-bottom-color:#000}.popover{position:absolute;top:0;left:0;z-index:1060;display:none;max-width:276px;padding:1px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-style:normal;font-weight:normal;letter-spacing:normal;line-break:auto;line-height:1.42857143;text-align:left;text-align:start;text-decoration:none;text-shadow:none;text-transform:none;white-space:normal;word-break:normal;word-spacing:normal;word-wrap:normal;font-size:14px;background-color:#fff;-webkit-background-clip:padding-box;background-clip:padding-box;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);border-radius:6px;-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);box-shadow:0 5px 10px rgba(0,0,0,0.2)}.popover.top{margin-top:-10px}.popover.right{margin-left:10px}.popover.bottom{margin-top:10px}.popover.left{margin-left:-10px}.popover-title{margin:0;padding:8px 14px;font-size:14px;background-color:#f7f7f7;border-bottom:1px solid #ebebeb;border-radius:5px 5px 0 0}.popover-content{padding:9px 14px}.popover>.arrow,.popover>.arrow:after{position:absolute;display:block;width:0;height:0;border-color:transparent;border-style:solid}.popover>.arrow{border-width:11px}.popover>.arrow:after{border-width:10px;content:""}.popover.top>.arrow{left:50%;margin-left:-11px;border-bottom-width:0;border-top-color:#999;border-top-color:rgba(0,0,0,0.25);bottom:-11px}.popover.top>.arrow:after{content:" ";bottom:1px;margin-left:-10px;border-bottom-width:0;border-top-color:#fff}.popover.right>.arrow{top:50%;left:-11px;margin-top:-11px;border-left-width:0;border-right-color:#999;border-right-color:rgba(0,0,0,0.25)}.popover.right>.arrow:after{content:" ";left:1px;bottom:-10px;border-left-width:0;border-right-color:#fff}.popover.bottom>.arrow{left:50%;margin-left:-11px;border-top-width:0;border-bottom-color:#999;border-bottom-color:rgba(0,0,0,0.25);top:-11px}.popover.bottom>.arrow:after{content:" ";top:1px;margin-left:-10px;border-top-width:0;border-bottom-color:#fff}.popover.left>.arrow{top:50%;right:-11px;margin-top:-11px;border-right-width:0;border-left-color:#999;border-left-color:rgba(0,0,0,0.25)}.popover.left>.arrow:after{content:" ";right:1px;border-right-width:0;border-left-color:#fff;bottom:-10px}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.center-block{display:block;margin-left:auto;margin-right:auto}.pull-right{float:right !important}.pull-left{float:left !important}.hide{display:none !important}.show{display:block !important}.invisible{visibility:hidden}.text-hide{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0}.hidden{display:none !important}.affix{position:fixed}
+</style>
+  <script>/* ========================================================================
+ * Bootstrap: tooltip.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#tooltip
+ * Inspired by the original jQuery.tipsy by Jason Frame
+ * ========================================================================
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
++function ($) {
+  'use strict';
+
+  var DISALLOWED_ATTRIBUTES = ['sanitize', 'whiteList', 'sanitizeFn']
+
+  var uriAttrs = [
+    'background',
+    'cite',
+    'href',
+    'itemtype',
+    'longdesc',
+    'poster',
+    'src',
+    'xlink:href'
+  ]
+
+  var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i
+
+  var DefaultWhitelist = {
+    // Global attributes allowed on any supplied element below.
+    '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
+    a: ['target', 'href', 'title', 'rel'],
+    area: [],
+    b: [],
+    br: [],
+    col: [],
+    code: [],
+    div: [],
+    em: [],
+    hr: [],
+    h1: [],
+    h2: [],
+    h3: [],
+    h4: [],
+    h5: [],
+    h6: [],
+    i: [],
+    img: ['src', 'alt', 'title', 'width', 'height'],
+    li: [],
+    ol: [],
+    p: [],
+    pre: [],
+    s: [],
+    small: [],
+    span: [],
+    sub: [],
+    sup: [],
+    strong: [],
+    u: [],
+    ul: []
+  }
+
+  /**
+   * A pattern that recognizes a commonly useful subset of URLs that are safe.
+   *
+   * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+   */
+  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^&:/?#]*(?:[/?#]|$))/gi
+
+  /**
+   * A pattern that matches safe data URLs. Only matches image, video and audio types.
+   *
+   * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+   */
+  var DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[a-z0-9+/]+=*$/i
+
+  function allowedAttribute(attr, allowedAttributeList) {
+    var attrName = attr.nodeName.toLowerCase()
+
+    if ($.inArray(attrName, allowedAttributeList) !== -1) {
+      if ($.inArray(attrName, uriAttrs) !== -1) {
+        return Boolean(attr.nodeValue.match(SAFE_URL_PATTERN) || attr.nodeValue.match(DATA_URL_PATTERN))
+      }
+
+      return true
+    }
+
+    var regExp = $(allowedAttributeList).filter(function (index, value) {
+      return value instanceof RegExp
+    })
+
+    // Check if a regular expression validates the attribute.
+    for (var i = 0, l = regExp.length; i < l; i++) {
+      if (attrName.match(regExp[i])) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  function sanitizeHtml(unsafeHtml, whiteList, sanitizeFn) {
+    if (unsafeHtml.length === 0) {
+      return unsafeHtml
+    }
+
+    if (sanitizeFn && typeof sanitizeFn === 'function') {
+      return sanitizeFn(unsafeHtml)
+    }
+
+    // IE 8 and below don't support createHTMLDocument
+    if (!document.implementation || !document.implementation.createHTMLDocument) {
+      return unsafeHtml
+    }
+
+    var createdDocument = document.implementation.createHTMLDocument('sanitization')
+    createdDocument.body.innerHTML = unsafeHtml
+
+    var whitelistKeys = $.map(whiteList, function (el, i) { return i })
+    var elements = $(createdDocument.body).find('*')
+
+    for (var i = 0, len = elements.length; i < len; i++) {
+      var el = elements[i]
+      var elName = el.nodeName.toLowerCase()
+
+      if ($.inArray(elName, whitelistKeys) === -1) {
+        el.parentNode.removeChild(el)
+
+        continue
+      }
+
+      var attributeList = $.map(el.attributes, function (el) { return el })
+      var whitelistedAttributes = [].concat(whiteList['*'] || [], whiteList[elName] || [])
+
+      for (var j = 0, len2 = attributeList.length; j < len2; j++) {
+        if (!allowedAttribute(attributeList[j], whitelistedAttributes)) {
+          el.removeAttribute(attributeList[j].nodeName)
+        }
+      }
+    }
+
+    return createdDocument.body.innerHTML
+  }
+
+  // TOOLTIP PUBLIC CLASS DEFINITION
+  // ===============================
+
+  var Tooltip = function (element, options) {
+    this.type       = null
+    this.options    = null
+    this.enabled    = null
+    this.timeout    = null
+    this.hoverState = null
+    this.$element   = null
+    this.inState    = null
+
+    this.init('tooltip', element, options)
+  }
+
+  Tooltip.VERSION  = '3.4.1'
+
+  Tooltip.TRANSITION_DURATION = 150
+
+  Tooltip.DEFAULTS = {
+    animation: true,
+    placement: 'top',
+    selector: false,
+    template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+    trigger: 'hover focus',
+    title: '',
+    delay: 0,
+    html: false,
+    container: false,
+    viewport: {
+      selector: 'body',
+      padding: 0
+    },
+    sanitize : true,
+    sanitizeFn : null,
+    whiteList : DefaultWhitelist
+  }
+
+  Tooltip.prototype.init = function (type, element, options) {
+    this.enabled   = true
+    this.type      = type
+    this.$element  = $(element)
+    this.options   = this.getOptions(options)
+    this.$viewport = this.options.viewport && $(document).find($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
+    this.inState   = { click: false, hover: false, focus: false }
+
+    if (this.$element[0] instanceof document.constructor && !this.options.selector) {
+      throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
+    }
+
+    var triggers = this.options.trigger.split(' ')
+
+    for (var i = triggers.length; i--;) {
+      var trigger = triggers[i]
+
+      if (trigger == 'click') {
+        this.$element.on('click.' + this.type, this.options.selector, $.proxy(this.toggle, this))
+      } else if (trigger != 'manual') {
+        var eventIn  = trigger == 'hover' ? 'mouseenter' : 'focusin'
+        var eventOut = trigger == 'hover' ? 'mouseleave' : 'focusout'
+
+        this.$element.on(eventIn  + '.' + this.type, this.options.selector, $.proxy(this.enter, this))
+        this.$element.on(eventOut + '.' + this.type, this.options.selector, $.proxy(this.leave, this))
+      }
+    }
+
+    this.options.selector ?
+      (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
+      this.fixTitle()
+  }
+
+  Tooltip.prototype.getDefaults = function () {
+    return Tooltip.DEFAULTS
+  }
+
+  Tooltip.prototype.getOptions = function (options) {
+    var dataAttributes = this.$element.data()
+
+    for (var dataAttr in dataAttributes) {
+      if (dataAttributes.hasOwnProperty(dataAttr) && $.inArray(dataAttr, DISALLOWED_ATTRIBUTES) !== -1) {
+        delete dataAttributes[dataAttr]
+      }
+    }
+
+    options = $.extend({}, this.getDefaults(), dataAttributes, options)
+
+    if (options.delay && typeof options.delay == 'number') {
+      options.delay = {
+        show: options.delay,
+        hide: options.delay
+      }
+    }
+
+    if (options.sanitize) {
+      options.template = sanitizeHtml(options.template, options.whiteList, options.sanitizeFn)
+    }
+
+    return options
+  }
+
+  Tooltip.prototype.getDelegateOptions = function () {
+    var options  = {}
+    var defaults = this.getDefaults()
+
+    this._options && $.each(this._options, function (key, value) {
+      if (defaults[key] != value) options[key] = value
+    })
+
+    return options
+  }
+
+  Tooltip.prototype.enter = function (obj) {
+    var self = obj instanceof this.constructor ?
+      obj : $(obj.currentTarget).data('bs.' + this.type)
+
+    if (!self) {
+      self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
+      $(obj.currentTarget).data('bs.' + this.type, self)
+    }
+
+    if (obj instanceof $.Event) {
+      self.inState[obj.type == 'focusin' ? 'focus' : 'hover'] = true
+    }
+
+    if (self.tip().hasClass('in') || self.hoverState == 'in') {
+      self.hoverState = 'in'
+      return
+    }
+
+    clearTimeout(self.timeout)
+
+    self.hoverState = 'in'
+
+    if (!self.options.delay || !self.options.delay.show) return self.show()
+
+    self.timeout = setTimeout(function () {
+      if (self.hoverState == 'in') self.show()
+    }, self.options.delay.show)
+  }
+
+  Tooltip.prototype.isInStateTrue = function () {
+    for (var key in this.inState) {
+      if (this.inState[key]) return true
+    }
+
+    return false
+  }
+
+  Tooltip.prototype.leave = function (obj) {
+    var self = obj instanceof this.constructor ?
+      obj : $(obj.currentTarget).data('bs.' + this.type)
+
+    if (!self) {
+      self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
+      $(obj.currentTarget).data('bs.' + this.type, self)
+    }
+
+    if (obj instanceof $.Event) {
+      self.inState[obj.type == 'focusout' ? 'focus' : 'hover'] = false
+    }
+
+    if (self.isInStateTrue()) return
+
+    clearTimeout(self.timeout)
+
+    self.hoverState = 'out'
+
+    if (!self.options.delay || !self.options.delay.hide) return self.hide()
+
+    self.timeout = setTimeout(function () {
+      if (self.hoverState == 'out') self.hide()
+    }, self.options.delay.hide)
+  }
+
+  Tooltip.prototype.show = function () {
+    var e = $.Event('show.bs.' + this.type)
+
+    if (this.hasContent() && this.enabled) {
+      this.$element.trigger(e)
+
+      var inDom = $.contains(this.$element[0].ownerDocument.documentElement, this.$element[0])
+      if (e.isDefaultPrevented() || !inDom) return
+      var that = this
+
+      var $tip = this.tip()
+
+      var tipId = this.getUID(this.type)
+
+      this.setContent()
+      $tip.attr('id', tipId)
+      this.$element.attr('aria-describedby', tipId)
+
+      if (this.options.animation) $tip.addClass('fade')
+
+      var placement = typeof this.options.placement == 'function' ?
+        this.options.placement.call(this, $tip[0], this.$element[0]) :
+        this.options.placement
+
+      var autoToken = /\s?auto?\s?/i
+      var autoPlace = autoToken.test(placement)
+      if (autoPlace) placement = placement.replace(autoToken, '') || 'top'
+
+      $tip
+        .detach()
+        .css({ top: 0, left: 0, display: 'block' })
+        .addClass(placement)
+        .data('bs.' + this.type, this)
+
+      this.options.container ? $tip.appendTo($(document).find(this.options.container)) : $tip.insertAfter(this.$element)
+      this.$element.trigger('inserted.bs.' + this.type)
+
+      var pos          = this.getPosition()
+      var actualWidth  = $tip[0].offsetWidth
+      var actualHeight = $tip[0].offsetHeight
+
+      if (autoPlace) {
+        var orgPlacement = placement
+        var viewportDim = this.getPosition(this.$viewport)
+
+        placement = placement == 'bottom' && pos.bottom + actualHeight > viewportDim.bottom ? 'top'    :
+                    placement == 'top'    && pos.top    - actualHeight < viewportDim.top    ? 'bottom' :
+                    placement == 'right'  && pos.right  + actualWidth  > viewportDim.width  ? 'left'   :
+                    placement == 'left'   && pos.left   - actualWidth  < viewportDim.left   ? 'right'  :
+                    placement
+
+        $tip
+          .removeClass(orgPlacement)
+          .addClass(placement)
+      }
+
+      var calculatedOffset = this.getCalculatedOffset(placement, pos, actualWidth, actualHeight)
+
+      this.applyPlacement(calculatedOffset, placement)
+
+      var complete = function () {
+        var prevHoverState = that.hoverState
+        that.$element.trigger('shown.bs.' + that.type)
+        that.hoverState = null
+
+        if (prevHoverState == 'out') that.leave(that)
+      }
+
+      $.support.transition && this.$tip.hasClass('fade') ?
+        $tip
+          .one('bsTransitionEnd', complete)
+          .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
+        complete()
+    }
+  }
+
+  Tooltip.prototype.applyPlacement = function (offset, placement) {
+    var $tip   = this.tip()
+    var width  = $tip[0].offsetWidth
+    var height = $tip[0].offsetHeight
+
+    // manually read margins because getBoundingClientRect includes difference
+    var marginTop = parseInt($tip.css('margin-top'), 10)
+    var marginLeft = parseInt($tip.css('margin-left'), 10)
+
+    // we must check for NaN for ie 8/9
+    if (isNaN(marginTop))  marginTop  = 0
+    if (isNaN(marginLeft)) marginLeft = 0
+
+    offset.top  += marginTop
+    offset.left += marginLeft
+
+    // $.fn.offset doesn't round pixel values
+    // so we use setOffset directly with our own function B-0
+    $.offset.setOffset($tip[0], $.extend({
+      using: function (props) {
+        $tip.css({
+          top: Math.round(props.top),
+          left: Math.round(props.left)
+        })
+      }
+    }, offset), 0)
+
+    $tip.addClass('in')
+
+    // check to see if placing tip in new offset caused the tip to resize itself
+    var actualWidth  = $tip[0].offsetWidth
+    var actualHeight = $tip[0].offsetHeight
+
+    if (placement == 'top' && actualHeight != height) {
+      offset.top = offset.top + height - actualHeight
+    }
+
+    var delta = this.getViewportAdjustedDelta(placement, offset, actualWidth, actualHeight)
+
+    if (delta.left) offset.left += delta.left
+    else offset.top += delta.top
+
+    var isVertical          = /top|bottom/.test(placement)
+    var arrowDelta          = isVertical ? delta.left * 2 - width + actualWidth : delta.top * 2 - height + actualHeight
+    var arrowOffsetPosition = isVertical ? 'offsetWidth' : 'offsetHeight'
+
+    $tip.offset(offset)
+    this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], isVertical)
+  }
+
+  Tooltip.prototype.replaceArrow = function (delta, dimension, isVertical) {
+    this.arrow()
+      .css(isVertical ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
+      .css(isVertical ? 'top' : 'left', '')
+  }
+
+  Tooltip.prototype.setContent = function () {
+    var $tip  = this.tip()
+    var title = this.getTitle()
+
+    if (this.options.html) {
+      if (this.options.sanitize) {
+        title = sanitizeHtml(title, this.options.whiteList, this.options.sanitizeFn)
+      }
+
+      $tip.find('.tooltip-inner').html(title)
+    } else {
+      $tip.find('.tooltip-inner').text(title)
+    }
+
+    $tip.removeClass('fade in top bottom left right')
+  }
+
+  Tooltip.prototype.hide = function (callback) {
+    var that = this
+    var $tip = $(this.$tip)
+    var e    = $.Event('hide.bs.' + this.type)
+
+    function complete() {
+      if (that.hoverState != 'in') $tip.detach()
+      if (that.$element) { // TODO: Check whether guarding this code with this `if` is really necessary.
+        that.$element
+          .removeAttr('aria-describedby')
+          .trigger('hidden.bs.' + that.type)
+      }
+      callback && callback()
+    }
+
+    this.$element.trigger(e)
+
+    if (e.isDefaultPrevented()) return
+
+    $tip.removeClass('in')
+
+    $.support.transition && $tip.hasClass('fade') ?
+      $tip
+        .one('bsTransitionEnd', complete)
+        .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
+      complete()
+
+    this.hoverState = null
+
+    return this
+  }
+
+  Tooltip.prototype.fixTitle = function () {
+    var $e = this.$element
+    if ($e.attr('title') || typeof $e.attr('data-original-title') != 'string') {
+      $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
+    }
+  }
+
+  Tooltip.prototype.hasContent = function () {
+    return this.getTitle()
+  }
+
+  Tooltip.prototype.getPosition = function ($element) {
+    $element   = $element || this.$element
+
+    var el     = $element[0]
+    var isBody = el.tagName == 'BODY'
+
+    var elRect    = el.getBoundingClientRect()
+    if (elRect.width == null) {
+      // width and height are missing in IE8, so compute them manually; see https://github.com/twbs/bootstrap/issues/14093
+      elRect = $.extend({}, elRect, { width: elRect.right - elRect.left, height: elRect.bottom - elRect.top })
+    }
+    var isSvg = window.SVGElement && el instanceof window.SVGElement
+    // Avoid using $.offset() on SVGs since it gives incorrect results in jQuery 3.
+    // See https://github.com/twbs/bootstrap/issues/20280
+    var elOffset  = isBody ? { top: 0, left: 0 } : (isSvg ? null : $element.offset())
+    var scroll    = { scroll: isBody ? document.documentElement.scrollTop || document.body.scrollTop : $element.scrollTop() }
+    var outerDims = isBody ? { width: $(window).width(), height: $(window).height() } : null
+
+    return $.extend({}, elRect, scroll, outerDims, elOffset)
+  }
+
+  Tooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
+    return placement == 'bottom' ? { top: pos.top + pos.height,   left: pos.left + pos.width / 2 - actualWidth / 2 } :
+           placement == 'top'    ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2 } :
+           placement == 'left'   ? { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth } :
+        /* placement == 'right' */ { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width }
+
+  }
+
+  Tooltip.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
+    var delta = { top: 0, left: 0 }
+    if (!this.$viewport) return delta
+
+    var viewportPadding = this.options.viewport && this.options.viewport.padding || 0
+    var viewportDimensions = this.getPosition(this.$viewport)
+
+    if (/right|left/.test(placement)) {
+      var topEdgeOffset    = pos.top - viewportPadding - viewportDimensions.scroll
+      var bottomEdgeOffset = pos.top + viewportPadding - viewportDimensions.scroll + actualHeight
+      if (topEdgeOffset < viewportDimensions.top) { // top overflow
+        delta.top = viewportDimensions.top - topEdgeOffset
+      } else if (bottomEdgeOffset > viewportDimensions.top + viewportDimensions.height) { // bottom overflow
+        delta.top = viewportDimensions.top + viewportDimensions.height - bottomEdgeOffset
+      }
+    } else {
+      var leftEdgeOffset  = pos.left - viewportPadding
+      var rightEdgeOffset = pos.left + viewportPadding + actualWidth
+      if (leftEdgeOffset < viewportDimensions.left) { // left overflow
+        delta.left = viewportDimensions.left - leftEdgeOffset
+      } else if (rightEdgeOffset > viewportDimensions.right) { // right overflow
+        delta.left = viewportDimensions.left + viewportDimensions.width - rightEdgeOffset
+      }
+    }
+
+    return delta
+  }
+
+  Tooltip.prototype.getTitle = function () {
+    var title
+    var $e = this.$element
+    var o  = this.options
+
+    title = $e.attr('data-original-title')
+      || (typeof o.title == 'function' ? o.title.call($e[0]) :  o.title)
+
+    return title
+  }
+
+  Tooltip.prototype.getUID = function (prefix) {
+    do prefix += ~~(Math.random() * 1000000)
+    while (document.getElementById(prefix))
+    return prefix
+  }
+
+  Tooltip.prototype.tip = function () {
+    if (!this.$tip) {
+      this.$tip = $(this.options.template)
+      if (this.$tip.length != 1) {
+        throw new Error(this.type + ' `template` option must consist of exactly 1 top-level element!')
+      }
+    }
+    return this.$tip
+  }
+
+  Tooltip.prototype.arrow = function () {
+    return (this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow'))
+  }
+
+  Tooltip.prototype.enable = function () {
+    this.enabled = true
+  }
+
+  Tooltip.prototype.disable = function () {
+    this.enabled = false
+  }
+
+  Tooltip.prototype.toggleEnabled = function () {
+    this.enabled = !this.enabled
+  }
+
+  Tooltip.prototype.toggle = function (e) {
+    var self = this
+    if (e) {
+      self = $(e.currentTarget).data('bs.' + this.type)
+      if (!self) {
+        self = new this.constructor(e.currentTarget, this.getDelegateOptions())
+        $(e.currentTarget).data('bs.' + this.type, self)
+      }
+    }
+
+    if (e) {
+      self.inState.click = !self.inState.click
+      if (self.isInStateTrue()) self.enter(self)
+      else self.leave(self)
+    } else {
+      self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
+    }
+  }
+
+  Tooltip.prototype.destroy = function () {
+    var that = this
+    clearTimeout(this.timeout)
+    this.hide(function () {
+      that.$element.off('.' + that.type).removeData('bs.' + that.type)
+      if (that.$tip) {
+        that.$tip.detach()
+      }
+      that.$tip = null
+      that.$arrow = null
+      that.$viewport = null
+      that.$element = null
+    })
+  }
+
+  Tooltip.prototype.sanitizeHtml = function (unsafeHtml) {
+    return sanitizeHtml(unsafeHtml, this.options.whiteList, this.options.sanitizeFn)
+  }
+
+  // TOOLTIP PLUGIN DEFINITION
+  // =========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.tooltip')
+      var options = typeof option == 'object' && option
+
+      if (!data && /destroy|hide/.test(option)) return
+      if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.tooltip
+
+  $.fn.tooltip             = Plugin
+  $.fn.tooltip.Constructor = Tooltip
+
+
+  // TOOLTIP NO CONFLICT
+  // ===================
+
+  $.fn.tooltip.noConflict = function () {
+    $.fn.tooltip = old
+    return this
+  }
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: popover.js v3.4.1
+ * https://getbootstrap.com/docs/3.4/javascript/#popovers
+ * ========================================================================
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // POPOVER PUBLIC CLASS DEFINITION
+  // ===============================
+
+  var Popover = function (element, options) {
+    this.init('popover', element, options)
+  }
+
+  if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
+
+  Popover.VERSION  = '3.4.1'
+
+  Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
+    placement: 'right',
+    trigger: 'click',
+    content: '',
+    template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+  })
+
+
+  // NOTE: POPOVER EXTENDS tooltip.js
+  // ================================
+
+  Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
+
+  Popover.prototype.constructor = Popover
+
+  Popover.prototype.getDefaults = function () {
+    return Popover.DEFAULTS
+  }
+
+  Popover.prototype.setContent = function () {
+    var $tip    = this.tip()
+    var title   = this.getTitle()
+    var content = this.getContent()
+
+    if (this.options.html) {
+      var typeContent = typeof content
+
+      if (this.options.sanitize) {
+        title = this.sanitizeHtml(title)
+
+        if (typeContent === 'string') {
+          content = this.sanitizeHtml(content)
+        }
+      }
+
+      $tip.find('.popover-title').html(title)
+      $tip.find('.popover-content').children().detach().end()[
+        typeContent === 'string' ? 'html' : 'append'
+      ](content)
+    } else {
+      $tip.find('.popover-title').text(title)
+      $tip.find('.popover-content').children().detach().end().text(content)
+    }
+
+    $tip.removeClass('fade top bottom left right in')
+
+    // IE8 doesn't accept hiding via the `:empty` pseudo selector, we have to do
+    // this manually by checking the contents.
+    if (!$tip.find('.popover-title').html()) $tip.find('.popover-title').hide()
+  }
+
+  Popover.prototype.hasContent = function () {
+    return this.getTitle() || this.getContent()
+  }
+
+  Popover.prototype.getContent = function () {
+    var $e = this.$element
+    var o  = this.options
+
+    return $e.attr('data-content')
+      || (typeof o.content == 'function' ?
+        o.content.call($e[0]) :
+        o.content)
+  }
+
+  Popover.prototype.arrow = function () {
+    return (this.$arrow = this.$arrow || this.tip().find('.arrow'))
+  }
+
+
+  // POPOVER PLUGIN DEFINITION
+  // =========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.popover')
+      var options = typeof option == 'object' && option
+
+      if (!data && /destroy|hide/.test(option)) return
+      if (!data) $this.data('bs.popover', (data = new Popover(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.popover
+
+  $.fn.popover             = Plugin
+  $.fn.popover.Constructor = Popover
+
+
+  // POPOVER NO CONFLICT
+  // ===================
+
+  $.fn.popover.noConflict = function () {
+    $.fn.popover = old
+    return this
+  }
+
+}(jQuery);
+</script>
   <link href="data:text/css,%2Eflat%2Dtable%20%7Bdisplay%3A%20block%3Bfont%2Dfamily%3A%20sans%2Dserif%3B%2Dwebkit%2Dfont%2Dsmoothing%3A%20antialiased%3Bfont%2Dsize%3A%20100%25%3Boverflow%3A%20auto%3Bwidth%3A%20auto%3B%7Dth%20%7Bbackground%2Dcolor%3A%20%231E1656%3Bcolor%3A%20white%3Bfont%2Dweight%3A%20normal%3Bpadding%3A%2020px%2030px%3Btext%2Dalign%3A%20center%3B%7Dtd%20%7Bbackground%2Dcolor%3A%20rgb%28238%2C%20238%2C%20238%29%3Bcolor%3A%20rgb%28111%2C%20111%2C%20111%29%3Bpadding%3A%2020px%2030px%3B%7D" rel="stylesheet" type="text/css" media="screen, projection, print" />
 </head>
 <body>
 <div class="slide titlepage">
-  <h1 class="title">Inference for One-Way and Two-Way Tables</h1>
+  <h1 class="title">Inference for Difference of Two Means</h1>
   <h1 class="subtitle">Elementary Statistics</h1>
   <p class="author">
 MTH-161D | Spring 2025 | University of Portland
   </p>
-  <p class="date">March 28, 2025</p>
+  <p class="date">April 2, 2025</p>
 </div>
 <div id="objectives" class="slide section level2">
 <h1>Objectives</h1>
@@ -539,624 +1568,232 @@ MTH-161D | Spring 2025 | University of Portland
 </div>
 <div class="column" style="width:70%;">
 <ul>
-<li><strong>Develop an understanding of inference for contingency
-tables</strong></li>
-<li><strong>Know how to compute the chi-square test
-statistic</strong></li>
-<li><strong>Practice on applying the chi-square test</strong></li>
-<li><strong>Activity: Test for Independence</strong></li>
+<li><strong>Develop an understanding on computing confidence intervals
+for difference in means</strong></li>
+<li><strong>Know how to determine the degrees of freedom for two
+means</strong></li>
+<li><strong>Activity: Determine Confidence Intervals for Difference in
+Means</strong></li>
 </ul>
 </div>
 <div class="column" style="width:15%;">
 
 </div>
-<p><em>These slides are derived from <span class="citation">Diez et al.
-(2012)</span>.</em></p>
 </div>
-<div id="previously-13" class="slide section level2">
-<h1>Previously… (1/3)</h1>
-<p><strong>Confidence Interval for One Proportion</strong></p>
-<p><span class="math display">\[\hat{p} \pm z^{\star}
-\text{SE}_{\hat{p}}\]</span></p>
+<div id="previously-12" class="slide section level2">
+<h1>Previously… (1/2)</h1>
+<p><strong>The <span class="math inline">\(t\)</span>-distribution</strong></p>
+<div class="figure" style="text-align: center">
+<img role="img" aria-label="The larger the degrees of freedom the more closely the $t$-distribution resembles the standard normal distribution." src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABgAAAAMACAMAAADVCFz+AAAC/VBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZrY6AAA6Ojo6ZpA6ZrY6kNtWm71Wm8hWm9RWrMhWrNRWrN9WvelmAABmOgBmkNtmtv91m711rL11rMh1rNR1vd91vel1z/R2rsp7scuEts+Nu9OOvNOOvNqOvOKOyOKOyOqO0+KO0/CQOgCQZjqQkDqQ2/+Sm72SrL2SrMiSvd+Sz+mS3/SS3/+UwNacxNijvNOjyNOj0+qj0/Cj3+qj3/ikydymytyny92ny+Kny+mn1Omn1O6n3emn3fSvrL2vvb2vvdSv3+mv3/Sv7/Sv7/+10+K2ZgC2Zjq2kGa2vNO2yNO2yNq229u22/+26vi26v+2//+3y9231N233fS35u635vm61uS/2ea/2eq/2e+/4Oq/4O+/4PO/5u+/5vfGy93G7vnG7v/Kvb3KvcjKyNPKyNrKz9TK09rK6vjK79/K7/TK7//K9P/K///L2ebL4ObL4OrL5vPL5vfL7fPL7fvN4evR5O3R5PDR5PPR6fPR6fbR7fPR7fnV1N3V1OLV3eLV5uLV7vnV9//W2ebW4ObW8/vW8//a5O3a6e3a7fba7fna8vba8vzbkDrbkGbbtmbb27bb///c09Pc09rc3+Lc9Pjc9P/c///d6/Lh4Obh4Orh5urh8/vh+f/i5O3i6e3i9vzi9v/j3d3j3eLj5unj9/nj9//j///lz8jl39Tl39/l3+nl7+nl7//l/+nl//Tl///p6e3p6fDp7fDp9vzp+//r5ubr5urr7e/r+fvr+f/r///u39ru6uLu6uru9PDu9P/u//Du///x5uLx7e3x7fDx7unx7u7x8vPx+/zx+//x//Tx///17er18+/18/P1+ff1//f1///48vD49vP49vb4//n4////tmb/25D/27b/39T/6uL/7un/79//7+n/7/T/8+//9Or/9PD/9Pj/9vP/9+7/9/T/+fP/+ff/+/b/+/n/+/z//7b//9v//+n///D///T///f///j///n///v///z///8/Beu9AAAACXBIWXMAAB2HAAAdhwGP5fFlAAAgAElEQVR4nO3debxu113X8dOKVuCJbVGJVhtvTgUVBSzc1KLnXhCtWkkUFTGi54LgFGqjokXRc6torIpaReoQRE6t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" alt="The larger the degrees of freedom the more closely the $t$-distribution resembles the standard normal distribution." width="90%" />
+<p class="caption">
+The larger the degrees of freedom the more closely the <span class="math inline">\(t\)</span>-distribution resembles the standard
+normal distribution.
+</p>
+</div>
+</div>
+<div id="previously-22" class="slide section level2">
+<h1>Previously… (2/2)</h1>
+<p><strong>Confidence Intervals for One Mean</strong></p>
 <p><span class="math display">\[
 \begin{aligned}
-\hat{p} &amp; \longrightarrow \text{sample proportion (or the point
-estimate)} \\
-z^{\star} &amp; \longrightarrow \text{critical z-score at a given
-confidence level} \\
-\text{SE}_{\hat{p}} &amp; \longrightarrow \text{standard error of the
-sampling distribution} \\
+\bar{x} \ &amp;\pm\  t^*_{df} \times \frac{s}{\sqrt{n}}
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\bar{x} &amp; \longrightarrow \text{sample mean (point estimate)} \\
+s &amp; \longrightarrow \text{sample standard deviation} \\
+n &amp; \longrightarrow \text{sample size} \\
+t^*_{df} &amp; \longrightarrow \text{critical value (t-distribution with
+degrees of freedom } df \text{)}
 \end{aligned}
 \]</span></p>
 </div>
-<div id="previously-23" class="slide section level2">
-<h1>Previously… (2/3)</h1>
-<p><strong>Hypothesis Testing for One Proportion</strong></p>
-<p><span class="math display">\[
-\begin{aligned}
-p &amp; \longrightarrow \text{population proportion} \\
-\hat{p} &amp; \longrightarrow \text{sample proportion (or the point
-estimate)} \\
-H_0: p = p_0 &amp; \longrightarrow \text{null hypothesis}  \\
-H_A: p \ne p_0 &amp; \longrightarrow \text{alternative hypothesis (can
-be } &lt; \text{ or } &gt; \text{)} \\
-z &amp; \longrightarrow \text{test statistic} \\
-\text{SE}_{p} &amp; \longrightarrow \text{standard error of the null
-distribution} \\
-\end{aligned}
-\]</span></p>
-</div>
-<div id="previously-33" class="slide section level2">
-<h1>Previously… (3/3)</h1>
-<p><strong>Relationship Between Variables</strong></p>
-<p><span class="math display">\[\text{explanatory variable}
-\xrightarrow{\text{might affect}} \text{response variable}\]</span></p>
-<p><strong>Associated vs Independent Variables</strong></p>
-<ul>
-<li><p>When two variables show some connection with one another, they
-are called <span style="color:blue"><strong>associated</strong></span>
-or <span style="color:blue"><strong>dependent</strong></span>
-variables.</p></li>
-<li><p>In general, <span style="color:blue"><strong>association does not
-imply causation</strong></span>, and causation can only be inferred from
-a randomized experiment.</p></li>
-</ul>
-</div>
-<div id="example-1" class="slide section level2">
-<h1>Example 1</h1>
-<p>The contingency table below shows the distribution of survival and
-different classes of passengers on the Titanic.</p>
-<div class="column" style="width:15%;">
-
-</div>
-<div class="column" style="width:70%;">
-<table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">1st</th>
-<th align="right">2nd</th>
-<th align="right">3rd</th>
-<th align="right">crew</th>
-<th align="right">Sum</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">no</td>
-<td align="right">123</td>
-<td align="right">166</td>
-<td align="right">528</td>
-<td align="right">679</td>
-<td align="right">1496</td>
-</tr>
-<tr class="even">
-<td align="left">yes</td>
-<td align="right">201</td>
-<td align="right">118</td>
-<td align="right">181</td>
-<td align="right">211</td>
-<td align="right">711</td>
-</tr>
-<tr class="odd">
-<td align="left">Sum</td>
-<td align="right">324</td>
-<td align="right">284</td>
-<td align="right">709</td>
-<td align="right">890</td>
-<td align="right">2207</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="column" style="width:15%;">
-
-</div>
-<p>Goals:</p>
-<ol style="list-style-type: decimal">
-<li>To analyze whether the observed frequencies of class differ
-significantly from the expected frequencies of survived.</li>
-<li>To test whether class and survived are independent by comparing
-observed and expected frequencies in a two-way table.</li>
-</ol>
-</div>
-<div id="the-chi-squared-test" class="slide section level2">
-<h1>The Chi-Squared Test</h1>
-<p>The <strong>Chi-Square statistic</strong> is used in hypothesis
-testing to determine whether observed data differs significantly from
-expected data. Commonly used for categorical data analysis.</p>
-<p><span class="math display">\[\chi^2 = \sum
-\frac{(O-E)^2}{E}\]</span></p>
-<ul>
-<li><span class="math inline">\(O\)</span> is the observed
-frequency</li>
-<li><span class="math inline">\(E\)</span> is the expected
-frequency</li>
-</ul>
-<p>The <strong>degrees of freedom (df)</strong> in a <strong>chi-square
-test</strong> depend on the type of test being conducted:</p>
-<ul>
-<li><em>For a One-Way Table</em>: <span class="math inline">\(df = r -
-1\)</span> where <span class="math inline">\(r\)</span> is the number of
-categories.</li>
-<li><em>For a Two-Way Table</em>: <span class="math inline">\(df = (r -
-1) \times (c - 1)\)</span> where <span class="math inline">\(r\)</span>
-is the number of rows and <span class="math inline">\(c\)</span> is the
-number of columns.</li>
-</ul>
-</div>
-<div id="example-1-1" class="slide section level2">
-<h1>Example 1</h1>
-<p><strong>1st Class Distribution</strong></p>
-<p><span class="math display">\[
-\begin{aligned}
-H_0: &amp; \text{The observed distribution of survived among 1st class
-passengers follows the expectation.} \\
-H_A: &amp; \text{The observed distribution of survived among 1st class
-passengers differs from the expectation.}
-\end{aligned}
-\]</span></p>
-<div class="column" style="width:39%;">
-<table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">1st</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">no</td>
-<td align="right">123</td>
-</tr>
-<tr class="even">
-<td align="left">yes</td>
-<td align="right">201</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>The expected proportions are <span class="math inline">\(\frac{1}{2}\)</span> assuming the passengers are
-equally likely to survive.</li>
-<li>The expected frequency based on the data is <span class="math inline">\(\left( \frac{1}{2} \right) 324 = 126\)</span> for
-each survived category.</li>
-</ul>
-</div>
-<div class="column" style="width:60%;">
-<ul>
-<li>Set <span class="math inline">\(\alpha = 0.05\)</span> and compute
-the <span class="math inline">\(\chi^2\)</span> statistic.</li>
-</ul>
-<p><span class="math display">\[
-\begin{aligned}
-\chi^2 &amp; = \frac{(123 - 126)^2}{126} + \frac{(201 - 126)^2}{126} \\
-       &amp; = 44
-\end{aligned}
-\]</span></p>
-<ul>
-<li><p>Determine degrees of freedom, which is <span class="math inline">\(df = 1\)</span>.</p></li>
-<li><p>Compute the p-value using R.</p></li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># define degrees of freedom</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>chisq <span class="ot">&lt;-</span> <span class="dv">44</span> <span class="co"># set chi-square statistic</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pchisq</span>(<span class="dv">44</span>,df) <span class="co"># compute the p-value</span></span></code></pre></div>
-<pre><code>## [1] 3.283762e-11</code></pre>
-<ul>
-<li>Since the p-value is less than <span class="math inline">\(\alpha\)</span>, then we reject <span class="math inline">\(H_0\)</span>. We can conclude that we have enough
-evidence to support <span class="math inline">\(H_A\)</span>.</li>
-</ul>
-</div>
-</div>
-<div id="example-1-the-chi-square-sampling-distribution" class="slide section level2">
-<h1>Example 1: The Chi-Square Sampling Distribution</h1>
-<p><img role="img" src="data:image/png;base64,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" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="example-2-inference-for-one-way-table" class="slide section level2">
-<h1>Example 2: Inference for One-Way Table</h1>
-<p><strong>2nd Class Distribution</strong></p>
-<p><span class="math display">\[
-\begin{aligned}
-H_0: &amp; \text{The observed distribution of survived among 2nd class
-passengers follows the expectation.} \\
-H_A: &amp; \text{The observed distribution of survived among 2nd class
-passengers differs from the expectation.}
-\end{aligned}
-\]</span></p>
-<div class="column" style="width:39%;">
-<table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">2nd</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">no</td>
-<td align="right">166</td>
-</tr>
-<tr class="even">
-<td align="left">yes</td>
-<td align="right">118</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="column" style="width:60%;">
-<ul>
-<li>The expected proportion are <span class="math inline">\(\frac{1}{2}\)</span> assuming the passengers are
-equally likely to survive.</li>
-<li>The expected frequency based on the data is <span class="math inline">\(\left( \frac{1}{2} \right) 284 = 142\)</span> for
-each survived category.</li>
-</ul>
-</div>
-<div style="color: blue;">
-<p><span class="math inline">\(\dagger\)</span> Determine the <span class="math inline">\(\chi^2\)</span> test statistic and the p-value.
-What is your conclusion?</p>
-</div>
-</div>
-<div id="example-3" class="slide section level2">
-<h1>Example 3</h1>
-<div class="column" style="width:15%;">
-
-</div>
-<div class="column" style="width:70%;">
-<table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">1st</th>
-<th align="right">2nd</th>
-<th align="right">3rd</th>
-<th align="right">crew</th>
-<th align="right">Sum</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">no</td>
-<td align="right">123</td>
-<td align="right">166</td>
-<td align="right">528</td>
-<td align="right">679</td>
-<td align="right">1496</td>
-</tr>
-<tr class="even">
-<td align="left">yes</td>
-<td align="right">201</td>
-<td align="right">118</td>
-<td align="right">181</td>
-<td align="right">211</td>
-<td align="right">711</td>
-</tr>
-<tr class="odd">
-<td align="left">Sum</td>
-<td align="right">324</td>
-<td align="right">284</td>
-<td align="right">709</td>
-<td align="right">890</td>
-<td align="right">2207</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="column" style="width:15%;">
-
-</div>
-<p><span class="math display">\[
-\begin{aligned}
-H_0: &amp; \text{There is no association between class and survived. The
-variables are independent.} \\
-H_A: &amp; \text{There is an association between class and survived. The
-variables are dependent.}
-\end{aligned}
-\]</span></p>
-</div>
-<div id="example-3-1" class="slide section level2">
-<h1>Example 3</h1>
-<p>Consider the following problem description.</p>
+<div id="case-study-i-fuel-efficiency-in-the-city" class="slide section level2">
+<h1>Case Study I: Fuel Efficiency in the City</h1>
+<p>The problem shown below was taken and slightly modified from your
+textbook <a href="https://openintro-ims.netlify.app/inference-two-means.html#chp20-exercises" target="_blank">OpenIntro: Introduction to Modern Statistics Section
+20.6</a>. Consider the research study described below.</p>
 <blockquote>
-<p>Students in grades 4-6 were asked whether good grades, athletic
-ability, or popularity was most important to them. A two-way table
-separating the students by grade and by choice of most important factor
-is shown below. Do these data provide evidence to suggest that goals
-vary by grade?</p>
+<p>Each year the US Environmental Protection Agency (EPA) releases fuel
+economy data on cars manufactured in that year. Below are summary
+statistics on fuel efficiency (in miles/gallon) from random samples of
+cars with manual and automatic transmissions manufactured in 2021. Do
+these data provide strong evidence of a difference between the average
+fuel efficiency of cars with manual and automatic transmissions in terms
+of their average city mileage? <a href="https://www.fueleconomy.gov/feg/download.shtml" target="_blank">US
+DOE EPA 2021</a></p>
 </blockquote>
-<center>
-<table>
+<p>We will compute the 95% confidence interval for the true difference
+in means <span class="math inline">\(\mu_{automatic} -
+\mu_{manual}\)</span>.</p>
+<table class="table table-striped table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Grade</th>
-<th align="center">Popular</th>
-<th align="center">Sports</th>
+<tr>
+<th style="text-align:left;">
+CITY
+</th>
+<th style="text-align:center;">
+Mean
+</th>
+<th style="text-align:center;">
+SD
+</th>
+<th style="text-align:center;">
+n
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="center">4th</td>
-<td align="center">63</td>
-<td align="center">31</td>
-<td align="center">23</td>
+<tr>
+<td style="text-align:left;">
+Automatic
+</td>
+<td style="text-align:center;">
+17.44
+</td>
+<td style="text-align:center;">
+3.44
+</td>
+<td style="text-align:center;">
+25
+</td>
 </tr>
-<tr class="even">
-<td align="center">5th</td>
-<td align="center">88</td>
-<td align="center">55</td>
-<td align="center">33</td>
-</tr>
-<tr class="odd">
-<td align="center">6th</td>
-<td align="center">96</td>
-<td align="center">55</td>
-<td align="center">32</td>
+<tr>
+<td style="text-align:left;">
+Manual
+</td>
+<td style="text-align:center;">
+22.68
+</td>
+<td style="text-align:center;">
+4.58
+</td>
+<td style="text-align:center;">
+25
+</td>
 </tr>
 </tbody>
 </table>
-</center>
-<p>Source: <a href="https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/popular.html" target="_blank">Popular Kids Dataset</a>. This is from a 1992 study and
-was revisited 30 years later.</p>
 </div>
-<div id="example-3-the-chi-squared-test-for-independence-12" class="slide section level2">
-<h1>Example 3: The Chi-Squared Test for Independence (1/2)</h1>
+<div id="case-study-i-conditions" class="slide section level2">
+<h1>Case Study I: Conditions</h1>
 <ul>
-<li>The null and alternative Hypothesis <span class="math display">\[H_0: \text{Grade and goals are
-independent.  Goals do not vary by grade.}\]</span> <span class="math display">\[H_A: \text{Grade and goals are dependent.  Goals
-vary by grade}\]</span></li>
-</ul>
-</div>
-<div id="example-3-the-chi-squared-test-for-independence-22" class="slide section level2">
-<h1>Example 3: The Chi-Squared Test for Independence (2/2)</h1>
+<li>Conditions.
 <ul>
-<li>The Chi-Squared test statistic <span class="math display">\[\chi^2_{k} = \sum_{i=1}^n \frac{(O_i -
-E_i)^2}{E_i}\]</span>
-<ul>
-<li><span class="math inline">\(O_i\)</span> is the number of
-observations of type <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(E_i\)</span> is the expected frequency
-of type <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(n\)</span> is the number of cells in the
-table</li>
-<li><span class="math inline">\(k = (R-1)(C-1)\)</span> is the degrees
-of freedom where <span class="math inline">\(R\)</span> is the number of
-rows and C is the number of columns.</li>
+<li><strong>Independence</strong> (extended). The data are independent
+within and between the two groups, e.g., the data come from independent
+random samples or from a randomized experiment.</li>
+<li><strong>Normality</strong>. We need large enough sample size for
+each group. We check the extreme outliers for each group
+separately.</li>
 </ul></li>
 </ul>
+<p><img role="img" src="data:image/png;base64,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" width="60%" style="display: block; margin: auto;" /></p>
+<p>Here, we see two outliers in the manual group. However, both groups
+shows decent distributions with balanced outliers where - in this case
+with 25 samples each - we can “ignore” the outliers and assume normality
+of the sampling distribution of the means.</p>
 </div>
-<div id="example-3-computing-the-chi2-statistic---expected-frequency-13" class="slide section level2">
-<h1>Example 3: Computing the <span class="math inline">\(\chi^2\)</span>
-statistic - Expected Frequency (1/3)</h1>
+<div id="case-study-i-two-sample-t-interval-13" class="slide section level2">
+<h1>Case Study I: Two-sample t-interval (1/3)</h1>
+<p><strong>Two-sample t-intervals</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{point estimate} \ &amp;\pm\  t^*_{df} \times SE \\
+\bar{x}_1 - \bar{x}_2 \ &amp;\pm\  t^*_{df} \times
+\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+\end{aligned}
+\]</span></p>
 <ul>
-<li>Start with the expected frequency of type <span class="math inline">\(i\)</span></li>
+<li>The <strong>margin of error</strong> is <span class="math inline">\(t^*_{df} \sqrt{\frac{s_1^2}{n_1} +
+\frac{s_2^2}{n_2}}\)</span> where <span class="math inline">\(t^*_{df}\)</span> is calculated from a specified
+percentile on the t-distribution with <em>df</em> degrees of
+freedom.</li>
+<li>The official formula for the <strong>degrees of freedom</strong> is
+quite complex and is generally computed using R, so instead you may use
+the smaller of <span class="math inline">\(n_1 - 1\)</span> and <span class="math inline">\(n_2 - 1\)</span> for convenience if <span class="math inline">\(n_1 \approx n_2\)</span>.</li>
 </ul>
-<div class="left" style="float:left;width:48%">
-<center>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Grade</th>
-<th align="center">Popular</th>
-<th align="center">Sports</th>
-<th align="center">Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">4th</td>
-<td align="center"><span class="math inline">\(\color{blue}{63}\)</span></td>
-<td align="center"><span class="math inline">\(\color{orange}{31}\)</span></td>
-<td align="center">23</td>
-<td align="center">119</td>
-</tr>
-<tr class="even">
-<td align="center">5th</td>
-<td align="center">88</td>
-<td align="center">55</td>
-<td align="center">33</td>
-<td align="center">176</td>
-</tr>
-<tr class="odd">
-<td align="center">6th</td>
-<td align="center">96</td>
-<td align="center">55</td>
-<td align="center"><span class="math inline">\(\color{red}{32}\)</span></td>
-<td align="center">183</td>
-</tr>
-<tr class="even">
-<td align="center">Total</td>
-<td align="center">247</td>
-<td align="center">141</td>
-<td align="center">90</td>
-<td align="center">478</td>
-</tr>
-</tbody>
-</table>
-</center>
-<p>Note: Color corresponds to the cell and we are rounding to the
-nearest integer for computing the expected frequencies.</p>
 </div>
-<div class="right" style="float:right;width:48%">
-<p><span class="math display">\[\color{blue}{E_{4th,Grade} =
-\frac{(119)(247)}{478} = 61}\]</span> <span class="math display">\[\color{orange}{E_{4th,Popular} =
-\frac{(119)(141)}{478} = 35}\]</span> <span class="math display">\[\vdots\]</span> <span class="math display">\[\color{red}{E_{6th,Sports} =
-\frac{(183)(90)}{478} = 34}\]</span></p>
-</div>
-</div>
-<div id="example-3-computing-the-chi2-statistic---expected-frequency-23" class="slide section level2">
-<h1>Example 3: Computing the <span class="math inline">\(\chi^2\)</span>
-statistic - Expected Frequency (2/3)</h1>
+<div id="case-study-i-two-sample-t-interval-23" class="slide section level2">
+<h1>Case Study I: Two-sample t-interval (2/3)</h1>
 <ul>
-<li>Question - What is the expected count for the highlighted cell?</li>
+<li><p>Standard Error <span class="math display">\[
+\begin{aligned}
+SE &amp; = \sqrt{\frac{s_{automatic}^2}{n_{automatic}} +
+\frac{s_{manual}^2}{n_{manual}}} \\
+   &amp; = \sqrt{\frac{3.44^2}{25} + \frac{4.58^2}{25}} \\
+SE &amp; = 1.1456
+\end{aligned}
+\]</span></p></li>
+<li><p>Degrees of freedom is <span class="math inline">\(df =
+24\)</span>.</p></li>
+<li><p>For a 95% confidence level, we find the the critical <span class="math inline">\(t^*_{df}\)</span> where the upper tail is equal to
+2.5%: <span class="math inline">\(t^*_{24} = 2.0639.\)</span> The area
+below <span class="math inline">\(t^*_{24} = -2.0639\)</span> will also
+be equal to 2.5%.</p></li>
 </ul>
-<center>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Grade</th>
-<th align="center">Popular</th>
-<th align="center">Sports</th>
-<th align="center">Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">4th</td>
-<td align="center">63</td>
-<td align="center">31</td>
-<td align="center">23</td>
-<td align="center">119</td>
-</tr>
-<tr class="even">
-<td align="center">5th</td>
-<td align="center">88</td>
-<td align="center"><span class="math inline">\(\color{green}{55}\)</span></td>
-<td align="center">33</td>
-<td align="center">176</td>
-</tr>
-<tr class="odd">
-<td align="center">6th</td>
-<td align="center">96</td>
-<td align="center">55</td>
-<td align="center">32</td>
-<td align="center">183</td>
-</tr>
-<tr class="even">
-<td align="center">Total</td>
-<td align="center">247</td>
-<td align="center">141</td>
-<td align="center">90</td>
-<td align="center">478</td>
-</tr>
-</tbody>
-</table>
-</center>
-<ul class="incremental">
-<li><span class="math display">\[\color{green}{E_{5th,Popular} =
-\frac{(176)(141)}{478} = 52}\]</span></li>
-</ul>
-</div>
-<div id="example-3-computing-the-chi2-statistic---expected-frequency-33" class="slide section level2">
-<h1>Example 3: Computing the <span class="math inline">\(\chi^2\)</span>
-statistic - Expected Frequency (3/3)</h1>
+<p><strong>Using R to find the critical <span class="math inline">\(t^*\)</span></strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fl">0.95</span> <span class="co"># confidence level</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>lt <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">-</span>cl)<span class="sc">/</span><span class="dv">2</span> <span class="co"># lower tail probability</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="dv">24</span> <span class="co"># degrees of freedom</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">qt</span>(lt, df) <span class="co"># t-star</span></span></code></pre></div>
+<pre><code>## [1] -2.063899</code></pre>
 <ul>
-<li>The expected frequency for each <span class="math inline">\(\color{blue}{[cell]}\)</span>.</li>
+<li><em>A note on the degrees of freedom:</em> Our example shows two
+equal sample sizes in each group. So, the degrees of freedom is <span class="math inline">\(25 - 1 = 24\)</span>.</li>
 </ul>
-<table>
-<colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Grade</th>
-<th align="center">Popular</th>
-<th align="center">Sports</th>
-<th align="center">Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">4th</td>
-<td align="center">63 <span class="math inline">\(\color{blue}{[61]}\)</span></td>
-<td align="center">31 <span class="math inline">\(\color{blue}{[35]}\)</span></td>
-<td align="center">23 <span class="math inline">\(\color{blue}{[23]}\)</span></td>
-<td align="center">119</td>
-</tr>
-<tr class="even">
-<td align="center">5th</td>
-<td align="center">88 <span class="math inline">\(\color{blue}{[91]}\)</span></td>
-<td align="center">55 <span class="math inline">\(\color{blue}{[52]}\)</span></td>
-<td align="center">33 <span class="math inline">\(\color{blue}{[33]}\)</span></td>
-<td align="center">176</td>
-</tr>
-<tr class="odd">
-<td align="center">6th</td>
-<td align="center">96 <span class="math inline">\(\color{blue}{[95]}\)</span></td>
-<td align="center">55 <span class="math inline">\(\color{blue}{[54]}\)</span></td>
-<td align="center">32 <span class="math inline">\(\color{blue}{[34]}\)</span></td>
-<td align="center">183</td>
-</tr>
-<tr class="even">
-<td align="center">Total</td>
-<td align="center">247</td>
-<td align="center">141</td>
-<td align="center">90</td>
-<td align="center">478</td>
-</tr>
-</tbody>
-</table>
 </div>
-<div id="example-3-computing-the-chi2-statistic" class="slide section level2">
-<h1>Example 3: Computing the <span class="math inline">\(\chi^2\)</span>
-statistic</h1>
+<div id="case-study-i-two-sample-t-interval-33" class="slide section level2">
+<h1>Case Study I: Two-sample t-interval (3/3)</h1>
 <ul>
-<li><p>The <span class="math inline">\(\chi^2\)</span> statistic. <span class="math display">\[\chi^2_{k} = \frac{(63-61)^2}{61} +
-\frac{(31-35)^2}{35} + \cdots + \frac{(32-34)^2}{34} =
-0.967\]</span></p></li>
-<li><p>Degrees of freedom. <span class="math display">\[k = (3-1) \times
-(3-1) = 2(2) = 4\]</span></p></li>
+<li>The 95% Confidence interval is computed as. <span class="math display">\[
+  \begin{aligned}
+  \bar{x}_{automatic} - \bar{x}_{manual} &amp; \pm ME \\
+                         17.4 - 22.7 &amp; \pm 2.0639 \times 1.1456 \\
+                                -5.3 &amp; \pm 2.3644
+  \end{aligned}
+  \]</span> <span class="math display">\[(-7.6644,-2.9356)\]</span></li>
 </ul>
+<p>Therefore, we are 95% confident that the true difference in mean fuel
+efficiency (miles/gallon) between automatic and manual cars is between
+2.9356 and 7.664 in absolute value.</p>
+<p>Note that the values are originally negative because how the order of
+difference terms are computed, meaning a negative difference indicate
+that there is more efficiency in cars with manual transmission than
+automatic transmission.</p>
 </div>
-<div id="example-3-computing-the-p-value" class="slide section level2">
-<h1>Example 3: Computing the p-value</h1>
+<div id="degrees-of-freedom" class="slide section level2">
+<h1>Degrees of Freedom</h1>
+<p><strong>One-sample t-interval</strong></p>
+<p><span class="math display">\[df = n - 1\]</span></p>
+<p><strong>Two-sample t-interval</strong></p>
 <ul>
-<li><p><span class="math inline">\(\chi^2_{k} = 1.3121\)</span> and
-<span class="math inline">\(k = 4\)</span></p></li>
-<li><p>We can use the <code>pchisq</code> function in R.</p></li>
+<li><strong>Minimum sample size.</strong> If <span class="math inline">\(n_1 \approx n_2\)</span>, then <span class="math inline">\(df = \min{\left(n_1 - 1,n_2 - 2\right)}\)</span>.
+<em>Using this <span class="math inline">\(df\)</span> yields low
+statistical power.</em></li>
+<li><strong>Pooled.</strong> If <span class="math inline">\(n_1 \ne
+n_2\)</span> and <span class="math inline">\(s_1 = s_2\)</span>, then
+<span class="math inline">\(df = n_1 + n_2 - 2\)</span>.</li>
+<li><strong>Welch’s Formula.</strong> If <span class="math inline">\(n_1
+\ne n_2\)</span> and <span class="math inline">\(s_1 \ne s_2\)</span>,
+then <span class="math inline">\(df = \frac{\left( \frac{s_1^2}{n_1} +
+\frac{s_2^2}{n_2} \right)^2}{\left(\frac{1}{n_1 - 1}\right) \left(
+\frac{s_1^2}{n_1} \right)^2 + \left(\frac{1}{n_2 - 1}\right) \left(
+\frac{s_2^2}{n_2} \right)^2}\)</span>. <em>Using this <span class="math inline">\(df\)</span> is the default</em>.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pchisq</span>(<span class="fl">0.967</span>,df)</span></code></pre></div>
-<pre><code>## [1] 0.9147579</code></pre>
-<pre><code>The p-value of 0.9148.</code></pre>
-<ul>
-<li>Note that <strong>in a chi-squared analysis, the p-value is the
-probability of obtaining a chi-square as large or larger than that in
-the current experiment.</strong></li>
-</ul>
-<p><img role="img" src="data:image/png;base64,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" width="100%" style="display: block; margin: auto;" /></p>
+<p>If the population variance is unknown, use the sample variance <span class="math inline">\(s^2\)</span>. If the population variance is known,
+use population variance <span class="math inline">\(\sigma^2\)</span>.
+Most real-world problems involve sample variances, especially for
+statistical inference.</p>
 </div>
-<div id="example-3-conclusion" class="slide section level2">
-<h1>Example 3: Conclusion</h1>
-<ul>
-<li><p>Do these data provide evidence to suggest that goals vary by
-grade? <span class="math display">\[H_0: \text{Grade and goals are
-independent. Goals do not vary by grade.}\]</span> <span class="math display">\[H_A: \text{Grade and goals are dependent. Goals
-vary by grade}\]</span></p></li>
-<li><p>Since the p-value is large, we fail to reject <span class="math inline">\(H_0\)</span>. The data do not provide convincing
-evidence that grade and goals are dependent. It doesn’t appear that
-goals vary by grade.</p></li>
-</ul>
-</div>
-<div id="summary-steps-for-chi2-tests" class="slide section level2">
-<h1>Summary: Steps for <span class="math inline">\(\chi^2\)</span>
-Tests</h1>
-<ul>
-<li>Compute the expected values.</li>
-<li>Set the significance value <span class="math inline">\(\alpha\)</span>.</li>
-<li>Compute the <span class="math inline">\(\chi^2\)</span> test
-statistic and the degrees of freedom <span class="math inline">\(df\)</span>.</li>
-<li>Determine the p-value using the <span class="math inline">\(\chi^2\)</span> test statistic.</li>
-<li>Make a conclusion.</li>
-</ul>
-<div style="color: red;">
-<p><span class="math inline">\(\star\)</span> <strong>Key Idea:</strong>
-The chi-square test assumes independent categorical data with
-sufficiently large expected counts and compares observed vs. expected
-frequencies to assess whether deviations are due to chance.</p>
-</div>
-</div>
-<div id="activity-test-for-independence" class="slide section level2">
-<h1>Activity: Test for Independence</h1>
+<div id="activity-determine-confidence-intervals-for-difference-in-means" class="slide section level2">
+<h1>Activity: Determine Confidence Intervals for Difference in
+Means</h1>
 <ol style="list-style-type: decimal">
-<li>Make sure you have a copy of the <em>F 3/28 Worksheet</em>. This
-will be handed out physically and it is also digitally available on
-Moodle.</li>
+<li>Make sure you have a copy of the <em>W 4/2 Worksheet</em>. This will
+be handed out physically. This worksheet will be available on Moodle
+after class.</li>
 <li>Work on your worksheet by yourself for 10 minutes. Please read the
 instructions carefully. Ask questions if anything need
 clarifications.</li>

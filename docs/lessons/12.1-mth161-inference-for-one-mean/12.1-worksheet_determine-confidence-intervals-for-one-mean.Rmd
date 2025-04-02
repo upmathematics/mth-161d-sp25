@@ -81,7 +81,7 @@ p2 <- ggplot(bdims, aes(x = hgt)) +
 grid.arrange(p1,p2,nrow=1)
 ```
 
-a. use the given summary statistics and data visualizations to check if the conditions of CLT are satisfied. Assume that the observations are a simple random sample.
+a. Use the given summary statistics and data visualizations to check if the conditions of CLT are satisfied. Assume that the observations are a simple random sample.
 \vfill
 
 \newpage

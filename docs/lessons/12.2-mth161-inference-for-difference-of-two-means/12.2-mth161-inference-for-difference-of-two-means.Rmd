@@ -1,0 +1,228 @@
+---
+title: "Inference for Difference of Two Means"
+subtitle: "Elementary Statistics"
+author: "MTH-161D | Spring 2025 | University of Portland"
+date: "April 2, 2025"
+output:
+  slidy_presentation:
+    font_adjustment: +5
+    footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
+bibliography: ../../references.bib
+csl: ../../apa.csl
+link-citation: true
+nocite: '@*'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(gghighlight)
+library(kableExtra)
+library(latex2exp)
+library(gridExtra)
+data(COL)
+seed <- 42
+```
+
+## Objectives
+
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
+- **Develop an understanding on computing confidence intervals for difference in means**
+- **Know how to determine the degrees of freedom for two means**
+- **Activity: Determine Confidence Intervals for Difference in Means**
+::::
+
+:::: {.column width=15%}
+::::
+
+## Previously... (1/2)
+
+**The $t$-distribution**
+
+```{r tDistConvergeToNormalDist, fig.cap="The larger the degrees of freedom the more closely the $t$-distribution resembles the standard normal distribution.", fig.asp=0.5, fig.align='center', message=FALSE, warning=FALSE, out.width="90%"}
+
+plot(c(-5, 5),
+  c(0, dnorm(0)),
+  type = "n", ylab = "", xlab = "",
+  axes = FALSE
+)
+at <- seq(-10, 10, 2)
+axis(1, at)
+axis(1, at - 1, rep("", length(at)), tcl = -0.1)
+abline(h = 0)
+
+COL. <- fadeColor(IMSCOL["blue", "full"], c("FF", "89", "68", "4C", "33"))
+COLt <- fadeColor(IMSCOL["blue", "full"], c("FF", "AA", "85", "60", "45"))
+DF <- c("normal", 8, 4, 2, 1)
+
+X <- seq(-10, 10, 0.02)
+Y <- dnorm(X)
+lines(X, Y, col = COL.[1])
+
+for (i in 2:5) {
+  Y <- dt(X, as.numeric(DF[i]))
+  lines(X, Y, col = COL.[i], lwd = 1.5)
+}
+
+legend(2.5, 0.4,
+  legend = c(
+    DF[1],
+    paste("t, df = ", DF[2:5], sep = "")
+  ),
+  col = COL.,
+  text.col = COLt,
+  lty = rep(1, 5),
+  lwd = 1.5
+)
+```
+
+## Previously... (2/2)
+
+**Confidence Intervals for One Mean**
+
+$$
+\begin{aligned}
+\bar{x} \ &\pm\  t^*_{df} \times \frac{s}{\sqrt{n}}
+\end{aligned}
+$$
+
+\[
+\begin{aligned}
+\bar{x} & \longrightarrow \text{sample mean (point estimate)} \\
+s & \longrightarrow \text{sample standard deviation} \\
+n & \longrightarrow \text{sample size} \\
+t^*_{df} & \longrightarrow \text{critical value (t-distribution with degrees of freedom } df \text{)} 
+\end{aligned}
+\]
+
+## Case Study I: Fuel Efficiency in the City
+
+The problem shown below was taken and slightly modified from your textbook [OpenIntro: Introduction to Modern Statistics Section 20.6](https://openintro-ims.netlify.app/inference-two-means.html#chp20-exercises){target="_blank"}. Consider the research study described below.
+
+> Each year the US Environmental Protection Agency (EPA) releases fuel economy data on cars manufactured in that year. Below are summary statistics on fuel efficiency (in miles/gallon) from random samples of cars with manual and automatic transmissions manufactured in 2021. Do these data provide strong evidence of a difference between the average fuel efficiency of cars with manual and automatic transmissions in terms of their average city mileage? [US DOE EPA 2021](https://www.fueleconomy.gov/feg/download.shtml){target="_blank"}
+
+We will compute the 95\% confidence interval for the true difference in means $\mu_{automatic} - \mu_{manual}$.
+
+```{r fig.align='center', message=FALSE, warning=FALSE}
+set.seed(1234)
+epa2021_sample <- epa2021 %>%
+  filter(transmission_desc %in% c("Manual", "Automatic")) %>%
+  group_by(transmission_desc) %>%
+  sample_n(size = 25)
+
+epa2021_sample %>%
+  group_by(transmission_desc) %>%
+  summarise(
+    Mean = mean(city_mpg),
+    SD   = sd(city_mpg),
+    n    = n()
+  ) %>%
+  kbl(linesep = "", booktabs = TRUE, align = "lccc", col.names = c("CITY", "Mean", "SD", "n"), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                latex_options = "HOLD_position",
+                full_width = FALSE)
+```
+
+## Case Study I: Conditions
+
+  * Conditions.
+    - **Independence** (extended). The data are independent within and between the two groups, e.g., the data come from independent random samples or from a randomized experiment.
+    - **Normality**. We need large enough sample size for each group. We check the extreme outliers for each group separately.
+    
+```{r fig.align='center', fig.width=5, fig.height=3, out.width="60%", message=FALSE, warning=FALSE}
+ggplot(epa2021_sample, aes(y = fct_rev(transmission_desc), x = city_mpg)) +
+  geom_boxplot() +
+  labs(y = NULL, x = "City mileage (MPG)")
+```
+
+Here, we see two outliers in the manual group. However, both groups shows decent distributions with balanced outliers where - in this case with 25 samples each - we can "ignore" the outliers and assume normality of the sampling distribution of the means.
+    
+## Case Study I: Two-sample t-interval (1/3)
+
+**Two-sample t-intervals**
+
+$$
+\begin{aligned}
+\text{point estimate} \ &\pm\  t^*_{df} \times SE \\
+\bar{x}_1 - \bar{x}_2 \ &\pm\  t^*_{df} \times \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+\end{aligned}
+$$
+
+  * The **margin of error** is $t^*_{df} \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$ where $t^*_{df}$ is calculated from a specified percentile on the t-distribution with *df* degrees of freedom.
+  * The official formula for the **degrees of freedom** is quite complex and is generally computed using R, so instead you may use the smaller of $n_1 - 1$ and $n_2 - 1$ for convenience if $n_1 \approx n_2$.
+    
+## Case Study I: Two-sample t-interval (2/3)
+
+  * Standard Error
+    \[
+    \begin{aligned}
+    SE & = \sqrt{\frac{s_{automatic}^2}{n_{automatic}} + \frac{s_{manual}^2}{n_{manual}}} \\
+       & = \sqrt{\frac{3.44^2}{25} + \frac{4.58^2}{25}} \\
+    SE & = 1.1456
+    \end{aligned}
+    \]
+    
+  * Degrees of freedom is $df = 24$.
+    
+  * For a 95% confidence level, we find the the critical $t^*_{df}$ where the upper tail is equal to 2.5%: $t^*_{24} = 2.0639.$ The area below $t^*_{24} = -2.0639$ will also be equal to 2.5%.
+
+**Using R to find the critical $t^*$**
+
+```{r echo = TRUE}
+cl <- 0.95 # confidence level
+lt <- (1-cl)/2 # lower tail probability
+df <- 24 # degrees of freedom
+qt(lt, df) # t-star
+```
+  * *A note on the degrees of freedom:* Our example shows two equal sample sizes in each group. So, the degrees of freedom is $25 - 1 = 24$.
+  
+## Case Study I: Two-sample t-interval (3/3)
+  
+  * The 95\% Confidence interval is computed as.
+  \[
+  \begin{aligned}
+  \bar{x}_{automatic} - \bar{x}_{manual} & \pm ME \\
+                             17.4 - 22.7 & \pm 2.0639 \times 1.1456 \\
+                                    -5.3 & \pm 2.3644
+  \end{aligned}
+  \]
+  $$(-7.6644,-2.9356)$$
+    
+Therefore, we are 95\% confident that the true difference in mean fuel efficiency (miles/gallon) between automatic and manual cars is between 2.9356 and 7.664 in absolute value. 
+
+Note that the values are originally negative because how the order of difference terms are computed, meaning a negative difference indicate that there is more efficiency in cars with manual transmission than automatic transmission.
+
+## Degrees of Freedom
+
+**One-sample t-interval**
+
+$$df = n - 1$$
+
+**Two-sample t-interval**
+
+* **Minimum sample size.** If $n_1 \approx n_2$, then $df = \min{\left(n_1 - 1,n_2 - 2\right)}$. *Using this $df$ yields low statistical power.*
+* **Pooled.** If $n_1 \ne n_2$ and $s_1 = s_2$, then $df = n_1 + n_2 - 2$.
+* **Welch's Formula.** If $n_1 \ne n_2$ and $s_1 \ne s_2$, then $df = \frac{\left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2}{\left(\frac{1}{n_1 - 1}\right) \left( \frac{s_1^2}{n_1} \right)^2 + \left(\frac{1}{n_2 - 1}\right) \left( \frac{s_2^2}{n_2} \right)^2}$. *Using this $df$ is the default*.
+
+If the population variance is unknown, use the sample variance $s^2$. If the population variance is known, use population variance $\sigma^2$. Most real-world problems involve sample variances, especially for statistical inference.
+
+## Activity:  Determine Confidence Intervals for Difference in Means
+
+1. Make sure you have a copy of the *W 4/2 Worksheet*. This will be handed out physically. This worksheet will be available on Moodle after class.
+2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
+3. Get together with another student.
+4. Discuss your results.
+5. Submit your worksheet on Moodle as a `.pdf` file.
+
+## References
+
+::: {#refs}
+:::

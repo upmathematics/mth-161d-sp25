@@ -418,7 +418,7 @@ p1
 $\star$ **Key Idea:** The chi-square test assumes independent categorical data with sufficiently large expected counts and compares observed vs. expected frequencies to assess whether deviations are due to chance.
 :::
 
-## Activity: 
+## Activity: Test for Independence
 
 1. Make sure you have a copy of the *F 3/28 Worksheet*. This will be handed out physically and it is also digitally available on Moodle.
 2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
