@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.28)  28 MAR 2025 08:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.28)  2 APR 2025 16:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -690,22 +690,22 @@ L3 programming layer <2024-07-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 15909 strings out of 473578
- 248810 string characters out of 5732242
- 1937960 words of memory out of 5000000
+ 15912 strings out of 473578
+ 248836 string characters out of 5732242
+ 1936960 words of memory out of 5000000
  38493 multiletter control sequences out of 15000+600000
- 584816 words of font info for 74 fonts, out of 8000000 for 9000
+ 584907 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  83i,11n,93p,1033b,451s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2024/texmf-dist/fonts/
 type1/public/lm/lmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr
 8.pfb>
-Output written on 11.1-worksheet_test-for-independence.pdf (2 pages, 91981 byte
+Output written on 11.1-worksheet_test-for-independence.pdf (2 pages, 91893 byte
 s).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
- 58 compressed objects within 1 object stream
- 15 named destinations out of 1000 (max. 500000)
+ 73 PDF objects out of 1000 (max. 8388607)
+ 59 compressed objects within 1 object stream
+ 16 named destinations out of 1000 (max. 500000)
  14369 words of extra memory for PDF output out of 14400 (max. 10000000)
 

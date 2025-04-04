@@ -73,13 +73,16 @@ titanic_surv_class <- titanic |> select(survived,class) |>
   group_by(survived,class) |> 
   summarise(total = n(),
             .groups = 'drop')
-kable(addmargins(xtabs(total ~ survived + class, titanic_surv_class)))
+kable(xtabs(total ~ survived + class, titanic_surv_class))
 ```
 
-a. Let the significance value be $\alpha = 0.05$, then state the null and alternative hypothesis.
+a. State the null and alternative hypothesis.
 \vfill
 
 b. Determine the degrees of freedom $df$.
+\vfill
+
+c. Let the significance value be $\alpha = 0.05$. What does this mean in context?
 \vfill
 
 \newpage
@@ -88,7 +91,7 @@ b. Determine the degrees of freedom $df$.
 
 Continued from Problem (1).
 
-a. Compute the expected values of each cell of the contingency table.
+a. Compute the expected values of each cell of the contingency table. Note that you need to compute the row and column sums first.
 \vfill
 
 b. Compute the $\chi^2$ test statistic.

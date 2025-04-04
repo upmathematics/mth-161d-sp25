@@ -1,0 +1,110 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{F 4/4 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(kableExtra)
+library(gridExtra)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Conduct a Hypothesis Test for Means
+
+### 1. Fuel Efficiency
+
+Each year the US Environmental Protection Agency (EPA) releases fuel economy data on cars manufactured in that year. Below are summary statistics on fuel efficiency (in miles/gallon) from random samples of cars with manual and automatic transmissions manufactured in 2021. Do these data provide strong evidence of a difference between the average c in terms of their average city mileage?
+
+```{r}
+set.seed(1234)
+epa2021_sample <- epa2021 %>%
+  filter(transmission_desc %in% c("Manual", "Automatic")) %>%
+  group_by(transmission_desc) %>%
+  sample_n(size = 25)
+
+epa2021_sample %>%
+  group_by(transmission_desc) %>%
+  summarise(
+    Mean = mean(city_mpg),
+    SD   = sd(city_mpg),
+    n    = n()
+  ) %>%
+  kbl(linesep = "", booktabs = TRUE, align = "lccc", col.names = c("CITY", "Mean", "SD", "n"), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                latex_options = "HOLD_position",
+                full_width = FALSE)
+```
+
+```{r fig.align='center',fig.width=4,fig.height=2, out.width="40%"}
+ggplot(epa2021_sample, aes(y = fct_rev(transmission_desc), x = city_mpg)) +
+  geom_boxplot() +
+  labs(y = NULL, x = "City mileage (MPG)")
+```
+
+a. What are the assumptions of CLT that needs to be satisfied before applying the hypothesis test? Are these assumptions met in the given data.
+\vfill
+
+## Problem 2
+
+Continued from Problem (1).
+
+a. State the null and alternative hypothesis in words and their appropriate mathematical symbols. Set the significance value $\alpha = 0.05$.
+\vfill
+
+b. Conduct a two-sample t-test.
+
+    i. Compute the standard error $SE$.
+    \vfill
+    
+    ii. Compute the test statistic $t$.
+    \vfill
+    
+    iii. Determine the degrees of freedom $df$.
+    \vfill
+    
+    vi. Compute the p-value.
+    \vfill
+
+c. What is the conclusion of the two sample t-test conducted in Part (a)? What does this mean about the fuel efficiency of cars with manual and automatic transmissions? Explain your reasoning.
+\vfill
+
+## **References**
+
+::: {#refs}
+:::

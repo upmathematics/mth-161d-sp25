@@ -584,7 +584,6 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Basic Probability](lessons/6.1-mth161-basic-probability/6.1-mth161-basic-probability.html) | Pg. 81-91 @diez2012openintro |
 | [Binomial Distribution](lessons/6.2-mth161-binomial-distribution/6.2-mth161-binomial-distribution.html) | Pg. 149-155 @diez2012openintro |
 | [Normal Distribution](lessons/7.1-mth161-normal-distribution/7.1-mth161-normal-distribution.html) | Pg. 133-141 @diez2012openintro |
-| Conditional Probability | Pg. 95-108 @diez2012openintro |
 | [Point Estimates and Sampling Variability](lessons/9.1-mth161-point-estimates-and-samping-variability/9.1-mth161-point-estimates-and-samping-variability.html) | Pg. 170-178 @diez2012openintro |
 | [Confidence Intervals](lessons/9.2-mth161-confidence-intervals/9.2-mth161-confidence-intervals.html) | Pg. 181-186 @diez2012openintro |
 | [Inference for One Proportion](lessons/10.1-mth161-inference-for-one-proportion/10.1-mth161-inference-for-one-proportion.html) | Pg. 208-213 @diez2012openintro |
@@ -593,8 +592,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Inference for One-Way and Two-Way Tables](lessons/11.1-mth161-inference-for-one-way-and-two-way-tables/11.1-mth161-inference-for-one-way-and-two-way-tables.html) | Pg. 229-238 & Pg. 240-244 @diez2012openintro |
 | [Inference for One Mean](lessons/12.1-mth161-inference-for-one-mean/12.1-mth161-inference-for-one-mean.html) | Pg. 251-258 @diez2012openintro |
 | [Inference for Difference of Two Means](lessons/12.2-mth161-inference-for-difference-of-two-means/12.2-mth161-inference-for-difference-of-two-means.html) | Pg. 267-273 @diez2012openintro |
-| Inference for Paired Means | Pg. 262-264 @diez2012openintro |
-| Hypothesis Testing for Means | - |
+| [Hypothesis Testing for Means](lessons/12.3-mth161-hypothesis-testing-for-means/12.3-mth161-hypothesis-testing-for-means.html) | - |
 | Introduction to Linear Regression | Pg. 305-311 @diez2012openintro |
 | Least-Squares Regression | Pg. 317-324 @diez2012openintro |
 | Inference for Linear Regression | Pg. 331-334 @diez2012openintro |

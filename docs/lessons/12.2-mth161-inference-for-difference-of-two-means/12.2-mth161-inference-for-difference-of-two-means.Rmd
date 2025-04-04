@@ -209,7 +209,7 @@ $$df = n - 1$$
 
 **Two-sample t-interval**
 
-* **Minimum sample size.** If $n_1 \approx n_2$, then $df = \min{\left(n_1 - 1,n_2 - 2\right)}$. *Using this $df$ yields low statistical power.*
+* **Minimum sample size.** If $n_1 \approx n_2$, then $df = \min{\left(n_1 - 1,n_2 - 1\right)}$. *Using this $df$ yields low statistical power.*
 * **Pooled.** If $n_1 \ne n_2$ and $s_1 = s_2$, then $df = n_1 + n_2 - 2$.
 * **Welch's Formula.** If $n_1 \ne n_2$ and $s_1 \ne s_2$, then $df = \frac{\left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2}{\left(\frac{1}{n_1 - 1}\right) \left( \frac{s_1^2}{n_1} \right)^2 + \left(\frac{1}{n_2 - 1}\right) \left( \frac{s_2^2}{n_2} \right)^2}$. *Using this $df$ is the default*.
 

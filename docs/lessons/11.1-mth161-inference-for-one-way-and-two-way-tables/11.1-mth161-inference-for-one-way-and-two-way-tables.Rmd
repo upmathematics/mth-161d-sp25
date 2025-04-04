@@ -163,7 +163,7 @@ kable(xtabs(total ~ survived + class, titanic_surv_class))
 ```
 
 * The expected proportions are $\frac{1}{2}$ assuming the passengers are equally likely to survive.
-* The expected frequency based on the data is $\left( \frac{1}{2} \right) 324 = 126$ for each survived category.
+* The expected frequency based on the data is $\left( \frac{1}{2} \right) 324 = 162$ for each survived category.
 ::::
 
 :::: {.column width=60%}
@@ -171,8 +171,8 @@ kable(xtabs(total ~ survived + class, titanic_surv_class))
 
 \[
 \begin{aligned}
-\chi^2 & = \frac{(123 - 126)^2}{126} + \frac{(201 - 126)^2}{126} \\
-       & = 44
+\chi^2 & = \frac{(123 - 162)^2}{162} + \frac{(201 - 162)^2}{162} \\
+       & = 18.78
 \end{aligned}
 \]
 
@@ -182,8 +182,8 @@ kable(xtabs(total ~ survived + class, titanic_surv_class))
 
 ```{r echo=TRUE, eval=TRUE}
 df <- 1 # define degrees of freedom
-chisq <- 44 # set chi-square statistic
-1-pchisq(44,df) # compute the p-value
+chisq <- 18.78 # set chi-square statistic
+1-pchisq(18.78,df) # compute the p-value
 ```
 
 * Since the p-value is less than $\alpha$, then we reject $H_0$. We can conclude that we have enough evidence to support $H_A$.
@@ -194,7 +194,7 @@ chisq <- 44 # set chi-square statistic
 ```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center',fig.width=7,fig.height=3,out.width='100%'}
 # normal pdf
 df <- 1
-x_chisq <- seq(0,50,0.10)
+x_chisq <- seq(0,30,0.10)
 chisq_pdf <- dchisq(x_chisq,df)
 
 # convert pdf into tibble
@@ -203,11 +203,11 @@ df_chisq <- tibble(z=x_chisq, chisq_pdf=chisq_pdf)
 # plot the Bernoulli distribution and store it into a R variable
 p1 <- ggplot(df_chisq,aes(x=z,y=chisq_pdf)) + 
   geom_line(color="#009159",linewidth=1) + 
-  geom_ribbon(data=subset(df_chisq,z>=44),aes(x=z,ymax=dchisq(z,df)),ymin=0,alpha=0.3,fill="#009159") +
+  geom_ribbon(data=subset(df_chisq,z>=18.78),aes(x=z,ymax=dchisq(z,df)),ymin=0,alpha=0.3,fill="#009159") +
   xlab(TeX("$\\chi^2$")) +
   ylab("density") + 
   ggtitle("Chi-Squared Distribution with 1 Degree of Freedom") + # sets the title of the plot
-  scale_x_discrete(limits=c(44)) + 
+  scale_x_discrete(limits=c(18.78)) + 
   theme_minimal() + # set theme of entire plot
   theme(legend.title=element_blank())
 
