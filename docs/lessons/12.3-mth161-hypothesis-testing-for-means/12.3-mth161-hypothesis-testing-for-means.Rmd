@@ -154,8 +154,8 @@ births14_sample_stats %>%
 
 Conditions:
 
-- The data come from a simple random sample, the observations are independent, both within and between samples.
-- Both groups over 30 observations, we inspect the data for any particularly extreme outliers and find none.
+* The data come from a simple random sample, the observations are independent, both within and between samples.
+* Both groups over 30 observations, we inspect the data for any particularly extreme outliers and find none.
 
 Since both conditions are satisfied, the difference in sample means may be modeled using a $t$-distribution.
 
@@ -187,11 +187,11 @@ ggplot(births14_nona, aes(x = weight, y = habit,fill=habit)) +
 
 Consider one group (smoking) from the data. It is known that a newborn baby has an average weight of $7.5$ lbs. We want to test whether the average weight for the smoking group is less than the average using a one sample t-test.
 
-```{r boxplotWeights1, fig.align='center', fig.width=6,fig.height=3, out.width="50%"}
+```{r boxplotWeights1, fig.align='center', fig.width=4,fig.height=2, out.width="50%"}
 ggplot(births14_nona %>% filter(habit == "smoker"),aes(x=weight)) +
   geom_boxplot() +
-  labs(title = "Boxplot of weights in the smoking group.", x = "Newborn weights (lbs)", y = "") +
-  scale_color_manual(values = c("blue", "red"))
+  labs(title = "Boxplot of weights in the smoking group.", x = "Newborn weights (lbs)", y = "") + 
+  theme_minimal()
 ```
 
 Is the data (smoking group) a convincing evidence to support the claim of the average weight to be less than $7.5$ lbs?
@@ -226,8 +226,8 @@ Is the data (smoking group) a convincing evidence to support the claim of the av
 
 ## Case Study I: One Sample t-test (4/4)
 
-  * Degrees of freedom is $df = n - 1 = 114 - 1 = 113$.
-  * The p-value is $1.27 \times 10^{-07} \approx 0$.
+* Degrees of freedom is $df = n - 1 = 114 - 1 = 113$.
+* The p-value is $1.27 \times 10^{-07} \approx 0$.
   
 **Using R to find the p-value**
 
@@ -238,6 +238,7 @@ pt(t,df) # p-value
 ```
 
 **Conclusions:**
+
   * Since the p-value is less than significance value of $0.01$ (the p-value is really small), we can conclude that the data is a strong evidence that the average weights for the smoking group is not equal to $7.5$ lbs.
   * Since the T statistic is negative, we can say that the average weights is less than the null value.
   
@@ -264,7 +265,7 @@ Is there a difference in weight means between the smoking group and nonsmoking g
     $$\mu_{smoking} = \mu_{nonsmoking}$$
 * Null Hypothesis $H_A$: There is a significant difference in means between the smoking and nonsmoking groups. In particular the smoking group weights is less than the nonsmoking group weights.
     $$\mu_{smoking} < \mu_{nonsmoking}$$
-* The null value is $\mu_0 = 0$. The point-estimate is $\bar{x}_{nonsmoking} - \bar{x}_{smoking} = 0.59$ and the sample standard deviations are $s_{smoking} = 1.60$ and $s_{nonsmoking} = 1.23$.
+* The null value is $\mu_0 = 0$. The point-estimate is $\bar{x}_{smoking} - \bar{x}_{nonsmoking} = -0.5927$ and the sample standard deviations are $s_{smoking} = 1.5966$ and $s_{nonsmoking} = 1.2328$.
 * We set the significance value $\alpha = 0.01$.
 
 ## Case Study I: Two Sample t-test (3/4)
