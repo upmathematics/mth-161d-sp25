@@ -190,7 +190,7 @@ qt(lt, df) # t-star
   \[
   \begin{aligned}
   \bar{x}_{automatic} - \bar{x}_{manual} & \pm ME \\
-                             17.4 - 22.7 & \pm t^*_{df} \times \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+                             17.4 - 22.7 & \pm t^*_{df} \times \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} \\
                              17.4 - 22.7 & \pm 2.0639 \times 1.1456 \\
                                     -5.3 & \pm 2.3644
   \end{aligned}

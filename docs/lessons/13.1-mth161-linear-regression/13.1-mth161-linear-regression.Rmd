@@ -1,0 +1,359 @@
+---
+title: "Linear Regression"
+subtitle: "Elementary Statistics"
+author: "MTH-161D | Spring 2025 | University of Portland"
+date: "April 9, 2025"
+output:
+  slidy_presentation:
+    font_adjustment: +5
+    footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
+bibliography: ../../references.bib
+csl: ../../apa.csl
+link-citation: true
+nocite: '@*'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(gghighlight)
+library(kableExtra)
+library(latex2exp)
+library(gridExtra)
+data(COL)
+seed <- 42
+```
+
+## Objectives
+
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
+- **Introduce the simple linear regression**
+- **Develop an understanding of the residuals**
+- **Know how to inspect the linearity and correlation of two numerical variables**
+- **Activity: Examine a Linear Model**
+::::
+
+:::: {.column width=15%}
+::::
+
+## Previously... 
+
+**Relationship Between Variables**
+
+$$\text{explanatory variable} \xrightarrow{\text{might affect}} \text{response variable}$$
+
+**Associated vs Independent Variables**
+
+* When two variables show some connection with one another, they are called <span style="color:blue">**associated**</span> or <span style="color:blue">**dependent**</span> variables.
+
+* In general, <span style="color:blue">**association does not imply causation**</span>, and causation can only be inferred from a randomized experiment.
+
+## High School Graduation and Poverty
+
+<div class='left' style='float:left;width:48%'>
+The **scatterplot** on the right shows the relationship between HS graduate rate in all 50 US states and DC and the \% of residents who live below the poverty line (income below \$23,050 for a family of 4 in 2012).
+
+* **Response Variable (outcome):** \% in poverty
+* **Explanatory Variable (predictor):** \% HS grad
+* **Relationship:** linear, negative, moderately strong
+</div>
+
+<div class='right' style='float:right;width:48%'>
+```{r poverty-scatter-1, fig.align='center', fig.height=5, fig.width=5, message=FALSE, warning=FALSE, out.width="100%"}
+poverty = read.table("poverty.txt", header = T, sep = "\t")
+
+library(openintro)
+library(broom)
+data(COL)
+
+# scatterplot
+
+par(mar=c(4,4,1,1), las=1, mgp=c(2.5,0.7,0), cex.lab = 1.5, cex.axis = 1.5)
+plot(poverty$Poverty ~ poverty$Graduates, ylab = "% in poverty", xlab = "% HS grad", pch=19, col=COL[1,2])
+```
+</div>
+
+## The Linear Model
+
+A **linear model** is written as 
+
+\[ y = \beta_0 + \beta_1 x + \epsilon  \]
+
+where $y$ is the outcome, $x$ is the predictor, $\beta_0$ is the intercept, and $\beta_1$ is the slope. The notation $\epsilon$ is the model's error.
+
+*Notation:*
+
+* Population Parameters: $\beta_0$ and $\beta_1$
+* Sample statistics (point estimates for the parameters): $b_0$ and $b_1$
+* Estimated/Predicted outcome: $\hat{y} = b_0 + b_1 x$
+  
+We can use the **sample statistics $b_0$ and $b_1$** as point estimates to infer the true value of the **population parameters $\beta_0$ and $\beta_1$**.
+
+## Using a Linear Regression to Predict Poverty
+
+<div class='left' style='float:left;width:48%'>
+The **linear model** for predicting poverty from high school graduation rate in the US is
+
+\[ \widehat{poverty} = 64.78 - 0.62 \times HS_{grad} \]
+
+where the sample statistics are the slope is $b_1 = - 0.62$ and the intercept is $b_0 = 64.78$.
+
+The "hat" in the $\widehat{poverty}$ indicates an estimated/predicted outcome.
+</div>
+
+<div class='right' style='float:right;width:48%'>
+The high school graduate rate in Georgia is 85.1\%. 
+
+What poverty level does the model predict for this state?
+
+>- The poverty estimate/prediction for Georgia with graduate rate of 85.1% is 
+     \[ \widehat{poverty} = 64.78 - 0.62 \times 85.1 = 12.018 \]
+</div>
+
+## Interpreting the Linear Model
+
+The **linear model** for predicting poverty from high school graduation rate in the US is
+
+\[ \widehat{poverty} = 64.78 - 0.62 \times HS_{grad} \] 
+
+where the sample statistics are the slope is $b_1 = - 0.62$ and the intercept is $b_0 = 64.78$.
+
+* **Interpreting the slope:** If the high school graduation rate increases by 1\%, then the
+model predicts that the poverty rate will decrease by approximately 0.62\%.
+* **Interpreting the intercept:** If the high school graduation rate is 0, then the model
+predicts that the poverty rate is approximately 64.78\%.
+* It is necessary to understand - at least partially - the units in which the variables are measured in order to correctly interpret the slope and intercept.
+* It is good to understand data thoroughly and to understand the structure of the linear model.
+
+## Eyeballing the line
+
+<div class='left' style='float:left;width:48%'>
+Which of the following appears to be the line that best fits the linear relationship between \% in poverty and \% HS grad? Choose one.
+
+>- **(a)** because this line appears to be minimizing most of the distances between the data points and the line.
+>- These distances from the linear model and the data points are called **residuals**.
+</div>
+
+<div class='right' style='float:right;width:48%'>
+```{r poverty-scatter-manylines, fig.align='center', fig.width=5,fig.height=5,out.width="100%"}
+par(mar=c(4,4,1,1), las=1, mgp=c(2.5,0.7,0), cex.lab = 1.5, cex.axis = 1.5)
+
+plot(poverty$Poverty ~ poverty$Graduates, ylab = "% in poverty", xlab = "% HS grad", pch=19, col=COL[1,2])
+abline(lm(poverty$Poverty ~ poverty$Graduates), col = COL[4], lwd = 3, lty = 1)
+
+y1 = lm(poverty$Poverty ~ poverty$Graduates)$coefficients[1] + 2 + (1.1 * lm(poverty$Poverty ~ poverty$Graduates)$coefficients[2]) * poverty$Graduates
+abline(lm(y1 ~ poverty$Graduates), lwd = 3, col = COL[2], lty = 2)
+
+abline(h = 14, lwd = 3, col = COL[5], lty = 3)
+
+y2 = 114 - (12/10) * seq(70,100,1)
+abline(lm(y2 ~ seq(70,100,1)), lwd = 3, col = COL[3], lty = 4)
+
+legend("topright", inset = 0.05, c("(a)","(b)","(c)", "(d)"), 
+       col = c(COL[4],COL[2],COL[5],COL[3]), lwd = 3, lty = c(1,2,3,4))
+```
+</div>
+
+## Residuals
+
+<div class='left' style='float:left;width:48%'>
+**Residuals** are the leftover variation in the data after accounting for the model fit: 
+<center>
+Data = Fit + Residual
+</center>
+
+A **Residual** of the $i^{th}$ observation $(x_i,y_i)$ is the difference between the observed ($y_i$) and estimated/predicted $\hat{y}_i$.
+
+\[ \epsilon_i = y_i - \hat{y}_i \]
+</div>
+
+<div class='right' style='float:right;width:48%'>
+```{r poverty-scatter-residuals, fig.align='center', fig.width=5,fig.height=5,out.width="100%"}
+par(mar=c(4,4,1,1), las=1, mgp=c(2.5,0.7,0), cex.lab = 1.5, cex.axis = 1.5)
+
+plot(poverty$Poverty ~ poverty$Graduates, ylab = "% in poverty", xlab = "% HS grad", pch=19, col=COL[1,2])
+lm_pov_grad = lm(poverty$Poverty ~ poverty$Graduates)
+pred = predict(lm_pov_grad)
+x = poverty$Graduates
+for(i in 1:length(pred)){
+  lines(c(x[i],x[i]), c(poverty$Poverty[i],pred[i]), col = COL[2])
+}
+abline(lm_pov_grad, col = COL[4], lwd = 3)
+```
+</div>
+
+## Residuals
+
+<div class='left' style='float:left;width:48%'>
+* Living in poverty in DC is 5.44\% more than predicted.
+* Living in poverty in RI is 4.16\% less than predicted.
+</div>
+
+<div class='right' style='float:right;width:48%'>
+```{r poverty-scatter-residuals-example, fig.align='center', fig.width=5,fig.height=5,out.width="100%"}
+par(mar=c(4,4,1,1), las=1, mgp=c(2.5,0.7,0), cex.lab = 1.5, cex.axis = 1.5)
+
+plot(poverty$Poverty ~ poverty$Graduates, ylab = "% in poverty", xlab = "% HS grad", pch=19, col=COL[1,2])
+lm_pov_grad = lm(poverty$Poverty ~ poverty$Graduates)
+
+pred = predict(lm_pov_grad)
+x = poverty$Graduates
+
+for(i in c(9,40)){
+  lines(c(x[i],x[i]), c(poverty$Poverty[i],pred[i]), col = COL[2])
+  text(x[i]+0.5, poverty$Poverty[i], "y", cex = 1.5, col = "blue")
+  text(x[i]+1.2, mean(c(poverty$Poverty[i],pred[i])), as.character(round(poverty$Poverty[i] - pred[i],2)), cex = 1.5, col = "orange")
+  text(x[i]-0.5, pred[i], expression(hat(y)), cex = 1.5, col = COL[4])
+}
+text(x[9], poverty$Poverty[9] + 0.5, "DC", col = COL[2])
+text(x[40], poverty$Poverty[40] - 0.5, "RI", col = COL[2])
+
+abline(lm_pov_grad, col = COL[4], lwd = 3)
+```
+</div>
+
+## Error/Residuals Terminologies
+
+* The **error** - denoted as $\epsilon$ in the general form of the linear model below - can refer to the deviation of the observed values (samples) from the true values in the population (often unobserved).
+     \[ y = \beta_0 + \beta_1 x + e  \]
+* The **residual** - which is also the model's error - refers to the deviation from the estimated/predicted value and data (samples).
+    <center>
+      Data = Fit + Residual
+    </center>
+* The difference between the observed ($y_i$) and estimated/predicted $\hat{y}_i$.
+    \[ \epsilon_i = y_i - \hat{y}_i \]
+
+## Quantifying the Relationship with Correlation
+
+<div class='left' style='float:left;width:48%'>
+The relationship of two numerical variables shown in the right is **moderately strong linear negative relationship.**
+
+**Correlation** (notation: $r$) describes the strength of the **linear** association between two numerical variables.
+
+* It can have values between -1 (perfect negative) and +1 (perfect positive).
+* A value of 0 indicates no linear association.
+* Correlation has not units.
+</div>
+
+<div class='right' style='float:right;width:48%'>
+```{r poverty-scatter-line-1, fig.align='center', fig.width=5,fig.height=5,out.width="100%"}
+par(mar=c(4,4,1,1), las=1, mgp=c(2.5,0.7,0), cex.lab = 1.5, cex.axis = 1.5)
+plot(poverty$Poverty ~ poverty$Graduates, ylab = "% in poverty", xlab = "% HS grad", pch=19, col=COL[1,2])
+lm_pov_grad = lm(poverty$Poverty ~ poverty$Graduates)
+abline(lm_pov_grad, col = COL[4], lwd = 3)
+```
+</div>
+
+## Quantifying the Relationship with Correlation
+
+<div class='left' style='float:left;width:48%'>
+*Example:*
+
+Which of the following is the best guess for the correlation between \% in poverty and \% HS grad? 
+
+(a)$r=0.6$ <br>
+(b)$r=-0.75$ <br>
+(c)$r=-0.1$ <br>
+(d)$r=0.02$ <br>
+(e)$r=-1.5$ <br>
+  
+>- **(b) $r=-0.75$** because the association appears to be negative and the association seems to be strong.
+</div>
+
+<div class='right' style='float:right;width:48%'>
+```{r poverty-scatter-line-2, fig.align='center', fig.width=5,fig.height=5,out.width="100%"}
+par(mar=c(4,4,1,1), las=1, mgp=c(2.5,0.7,0), cex.lab = 1.5, cex.axis = 1.5)
+plot(poverty$Poverty ~ poverty$Graduates, ylab = "% in poverty", xlab = "% HS grad", pch=19, col=COL[1,2])
+lm_pov_grad = lm(poverty$Poverty ~ poverty$Graduates)
+abline(lm_pov_grad, col = COL[4], lwd = 3)
+```
+</div>
+
+## Assessing the Correlation
+
+<div class='left' style='float:left;width:48%'>
+Which of the following has the strongest correlation, i.e. correlation coefficient closest to +1 or -1?
+
+>- **(b)** $\rightarrow$ correlation means *linear* association and - when fitting a linear model into data - we try minimize the residuals.
+</div>
+
+<div class='right' style='float:right;width:48%'>
+```{r scatterplots-example-correlations, fig.align='center', fig.width=5,fig.height=5,out.width="100%", message=FALSE}
+x = seq(0,10,0.1)
+yNonLin = (x-3)^2 - 4 + rnorm(length(x), mean = 0, sd = 1)
+yPosLinStrong = 3*x + 10 + rnorm(length(x), mean = 0, sd = 2)
+yPosLinWeak = 3*x + 10 + rnorm(length(x), mean = 0, sd = 20)
+yNegLinWeak = -3*x + 10 + rnorm(length(x), mean = 0, sd = 5)
+
+par(mar=c(2,1,1,1), las=1, mgp=c(0.5,0.7,0), mfrow = c(2,2), cex.lab = 1.5, cex.axis = 1.5)
+
+plot(yNonLin ~ x, ylab = "", xlab = "(a)", pch=19, col=COL[1,2], axes = FALSE)
+box()
+
+plot(yPosLinStrong ~ x, ylab = "", xlab = "(b)", pch=19, col=COL[1,2], axes = FALSE)
+box()
+
+plot(yPosLinWeak ~ x, ylab = "", xlab = "(c)", pch=19, col=COL[1,2], axes = FALSE)
+box()
+
+plot(yNegLinWeak ~ x, ylab = "", xlab = "(d)", pch=19, col=COL[1,2], axes = FALSE)
+box()
+```
+</div>
+
+## More Correlation Examples
+
+```{r posNegCorPlots, fig.cap="Sample scatterplots and their correlations. The first row shows variables with a positive relationship, represented by the trend up and to the right. The second row shows variables with a negative trend, where a large value in one variable is associated with a lower value in the other.", fig.width=6,fig.height=3,out.width="100%", fig.align='center', message=FALSE, warning=FALSE}
+library(ggpubr) # Adding here instead of _common.R to avoid collision with ggimage
+
+simulated_scatter %>%
+  filter(group %in% c(9:12, 14:17)) %>%
+  ggplot(aes(x = x, y = y)) + 
+  geom_point(size = 2, alpha = 0.8) +
+  theme_void() +
+  facet_wrap(~group, nrow = 2, scales = "free_x") + 
+  theme(
+    panel.border = element_rect(colour = "gray", fill = NA, size = 1),
+    strip.background = element_blank(),
+    strip.text.x = element_blank()
+  ) +
+  stat_cor(aes(label = paste("r", ..r.., sep = "~`=`~")))
+```
+
+## More Correlation Examples
+
+```{r corForNonLinearPlots, fig.cap = "Sample scatterplots and their correlations. In each case, there is a strong relationship between the variables. However, because the relationship is not linear, the correlation is relatively weak.", fig.width=6,fig.height=2,out.width="100%", fig.align='center'}
+simulated_scatter %>%
+  filter(group %in% 17:19) %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point(size = 2, alpha = 0.8) +
+  theme_void() +
+  facet_wrap(~group, nrow = 1, scales = "free") +
+  theme(
+    panel.border = element_rect(colour = "gray", fill = NA, size = 1),
+    strip.background = element_blank(),
+    strip.text.x = element_blank()
+  ) +
+  stat_cor(aes(label = paste("r", ..r.., sep = "~`=`~")))
+```
+
+## Activity: Examine a Linear Model
+
+1. Make sure you have a copy of the *W 4/9 Worksheet*. This will be handed out physically and it is also digitally available on Moodle.
+2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
+3. Get together with another student.
+4. Discuss your results.
+5. Submit your worksheet on Moodle as a `.pdf` file.
+
+## References
+
+::: {#refs}
+:::

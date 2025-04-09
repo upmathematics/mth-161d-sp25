@@ -593,7 +593,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Inference for One Mean](lessons/12.1-mth161-inference-for-one-mean/12.1-mth161-inference-for-one-mean.html) | Pg. 251-258 @diez2012openintro |
 | [Inference for Difference of Two Means](lessons/12.2-mth161-inference-for-difference-of-two-means/12.2-mth161-inference-for-difference-of-two-means.html) | Pg. 267-273 @diez2012openintro |
 | [Hypothesis Testing for Means](lessons/12.3-mth161-hypothesis-testing-for-means/12.3-mth161-hypothesis-testing-for-means.html) | - |
-| Introduction to Linear Regression | Pg. 305-311 @diez2012openintro |
+| [Linear Regression](lessons/13.1-mth161-linear-regression/13.1-mth161-linear-regression.html) | Pg. 305-311 @diez2012openintro |
 | Least-Squares Regression | Pg. 317-324 @diez2012openintro |
 | Inference for Linear Regression | Pg. 331-334 @diez2012openintro |
 | Hypothesis Testing for Linear Regression | - |
