@@ -3,7 +3,7 @@ header-includes: |
   \usepackage{fancyhdr}
   \pagestyle{fancy}
   \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
-  \fancyhead[RO,R]{\textbf{W 4/9 Worksheet} | Pg. \thepage}
+  \fancyhead[RO,R]{\textbf{F 4/11 Worksheet} | Pg. \thepage}
   \fancyfoot[CO,C]{}
   \usepackage{float}
   \usepackage{multirow}
@@ -45,39 +45,69 @@ seed = 42
 Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
 \noindent\rule{\textwidth}{1pt}
 
-## Examine a Linear Model
+## Assessing Residuals of a Linear Model
 
-### 1. The Coast Starlight
+### 1. A Best fit Line
 
-The Coast Starlight Amtrak train runs from Seattle to Los Angeles. The scatterplot below displays the distance between each stop (in miles) and the amount of time it takes to travel from one stop to another (in minutes). The correlation between travel time and distance is 0.636. The plot also shows the best linear fit (solid line) of the data where the slope is estimated to be 0.7259 and the intercept is 50.8842.
+```{r, message=FALSE, echo=FALSE}
+# make synthetic data
+set.seed(5)
+n <- 100
+slope_unreal <- -1*1.5
+intercept_unreal <- 5
+x <- runif(n, min=0, max=1)*100
+y <- intercept_unreal + slope_unreal*x + rnorm(n, mean=0, sd=30)
+x <- x/max(x)
+y <- y/max(y)
+df <- data.frame(x,y)
+lm_mod <- lm(y ~ x, data = df)
+new.df <- data.frame(x=df$x,y=df$y)
+preds <- new.df %>%  mutate(y.hat = predict(lm_mod, new.df))
+cor_xy <- cor(x,y)
+residuals <- data.frame(e=resid(lm_mod))
+residuals <- residuals %>% mutate(x = x, y = y, y.hat = preds$y.hat)
+sst <- sum((y - mean(y))^2)
+sse <- sum(residuals$e^2)
+```
 
-```{r cs-line-model, fig.align='center', fig.height=4, fig.width=4, message=FALSE, warning=FALSE, out.width="40%"}
-ggplot(coast_starlight,aes(x=dist,y=travel_time)) + 
-  geom_point(size=2,color=COL[1,1]) + 
-  xlab("Distance (miles)") + 
-  ylab("Travel Time (minutes)") + 
-  geom_smooth(method='lm', formula= y~x, se=FALSE, color="black") + 
+```{r x-y-scatterplot, fig.cap = "Scatterplot of variables x and y. The black line is the best fit linear model of the data.", out.width="35%", message=FALSE, warning=FALSE, fig.align='center', fig.width=4,fig.height=4}
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(alpha = 0.50, fill = IMSCOL["gray", "full"], shape = 21, size = 3) +
+  geom_smooth(method = "glm", color = IMSCOL["black", "full"], se = FALSE) +
+  labs(x = "x",y = "y") +
+  scale_x_continuous() +
+  scale_y_continuous() + 
   theme_minimal()
 ```
 
-a. What are the explanatory and response variables? Explain your reasoning.
+a. The correlation coefficient of the two numerical variables $x$ and $y$ is $r = -0.8355$. The standard deviation of $x$ is $s_x = 0.3061$. The standard deviation of $y$ is $s_y = 1.2469$. Compute and interpret the slope estimate of the linear fit.
+\vfill
+  
+b. The mean of $x$ is $\bar{x} = 0.5240$. The mean of $y$ is $\bar{y} = -1.7337$. Apply the point-slope equation using the means $(\bar{x},\bar{y})$ and the slope to write the equation of the red line shown in the scatter plot. What is the equation of the linear model? What is the intercept of the linear model?
 \vfill
 
-b. Write the equation of the regression line for predicting travel time.
+## 2. Residual Analysis
+
+Continued from Problem (1).
+
+```{r resid-scatter-hist, fig.cap = "Histogram and scatterplot of the residuals.", echo=FALSE, fig.align='center', fig.pos="H", out.width="70%", message=FALSE, warning=FALSE, fig.align='center', fig.width=8,fig.height=4}
+histogram <- ggplot(data=residuals, aes(x=e)) + geom_histogram(bins=20, color="black") + 
+  xlab("Residuals") +  ylab("Frequency") + ggtitle("Histogram of Residuals") + 
+  theme_minimal()
+
+scatter <- ggplot(data=residuals, aes(x = y.hat, y = e)) + geom_point(size = 1.5) + # scatter plot
+  xlab("Predicted y") +  ylab("Residual") + # x and y label +
+  geom_hline(yintercept=0, linetype='dashed', col = 'red') +
+  ggtitle("Predicted y vs Residuals") + 
+  theme_minimal()
+
+grid.arrange(histogram, scatter, nrow=1, ncol=2)
+```
+  
+a. The SST of the model is $153.9204$ and the SSE of the model is $46.48605$. Compute the coefficient of determination ($R^2$). Interpret this value in the context of the model.
 \vfill
 
-\newpage
-
-c. Interpret the slope and the intercept in context. Explain why the intercept interpretation does not make any sense in this context and it should not be used.
-\vfill
-
-d. Interpret the correlation in context.
-\vfill
-
-e. The distance between Santa Barbara and Los Angeles is 103 miles. Use the model to estimate the time it takes for the Starlight to travel between these two cities.
-\vfill
-
-f. It actually takes about 168 mins to travel from Santa Barbara to Los Angeles. Calculate the residual and explain the meaning of this residual value.
+b. Consider the histogram of residuals and the scatterplot of residuals. Explain why a linear regression model is appropriate for the data it represents.
 \vfill
 
 ## **References**

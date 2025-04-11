@@ -2,7 +2,7 @@
 title: "Least-Squares Regression"
 subtitle: "Elementary Statistics"
 author: "MTH-161D | Spring 2025 | University of Portland"
-date: "April 10, 2025"
+date: "April 11, 2025"
 output:
   slidy_presentation:
     font_adjustment: +5
@@ -124,12 +124,68 @@ Terms:
 
 ## Ordinary Least Squares Assumptions
 
-  1. The data is randomly sampled independent observations.
-  2. The distribution of the residuals is normally distributed and the residuals exhibits homoscedasticity.
-  3. The independent variables are uncorrelated with the error term.
-  4. The regression model is linear in the coefficients and the error term.
-  5. The independent variables should not be collinear - or correlated to each other.
-  
+* The data is randomly sampled independent observations.
+* The distribution of the residuals is normally distributed and the residuals exhibits homoscedasticity.
+* The independent variables are uncorrelated with the error term.
+* The regression model is linear in the coefficients and the error term.
+* The independent variables should not be collinear - or correlated to each other.
+
+## Sum of Squared Error (SSE) and the Total Sum of Squares (TSS)
+
+The **Sum of Squared Error (SSE)** is a metric of left-over variability in the $y$ values if we know $x$.
+
+$$
+SSE = (\epsilon_1)^2 + (\epsilon_2)^2 + \cdots (\epsilon_n)^2
+$$
+
+The **Total Sum of Squares (SST)** is a metric measure the variability in the $y$ values by how far they tend to fall from their mean, $\bar{y}$.
+
+$$
+SST = (y_1 - \bar{y})^2 + (y_2 - \bar{y})^2 + \cdots + (y_n - \bar{y})^2
+$$
+
+where $\bar{y} = \frac{1}{n} \left(y_1 + y_2 + \cdots + y_n \right)$, and $n$ is the number of observations.
+
+## Minimizing the SSE
+
+To find the best linear fit, we minimize the SSE.
+
+$$
+\begin{aligned}
+SSE & = (\epsilon_1)^2 + (\epsilon_2)^2 + \cdots (\epsilon_n)^2 \\ 
+    & = (y_1 - \hat{y_1})^2 + (y_2 - \hat{y_2})^2 + \cdots + (y_n - \hat{y_n})^2
+\end{aligned}
+$$
+
+Plugging-in the linear equation $\hat{y} = b_0 + b_1 x$, we have
+
+$$
+SSE = (y_1 - (b_0 + b_1 x_1)^2 + (y_2 - (b_0 + b_1 x_2)^2 + \cdots + (y_n - (b_0 + b_1 x_n)^2.
+$$
+
+Minimizing the above equation over all possible values of $b_0$ and $b_1$ is a calculus problem. Take the derivative of SSE with respect to $b_1$, set it equal to zero, and solve for $b_1$.
+
+Long story short,
+
+$$
+\begin{aligned}
+b_1 = & \frac{s_y}{s_x} r \\
+b_0 = & \bar{y} - b_1 \bar{x}
+\end{aligned}
+$$
+
+where:
+
+* $s_y$ and $s_x$ are the standard deviations of $x$ and $y$ respectively
+* $r$ is the pearson correlation coefficient of $x$ and $y$.
+* $\bar{x}$ and $\bar{y}$ are the mean of $x$ and $y$ respectively.
+
+## Least-Squares Example Visualization
+
+```{r least-squares-diagram, echo=FALSE, fig.cap="Least-Squares Example Visualization: Shown here is some data (orange dots) and the best fit linear model (red line). You can try this [least-squares regression interactive demo](https://phet.colorado.edu/sims/html/least-squares-regression/latest/least-squares-regression_en.html){target=_blank} to visualize on how it works.", out.width="45%", fig.align="center"}
+knitr::include_graphics("least-squares-diagram.png")
+```
+
 ## Finding the Best Fit
 
 To find the best fit linear model to data, we compute the slope and intercept by using the correlation and standard deviations.
@@ -146,9 +202,9 @@ $$
 \end{aligned}
 $$
 
-Note that the $n-1$ term  - known as Bessel's correction - in the sample variance $s^2$ is the unbiased estimator for the population variance $\sigma^2$.
+We typically use software --such as R-- to compute the above values.
 
-## Why do we care about the math when we can just use R progamming language?
+## Interpreting the Slope Estimate
 
 * Using least-squares regression is typically the most helpful when dealing with data.
 * The slope in terms of the standard deviations and correlation helps us interpret it more precisely.
