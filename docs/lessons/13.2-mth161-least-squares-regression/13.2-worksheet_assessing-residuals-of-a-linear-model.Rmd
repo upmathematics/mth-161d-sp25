@@ -1,0 +1,86 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{W 4/9 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(kableExtra)
+library(gridExtra)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Examine a Linear Model
+
+### 1. The Coast Starlight
+
+The Coast Starlight Amtrak train runs from Seattle to Los Angeles. The scatterplot below displays the distance between each stop (in miles) and the amount of time it takes to travel from one stop to another (in minutes). The correlation between travel time and distance is 0.636. The plot also shows the best linear fit (solid line) of the data where the slope is estimated to be 0.7259 and the intercept is 50.8842.
+
+```{r cs-line-model, fig.align='center', fig.height=4, fig.width=4, message=FALSE, warning=FALSE, out.width="40%"}
+ggplot(coast_starlight,aes(x=dist,y=travel_time)) + 
+  geom_point(size=2,color=COL[1,1]) + 
+  xlab("Distance (miles)") + 
+  ylab("Travel Time (minutes)") + 
+  geom_smooth(method='lm', formula= y~x, se=FALSE, color="black") + 
+  theme_minimal()
+```
+
+a. What are the explanatory and response variables? Explain your reasoning.
+\vfill
+
+b. Write the equation of the regression line for predicting travel time.
+\vfill
+
+\newpage
+
+c. Interpret the slope and the intercept in context. Explain why the intercept interpretation does not make any sense in this context and it should not be used.
+\vfill
+
+d. Interpret the correlation in context.
+\vfill
+
+e. The distance between Santa Barbara and Los Angeles is 103 miles. Use the model to estimate the time it takes for the Starlight to travel between these two cities.
+\vfill
+
+f. It actually takes about 168 mins to travel from Santa Barbara to Los Angeles. Calculate the residual and explain the meaning of this residual value.
+\vfill
+
+## **References**
+
+::: {#refs}
+:::

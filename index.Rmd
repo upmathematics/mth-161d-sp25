@@ -185,10 +185,10 @@ The following learning objectives are designed to build on one another, with som
 | **Hypothesis Testing for Means** |  | **HTM1:** Perform a hypothesis test for means to a dataset using R. |
 | **Inference for Difference of Two Means** | **IDTM1:** Perform two-sample t-tests. <br>**IDTM2:** Evaluate assumptions and interpret the p-value and confidence interval for comparing two means. |  |
 | **Inference for Paired Means** |  | **IPM1:** Conduct paired t-tests to compare means. <br>**IPM2:** Evaluate assumptions and interpret confidence interval and p-value for paired data. |
-| **Introduction to Linear Regression, <br>Correlation, & <br>Residuals** | **LR1:** Interpret the slope and intercept of a regression line in context. <br>**LR2:** Explain the meaning of the correlation coefficient. <br>**LR3:** Understand the concept of residuals and interpret regression errors. |  |
-| **Inference for Linear Regression** | **ILR1:** Estimate the slope and intercept, <br>**ILR2:** Construct confidence intervals for regression coefficients. <br>**ILR3:** Evaluate assumptions and interpret p-value and confidence interval for regression coefficients. |  |
+| **Linear Regression** | **LR1:** Estimate and interpret the slope and intercept of a regression line in context. <br>**LR2:** Explain the meaning of the correlation coefficient. |  |
+| **Least-Squares Regression** | **LSR1:** Explain the method of least-squares regression. <br>**LSR2:** Understand the concept of residuals and interpret regression errors. | **LSR2:** Fit a least-squares regression line to a dataset using R. |
+| **Inference for Linear Regression** | **ILR1:** Construct confidence intervals for regression coefficients. <br>**ILR2:** Evaluate assumptions, interpret p-values, and confidence interval for regression coefficients. |  |
 | **Hypothesis Testing for Linear Regression** |  | **HTLR1:** Perform hypothesis test for linear regression to a dataset using R. |
-| **Least-Squares Regression** | **LSR1:** Explain the method of least-squares regression. | **LSR2:** Fit a least-squares regression line to a dataset using R. |
 | **Points of Leverage** |  | **PL1:** Able to distinguish regression outliers and evaluate their impacts. |
 | **Comparing Many Means, <br>Multiple Linear Regression, & <br>Logistic Regression** |  | **CMM1:** Use ANalysis Of Variance (ANOVA) to compare more than two group means. <br>**CMM2:** Interpret F-statistics and p-values in the context of ANOVA. <br>**MLR1:** Fit and interpret multiple linear regression models to a dataset using R. <br>**LR1:** Explain the concept and application of logistic regression in binary classification problems. |
 
@@ -594,7 +594,7 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Inference for Difference of Two Means](lessons/12.2-mth161-inference-for-difference-of-two-means/12.2-mth161-inference-for-difference-of-two-means.html) | Pg. 267-273 @diez2012openintro |
 | [Hypothesis Testing for Means](lessons/12.3-mth161-hypothesis-testing-for-means/12.3-mth161-hypothesis-testing-for-means.html) | - |
 | [Linear Regression](lessons/13.1-mth161-linear-regression/13.1-mth161-linear-regression.html) | Pg. 305-311 @diez2012openintro |
-| Least-Squares Regression | Pg. 317-324 @diez2012openintro |
+| [Least-Squares Regression](lessons/13.2-mth161-least-squares-regression/13.2-mth161-least-squares-regression.html) | Pg. 317-324 @diez2012openintro |
 | Inference for Linear Regression | Pg. 331-334 @diez2012openintro |
 | Hypothesis Testing for Linear Regression | - |
 | Comparing Many Means | Pg. 285-294 @diez2012openintro |

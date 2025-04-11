@@ -347,7 +347,7 @@ simulated_scatter %>%
 
 ## Activity: Examine a Linear Model
 
-1. Make sure you have a copy of the *W 4/9 Worksheet*. This will be handed out physically and it is also digitally available on Moodle.
+1. Make sure you have a copy of the *W 4/9 Worksheet*. This will be handed out physically. This worksheet will be available on Moodle after class.
 2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
 3. Get together with another student.
 4. Discuss your results.
