@@ -1,0 +1,129 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{F 4/11 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(statsr)
+library(broom)
+library(gridExtra)
+library(kableExtra)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Determine Confidence Intervals of a Linear Model
+
+### 1. Human Freedom Index
+
+The Human Freedom Index is a report that attempts to summarize the idea of “freedom” through a bunch of different variables for many countries around the globe. In this data set we focus on two continuous numerical variables:
+
+* `pf_score` (response variable), an estimated score of how the citizens of a country have freedoms, where higher score means more freedoms while lower scores means less freedoms.
+* `pf_expression_control` (explanatory variable), an estimated score of how media content is pressured and controlled by the government, where higher scores means less media control while lower means more control.
+
+a. Below is a scatter plot of the data along with a best-fit linear model (in black line) and a 99% confidence interval (shaded region). Suppose that the estimated slope is $b_1 = 0.54$ and intercept is $b_0 = 4.28$. Write the linear model, interpret the estimates in context, and describe what the confidence interval represent on the plot.
+
+```{r}
+hfi_2016 <- hfi %>% 
+  filter(year == 2016) %>% 
+  select(countries,pf_score,pf_expression_control) %>% 
+  drop_na()
+
+mod <- lm(pf_score ~ pf_expression_control, data = hfi_2016)
+preds <- hfi_2016 %>% 
+  mutate(pf_score_hat = predict(mod),
+         resids = pf_score-pf_score_hat)
+mod_summary <- tidy(mod) %>%
+  mutate(SE = std.error) %>% 
+  select(term,estimate) %>% 
+  mutate(term = case_when(
+    term == "(Intercept)" ~ "$b_0$",
+    term == "pf_expression_control" ~ "$b_1$"
+  ))
+```
+
+```{r message=FALSE, warning=FALSE, fig.align='left', fig.height=3,fig.width=4}
+ggplot(hfi_2016,aes(x=pf_expression_control,y=pf_score)) + 
+  geom_point(color="darkgray") + 
+  geom_smooth(method="lm",formula="y ~ x",se=TRUE,level=0.99,color="black") + 
+  theme_minimal()
+```
+\vfill
+
+### 2. Confidence Intervals for the Estimates
+
+Continued from Problem (1). Determine the 99% confidence interval of the slope and intercept estimates.
+
+a. Below is a table of summary statistics of the variables. Use the given table to compute the following:
+
+  * The slope ($b_1$) and intercept estimates ($b_0$)
+  * The standard error of the regression ($s$) 
+  * The standard errors of the slope ($\text{SE}_{b_1}$) and intercept ($\text{SE}_{b_0}$) estimates
+
+Show how the above values are computed.
+
+```{r}
+hfi_2016_stats <- hfi_2016 %>% 
+  summarise(piv = 1,
+            `($n$) sample size` = 162,
+            `($\\bar{x}$) pf expression control mean` = mean(pf_expression_control),
+            `($\\bar{y}$) pf score mean` = mean(pf_score),
+            `($s_x$) pf expression control st. dev.` = sd(pf_expression_control),
+            `($s_y$) pf score st. dev.` = sd(pf_score),
+            `($r$) corr. coeff.` = cor(pf_expression_control,pf_score),
+            `($s_{\\epsilon}$) residuals st. dev.` = sd(preds$resids)) %>% 
+  pivot_longer(!piv, names_to = "statistics",
+               values_to = "estimates") %>% 
+  select(-piv)
+
+kable(hfi_2016_stats,digits=2,align="l",format="latex",escape=FALSE)
+```
+
+b. Compute the degrees of freedom $df$ and determine the critical $t_{df}^*$ using a 0.99 confidence level. Show how these values are computed.
+\vfill
+
+c. Compute the confidence interval for the slope estimate. Interpret this confidence interval in context. Explain your reasoning.
+\vfill
+
+d. Compute the confidence interval for the intercept estimate. Interpret this confidence interval in context. Explain your reasoning.
+\vfill
+
+## **References**
+
+::: {#refs}
+:::

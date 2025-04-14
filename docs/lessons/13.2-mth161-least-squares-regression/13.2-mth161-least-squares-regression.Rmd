@@ -196,7 +196,7 @@ $$
 \text{mean of y} \longrightarrow & \bar{y} = \frac{1}{n} \left( y_1 + y_2 + \cdots + y_n \right) \\
 \text{standard deviation of x} \longrightarrow & s_x = \sqrt{\frac{1}{n-1} \left( \left(x_1 - \bar{x}\right)^2 + \left(x_2 - \bar{x}\right)^2 + \cdots + \left(x_n - \bar{x}\right)^2 \right)} \\
 \text{standard deviation of y} \longrightarrow & s_y = \sqrt{\frac{1}{n-1} \left( \left(y_1 - \bar{y}\right)^2 + \left(y_2 - \bar{y}\right)^2 + \cdots + \left(y_n - \bar{y}\right)^2 \right)} \\
-\text{correlation of x and y} \longrightarrow & r = \frac{\left( \left(x_1 - \bar{x} \right)\left(y_1 - \bar{y} \right) + \left(x_2 - \bar{x} \right)\left(y_2 - \bar{y}\right) + \cdots + \left(x_n - \bar{x} \right)\left(y_n - \bar{y}\right) \right)}{\sqrt{\left( \left(x_1 - \bar{x}\right)^2 + \left(x_2 - \bar{x}\right)^2 + \cdots + \left(x_n - \bar{x}\right)^2 \right) \left( \left(y_1 - \bar{y}\right)^2 + \left(y_2 - \bar{y}\right)^2 + \cdots + \left(y_n - \bar{y}\right)^2 \right) }} \\
+\text{correlation of x and y} \longrightarrow & r = \frac{\left( \left(x_1 - \bar{x} \right)\left(y_1 - \bar{y} \right) + \cdots + \left(x_n - \bar{x} \right)\left(y_n - \bar{y}\right) \right)}{\sqrt{\left( \left(x_1 - \bar{x}\right)^2 + \cdots + \left(x_n - \bar{x}\right)^2 \right) \left( \left(y_1 - \bar{y}\right)^2 + \cdots + \left(y_n - \bar{y}\right)^2 \right) }} \\
 \text{best fit slope} \longrightarrow & b_1 = \frac{s_y}{s_x} r \\
 \text{best fit intercept} \longrightarrow & b_0 = \bar{y} - b_1 \bar{x}
 \end{aligned}

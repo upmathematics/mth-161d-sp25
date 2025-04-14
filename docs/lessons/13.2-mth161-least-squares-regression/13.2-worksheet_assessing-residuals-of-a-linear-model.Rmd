@@ -86,7 +86,7 @@ a. The correlation coefficient of the two numerical variables $x$ and $y$ is $r 
 b. The mean of $x$ is $\bar{x} = 0.5240$. The mean of $y$ is $\bar{y} = -1.7337$. Apply the point-slope equation using the means $(\bar{x},\bar{y})$ and the slope to write the equation of the red line shown in the scatter plot. What is the equation of the linear model? What is the intercept of the linear model?
 \vfill
 
-## 2. Residual Analysis
+### 2. Residual Analysis
 
 Continued from Problem (1).
 

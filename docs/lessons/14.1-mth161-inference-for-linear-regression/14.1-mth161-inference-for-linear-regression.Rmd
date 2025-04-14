@@ -1,0 +1,476 @@
+---
+title: "Inference for Linear Regression"
+subtitle: "Elementary Statistics"
+author: "MTH-161D | Spring 2025 | University of Portland"
+date: "April 14, 2025"
+output:
+  slidy_presentation:
+    font_adjustment: +5
+    footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
+bibliography: ../../references.bib
+csl: ../../apa.csl
+link-citation: true
+nocite: '@*'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(gridExtra)
+library(latex2exp)
+library(kableExtra)
+library(broom)
+library(scales)
+library(infer)
+library(tidymodels)
+data(COL)
+seed <- 42
+```
+
+## Objectives
+
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
+- **Introduce inference for linear regression**
+- **Develop an understanding of the sampling distribution of the slope and intercept**
+- **Know how to compute the confidence intervals of the slope and intercept**
+- **Activity: Determine Confidence Intervals of a Linear Model**
+::::
+
+:::: {.column width=15%}
+::::
+
+## Previously... (1/2)
+
+**Linear Regression**
+
+\[ y = \beta_0 + \beta_1 x + \epsilon  \]
+
+* $y$ is the outcome, $x$ is the predictor, $\beta_0$ is the intercept, and $\beta_1$ is the slope. The notation $\epsilon$ is the model's error (residuals).
+* We estimate the slope $b_1$ and intercept $b_0$ of the least squares regression line by minimizing the sum of squared residuals.
+* The slope is given by $b_1 = \frac{s_y}{s_x} r$ , and the intercept is $b_0 = \bar{y} - b_1 \bar{x}$ , where $r$ is the correlation coefficient, $s_x$ and $s_y$ are the standard deviations of $x$ and $y$, and $\bar{x}$, $\bar{y}$ are their respective means.
+
+## Previously... (2/2)
+
+**Confidence Interval**
+
+$$\text{point estimate} \pm z^* SE$$
+
+where $SE$ is the standard error and $z^*$ is the critical z-value for a given confidence level assuming a standard normal distribution. Use $t_{df}^*$ for assuming a t-distribution given degrees of freedom $df$.
+
+## Case Study I
+
+```{r sandpop, fig.cap = "Revenue as a linear model of advertising dollars for a population of sandwich stores, in thousands of dollars.", out.width="70%", fig.align='center', fig.width=6,fig.height=4, warning=FALSE, message=FALSE}
+set.seed(4747)
+popsize <- 1000
+ad <- rnorm(popsize, 4, 1)
+rev <- 12 + 4.7 * ad + rnorm(popsize, 0, 8)
+sandwich <- tibble(ad, rev)
+
+ggplot(sandwich, aes(x = ad, y = rev)) +
+  geom_point(alpha = 0.5, size = 2) +
+  geom_smooth(method = "lm", se = FALSE, fullrange = TRUE) +
+  scale_x_continuous(labels = label_dollar(suffix = "K")) +
+  scale_y_continuous(labels = label_dollar(suffix = "K")) +
+  labs(
+    x = "Amount spent on advertising",
+    y = "Revenue",
+    title = "Chain sandwich store",
+    subtitle = "Hypothetical population"
+  ) +
+  coord_cartesian(ylim = c(0, 65)) + 
+  theme_minimal()
+```
+
+There are 1000 stores in our sample. Suppose that we know the population slope $\beta_1 = 4.7$ and intercept $\beta_0 = 12$.
+
+## Case Study I: The Linear Model
+
+The population model is: $$y_{revenue} = \beta_0 + \beta_1 x_{advertising} + e$$ where $y$ is the response, $x$ is the predictor, $\beta_0$ is the intercept, $\beta_1$ is the slope, and $e$ is the error term.
+
+```{r echo=FALSE}
+mod <- lm(rev ~ ad, data=sandwich)
+```
+
+The least squares regression model uses the data to find a best linear fit:  $$\hat{y}_{revenue} = b_0 + b_1 x_{advertising}.$$ where $b_0 = 11.23$, $b_1 = 4.85$. There will be our point estimates.
+
+## Case Study I: Resdiual Analysis (1/2)
+
+```{r echo=FALSE}
+preds <- sandwich %>% 
+  mutate(rev_hat = predict(mod, sandwich),
+         resids = rev-rev_hat)
+```
+
+```{r echo=FALSE, fig.align='center', fig.height=2,fig.width=6, out.width="80%"}
+p1 <- ggplot(preds,aes(x=resids)) + 
+  geom_histogram(bins=30) + 
+  xlab("residuals") + 
+  ylab("count") + 
+  theme_minimal()
+
+p2 <- ggplot(preds,aes(x=rev_hat,y=resids)) + 
+  geom_point() + 
+  geom_hline(yintercept = 0, color="blue", linetype="dashed") + 
+  xlab("predicted revenue") + 
+  ylab("residuals") + 
+  theme_minimal()
+
+grid.arrange(p1,p2,nrow=1)
+```
+
+* The residuals appear approximately normal, supporting the normality assumption.
+* The residual plot shows roughly constant variance, suggesting homoskedasticity.
+* Slight clustering near the center may require further investigation but otherwise the residuals are independent of the model (no pattern).
+
+## Case Study I: Resdiual Analysis (2/2)
+
+A **Q-Q plot (quantile-quantile plot)** is a graphical tool used to assess whether a dataset follows a particular theoretical distribution—most commonly, the normal distribution.
+
+:::: {.column width=49%}
+```{r echo=FALSE, fig.align='center', fig.height=3, fig.width=4, out.width='100%'}
+ggplot(preds,aes(sample=resids)) + 
+  stat_qq() + 
+  stat_qq_line(color="blue") + 
+  xlab("theoretical quantiles") + 
+  ylab("sample quantiles") + 
+  theme_minimal()
+```
+::::
+
+:::: {.column width=50%}
+* In regression, we often use a Q-Q plot of residuals to check if they are normally distributed --one of the important assumptions for valid inference for linear regression.
+* Quick interpretation:
+  - Straight line means normality is a reasonable assumption.
+  - Curved or S-shaped means deviations from normality.
+  - Outliers far from the line means possible extreme values.
+::::
+
+## Case Study I: Variability of the Statistic (1/4)
+
+```{r echo = FALSE,warning=FALSE, message=FALSE}
+set.seed(470)
+sandwich2 <- sandwich %>%
+  sample_n(size = 20)
+sandwich3 <- sandwich %>%
+  sample_n(size = 20)
+sandwich_many <- sandwich %>%
+  rep_sample_n(size = 20, replace = FALSE, reps = 100)
+```
+
+```{r fig.cap = "A random sample of 20 stores from the entire population. A linear trend between advertising and revenue continues to be observed.", out.width="70%", fig.align='center', fig.width=6,fig.height=4, warning=FALSE, message=FALSE}
+ggplot(sandwich2, aes(x = ad, y = rev)) +
+  geom_point(size = 3, fill = IMSCOL["green", "full"], color = "#FFFFFF", shape = 22) +
+  geom_smooth(method = "lm", se = FALSE, fullrange = TRUE, color = IMSCOL["green", "full"]) +
+  scale_x_continuous(labels = label_dollar(suffix = "K")) +
+  scale_y_continuous(labels = label_dollar(suffix = "K")) +
+  labs(
+    x = "Amount spent on advertising",
+    y = "Revenue",
+    title = "Chain sandwich store",
+    subtitle = "Random sample of 20 stores"
+  ) +
+  coord_cartesian(ylim = c(0, 65)) + 
+  theme_minimal()
+```
+  
+## Case Study I: Variability of the Statistic (2/4)
+
+A second sample of size 20 also shows a positive trend!
+
+```{r fig.cap = "A different random sample of 20 stores from the entire population. Again, a linear trend between advertising and revenue is observed.", out.width="70%", fig.align='center', fig.width=6,fig.height=4, warning=FALSE, message=FALSE}
+
+ggplot(sandwich3, aes(x = ad, y = rev)) +
+  geom_point(size = 3, fill = IMSCOL["gray", "full"], color = "#FFFFFF", shape = 23) +
+  geom_smooth(method = "lm", se = FALSE, fullrange = TRUE, color = IMSCOL["gray", "full"]) +
+  scale_x_continuous(labels = label_dollar(suffix = "K")) +
+  scale_y_continuous(labels = label_dollar(suffix = "K")) +
+  labs(
+    x = "Amount spent on advertising",
+    y = "Revenue",
+    title = "Chain sandwich store",
+    subtitle = "Random sample of 20 stores"
+  ) +
+  coord_cartesian(ylim = c(0, 65)) + 
+  theme_minimal()
+```
+
+## Case Study I: Variability of the Statistic (3/4)
+
+```{r fig.cap = "The linear models from the two different random samples are quite similar, but they are not the same line.", out.width="70%", fig.align='center', warning=FALSE, message=FALSE, fig.width=6,fig.height=4}
+ggplot() +
+  geom_point(data = sandwich2, aes(x = ad, y = rev), 
+             size = 3, , shape = 22,
+             fill = IMSCOL["green", "full"], color = "#FFFFFF") +
+  geom_smooth(data = sandwich2, aes(x = ad, y = rev), 
+              method = "lm", se = FALSE, fullrange = TRUE, 
+              color = IMSCOL["green", "full"]) +
+  geom_point(data = sandwich3, aes(x = ad, y = rev), 
+             size = 3, , shape = 23,
+             fill = IMSCOL["gray", "full"], color = "#FFFFFF") +
+  geom_smooth(data = sandwich3, aes(x = ad, y = rev), 
+              method = "lm", se = FALSE, fullrange = TRUE, 
+              color = IMSCOL["gray", "full"]) +
+  scale_x_continuous(labels = label_dollar(suffix = "K")) +
+  scale_y_continuous(labels = label_dollar(suffix = "K")) +
+  labs(
+    x = "Amount spent on advertising",
+    y = "Revenue",
+    title = "Chain sandwich store",
+    subtitle = "Two random samples of 20 stores"
+  ) +
+  coord_cartesian(ylim = c(0, 65)) + 
+  theme_minimal()
+```
+
+## Case Study I: Variability of the Statistic (4/4)
+
+```{r slopes, fig.cap = "If repeated samples of size 20 are taken from the entire population, each linear model will be slightly different. The red line provides the linear fit to the entire population.", out.width="70%", fig.align='center', fig.width=6,fig.height=4, warning=FALSE, message=FALSE}
+ggplot() +
+  geom_smooth(
+    data = sandwich_many, aes(x = ad, y = rev, group = replicate),
+    method = "lm", se = FALSE, fullrange = TRUE, 
+    color = IMSCOL["gray", "f2"], size = 0.5
+  ) +
+  geom_smooth(
+    data = sandwich, aes(x = ad, y = rev), method = "lm", se = FALSE,
+    fullrange = TRUE, color = IMSCOL["red", "full"]
+  ) +
+  scale_x_continuous(labels = label_dollar(suffix = "K")) +
+  scale_y_continuous(labels = label_dollar(suffix = "K")) +
+  labs(
+    x = "Amount spent on advertising",
+    y = "Revenue",
+    title = "Chain sandwich store",
+    subtitle = "100 random samples of 20 stores"
+  ) +
+  coord_cartesian(ylim = c(0, 65)) + 
+  theme_minimal()
+```
+  
+## Case Study I: Sampling Distribution of the Slope Estimate
+
+```{r sand20lm, fig.cap="Variability of slope estimates taken from many different samples of stores, each of size 20.", out.width="70%", warning=FALSE, message=FALSE, fig.align='center', fig.width=6,fig.height=4}
+sandwich_many_lm <- sandwich_many %>%
+  group_by(replicate) %>%
+  do(tidy(lm(rev ~ ad, data = .))) %>%
+  filter(term == "ad")
+
+ggplot(sandwich_many_lm, aes(x = estimate)) +
+  geom_histogram(binwidth = 0.5) +
+  labs(
+    x = "Slope estimate",
+    y = "Count",
+    title = "Chain sandwich store",
+    subtitle = "100 random samples of 20 stores"
+    ) + 
+  geom_vline(xintercept = mean(sandwich_many_lm$estimate),color="red") + 
+  annotate(x=mean(sandwich_many_lm$estimate),y=+Inf,label="mean slope",vjust=11,geom="label",color="red") +
+  geom_vline(xintercept = 4.7,color="blue") + 
+  annotate(x=4.7,y=+Inf,label="actual slope",vjust=13,geom="label",color="blue") +
+  theme_minimal()
+```
+
+## Case Study I: Confidence Interval
+
+The 95% Confidence interval for the slope and intercept using the bootstrapped samples. Here, we are using the percentiles of the bootstrapped samples to estimate the confidence interval.
+
+```{r message=FALSE, warning=FALSE}
+boots <- bootstraps(sandwich, times = 100, apparent = TRUE)
+
+fit_lm_on_bootstrap <- function(split) {
+    lm(rev ~ ad, analysis(split))
+}
+
+boot_models <-
+  boots %>% 
+  dplyr::mutate(model = map(splits, fit_lm_on_bootstrap),
+         coef_info = map(model, tidy))
+
+boot_coefs <- 
+  boot_models %>% 
+  unnest(coef_info) %>% 
+  mutate(term = case_when(
+    term == "(Intercept)" ~ "$b_0$",
+    term == "ad" ~ "$b_1$"
+  ))
+
+percentile_intervals <- int_pctl(boot_models, coef_info) %>%
+  mutate(estimate = .estimate, `lower bound` = .lower, `upper bound` = .upper)%>% 
+  select(term,estimate,`lower bound`,`upper bound`) %>% 
+  mutate(term = case_when(
+    term == "(Intercept)" ~ "$b_0$",
+    term == "ad" ~ "$b_1$"
+  ))
+kable(percentile_intervals,digits=4)
+```
+
+```{r message=FALSE, warning=FALSE, fig.align='center', fig.width=6,fig.height=3, out.width="80%"}
+ggplot(boot_coefs, aes(estimate)) +
+  geom_histogram(bins = 30) +
+  facet_wrap( ~ term, scales = "free") +
+  labs(title="95% confidence interval parameter estimates") +
+  geom_vline(aes(xintercept = `lower bound`), data = percentile_intervals, col = '#528fad') +
+  geom_vline(aes(xintercept = `upper bound`), data = percentile_intervals, col = '#528fad') + 
+  theme_minimal()
+```
+
+## Case Study I: Best Fit Line and Confidence Interval
+
+```{r sandpop2, out.width="70%", fig.align='center', fig.width=6,fig.height=4, warning=FALSE, message=FALSE}
+set.seed(4747)
+popsize <- 1000
+ad <- rnorm(popsize, 4, 1)
+rev <- 12 + 4.7 * ad + rnorm(popsize, 0, 8)
+sandwich <- tibble(ad, rev)
+
+ggplot(sandwich, aes(x = ad, y = rev)) +
+  geom_point(alpha = 0.5, size = 2) +
+  geom_smooth(method = "lm", se = TRUE, fullrange = TRUE) +
+  scale_x_continuous(labels = label_dollar(suffix = "K")) +
+  scale_y_continuous(labels = label_dollar(suffix = "K")) +
+  labs(
+    x = "Amount spent on advertising",
+    y = "Revenue",
+    title = "Chain sandwich store",
+    subtitle = "Hypothetical population"
+  ) +
+  coord_cartesian(ylim = c(0, 65)) + 
+  theme_minimal()
+```
+
+* We can conclude that we are 95% confident that the true slope that models the association between spending amount on advertising and revenue is \$4.40K to \$5.30K.
+* We are also 95% confident that the true intercept is in between \$9.47K and \$13.22K revenue  if spending amount is \$0K.
+* Note that the slope of 0 --which means no association between the variables-- is not within the confidence interval, suggesting a statistically significant relationship.
+
+## Using the $t$-distribution (1/2)
+
+An alternative to the bootstrapping method is using the $t$-distribution to determine the confidence interval at a given confidence level.
+
+The confidence intervals for the slope $b_1$ and intercept $b_1$ estimates is given by
+
+\[
+\begin{aligned}
+\text{slope } \longrightarrow b_1 \pm t_{df}^* \text{SE}_{b_1} \\
+\text{intercept } \longrightarrow b_0 \pm t_{df}^* \text{SE}_{b_0}
+\end{aligned}
+\]
+
+where $\text{SE}_{b_1}$ and $\text{SE}_{b_0}$ are the standard errors for the slope and intercept sampling distributions respectively. The critical $t_{df}^*$ is computed using the $t$-distribution given a confidence level and degrees of freedom, $df = n - 1$, where $n$ is the sample size.
+
+## Using the $t$-distribution (2/2)
+
+Computing the standard errors $\text{SE}_{b_1}$ and $\text{SE}_{b_0}$ are *fairly complicated* and it is usually computed via functions or bootstrapping simulations using software --such as R.
+
+However, the standard errors are given by
+
+\[
+\begin{aligned}
+\text{SE}_{b_1} & = \frac{1}{s_x} \times \sqrt{\frac{s^2}{n}} \\
+\text{SE}_{b_0} & = \sqrt{1 + \frac{\bar{x}}{s_x}} \times \sqrt{\frac{s^2}{n}}
+\end{aligned}
+\]
+
+where:
+
+* $s$ is the standard error of the regression, $s = s_{\epsilon} \sqrt{\frac{n-1}{n-2}}$, where $s_{\epsilon}$ is the standard deviation of the residual errors
+* $\bar{x}$ is the mean of $x$, the explanatory variable
+* $s_x$ is the standard deviation of $x$
+* $n$ is the sample size
+
+## Case Study I: Confidence Intervals using the $t$-Distribution (1/2)
+
+The summary statistics of our explanatory and response variables are given below, which includes the correlation coefficient.
+
+:::: {.column width=49%}
+```{r}
+stats <- sandwich %>% 
+  summarise(piv = 1,
+            `$\\bar{x}$` = mean(ad),
+            `$\\bar{y}$` = mean(rev),
+            `$s_x$` = sd(ad),
+            `$s_y$` = sd(rev),
+            `$r$` = cor(ad,rev)) %>% 
+  pivot_longer(!piv, names_to = "statistics",
+               values_to = "estimates") %>% 
+  select(-piv)
+kable(stats,digits=4)
+```
+::::
+
+:::: {.column width=50%}
+```{r}
+mod <- lm(rev ~ ad, data = sandwich)
+preds <- sandwich %>% 
+  mutate(rev_hat = predict(mod),
+         resids = rev-rev_hat)
+mod_summary <- tidy(mod) %>%
+  mutate(SE = std.error) %>% 
+  select(term,estimate,SE) %>% 
+  mutate(term = case_when(
+    term == "(Intercept)" ~ "$b_0$",
+    term == "ad" ~ "$b_1$"
+  ))
+kable(mod_summary,digits=4)
+```
+
+The best fit slope and intercept of the linear regression line is
+
+* $b_0 = \bar{y} - b_1 \bar{x} = 30.7142 - 4.853 (4.0137) \approx 11.23$
+* $b_1 = \frac{s_y}{s_x} r = \left( \frac{9.2371}{0.9909} \right) 0.5207 \approx 4.85$
+::::
+
+* The sample size is $n = 1000$.
+* The standard deviation of the residuals is $s_{\epsilon} = 7.8863$.
+* The standard error of the regression is $s = s_{\epsilon} \sqrt{\frac{n-1}{n-2}} = 7.8863 \sqrt{\frac{1000-1}{1000-2}} \approx 7.8903$.
+* Standard errors of the slope and intercept estimates:
+    - $\text{SE}_{b_0} = \sqrt{1 + \frac{\bar{x}}{s_x}} \times \sqrt{\frac{s^2}{n}} = \sqrt{1 + \frac{4.0137}{0.9909}} \times \sqrt{\frac{7.8903^2}{1000}} \approx 1.0415$
+    - $\text{SE}_{b_1} = \frac{1}{s_x} \times \sqrt{\frac{s^2}{n}} = \frac{1}{0.9909} \times \sqrt{\frac{7.8903^2}{1000}} = \approx 0.2519$
+
+## Case Study I: Confidence Intervals using the $t$-Distribution (2/2)
+
+The goal is to determine the 95% confidence interval of the slope and intercept estimates using the $t$-distribution approach.
+
+* The degrees of freedom is $df = n - 1 = 1000 - 1 = 999$
+* For a $0.95$ confidence level $t_{df}^* = t_{999}^* \approx 1.9623$
+* 95% confidence interval for the slope estimate:
+
+\[
+\begin{aligned}
+b_1 & \pm t_{df}^* \times \text{SE}_{b_1} \\
+4.8536 & \pm 1.9623 \times 0.2519
+\end{aligned}
+\]
+$$(4.3593,5.3479)$$
+
+* 95% confidence interval for the intercept estimate:
+
+\[
+\begin{aligned}
+b_0 & \pm t_{df}^* \times \text{SE}_{b_0} \\
+11.2334	 & \pm 1.9623 \times 1.0415
+\end{aligned}
+\]
+$$(9.1897,13.2771)$$
+
+The intervals computed using the $t$-distribution is assuming the CLT conditions and the results here are are approximately equal to the intervals computed using the bootstrapping method.
+
+## Activity: Determine Confidence Intervals of a Linear Model
+
+1. Make sure you have a copy of the *M 4/13 Worksheet*. This will be handed out physically. This worksheet will be available on Moodle after class.
+2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
+3. Get together with another student.
+4. Discuss your results.
+5. Submit your worksheet on Moodle as a `.pdf` file.
+
+## References
+
+::: {#refs}
+:::
