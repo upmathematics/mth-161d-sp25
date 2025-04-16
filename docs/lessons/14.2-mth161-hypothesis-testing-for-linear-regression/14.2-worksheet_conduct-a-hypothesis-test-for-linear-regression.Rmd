@@ -1,0 +1,130 @@
+---
+header-includes: |
+  \usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
+  \fancyhead[RO,R]{\textbf{W 4/16 Worksheet} | Pg. \thepage}
+  \fancyfoot[CO,C]{}
+  \usepackage{float}
+  \usepackage{multirow}
+output:
+  bookdown::pdf_document2:
+    toc: no
+    number_section: no
+urlcolor: blue
+link-citations: yes
+bibliography: ../../../references.bib
+csl: ../../../mbe.csl
+nocite: '@*'
+geometry: "left=0.50in,right=0.50in,top=0.75in,bottom=0.75in"
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(statsr)
+library(broom)
+library(gridExtra)
+library(kableExtra)
+library(MASS)
+data(COL)
+seed = 42
+```
+
+**Name:**
+
+**Collaborators:**
+
+\noindent\rule{\textwidth}{1pt}
+**Instructions:** 
+
+> You must submit your worksheet individually by end-of-class or end-of-day. Your name must exist in your worksheet and the names of your collaborators.
+
+Worksheets are marked mostly on completion, and partially on correctness. It will be marked either pass or fail, there will no detailed feedback on worksheets, and no opportunities for revisions and make-up.
+\noindent\rule{\textwidth}{1pt}
+
+## Conduct a Hypothesis Test for Linear Regression
+
+### 1. Murders and Poverty
+
+Below are data visualizations of poverty and murder rates for 20 metropolitan areas. The visualization shows a scatterplot of the two numerical variables with a best-fit linear regression line along with a confidence interval, a residual distribution histogram, and a residuals plot.
+
+```{r message=FALSE, warning=FALSE, fig.width=7,fig.height=2,fig.align='center',out.width='70%'}
+mod <- lm(annual_murders_per_mil ~ perc_pov, murders)
+mod_resids <- murders %>% 
+  mutate(ampm_hat = predict(mod),
+         resids = annual_murders_per_mil-ampm_hat)
+
+p1 <- ggplot(mod_resids, aes(x=perc_pov,y=annual_murders_per_mil)) + 
+  geom_point(color="darkgray") + 
+  geom_smooth(method="lm",formula = "y~x",color="black",se=TRUE) + 
+  xlab("poverty rate") + 
+  ylab("annual murders per mile") + 
+  ggtitle("Poverty vs Murders") + 
+  theme_minimal()
+p2 <- ggplot(mod_resids, aes(x=resids)) + 
+  geom_histogram(binwidth = 3) + 
+  xlab("residuals") + 
+  ylab("count") + 
+  ggtitle("Residual Distribution") + 
+  theme_minimal()
+p3 <- ggplot(mod_resids, aes(x=ampm_hat,y=resids)) + 
+  geom_point(color="darkgray") + 
+  geom_hline(yintercept=0,linetype="dashed",color="black") + 
+  xlab("predicted poverty rate") + 
+  ylab("residuals") + 
+  ggtitle("Prediction vs Residuals") + 
+  theme_minimal()
+
+grid.arrange(p1,p2,p3,nrow=1)
+```
+
+a. Use the above plots to assess whether the conditions of inference for linear regression are satisfied.
+\vfill
+
+b. The correlation coefficient is $r = 0.8398$. What can you say about the nature and strength of relationship between poverty and murder rates? Explain your reasoning.
+\vfill
+
+c. Use $r$ to compute $R^2$, then interpret this value. Explain your reasoning.
+\vfill
+
+\newpage
+
+### 2. Hypothesis Testing for Linear Regression
+
+Continued from Problem (1). Below is a table of the slope and intercept of the best-fit linear regression line along with their corresponding standard errors.
+
+```{r}
+mod_est <- tidy(mod) %>% 
+  mutate(term = case_when(
+                  term == "(Intercept)" ~ "$b_0$",
+                  term == "perc_pov" ~ "$b_1$"),
+         SE = std.error) %>% 
+  dplyr::select(term,estimate,SE)
+kable(mod_est,digits=4,align="l",format="latex",escape=FALSE)
+```
+
+a. We hypothesize that the observed relationship between poverty and murder rates is statistically significant with a significance value of $\alpha = 0.01$. Write the null and alternative hypothesis --both in full sentences and appropriate mathematical symbols.
+\vfill
+
+b. Write the linear regression model, then interpret the slope and intercept in context.
+\vfill
+
+c. Compute the test statistic for the slope estimate. Show how this test statistic is computed.
+\vfill
+
+d. Determine the p-value. Show how the p-value is computed.
+\vfill
+  
+e. Based on the p-value, what is the conclusion and interpret this conclusion in context? Explain your reasoning.
+\vfill
+
+## **References**
+
+::: {#refs}
+:::

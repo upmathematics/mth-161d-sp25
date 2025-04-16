@@ -3,7 +3,7 @@ header-includes: |
   \usepackage{fancyhdr}
   \pagestyle{fancy}
   \fancyhead[LO,L]{\textbf{MTH-161 D} | Spring 2025}
-  \fancyhead[RO,R]{\textbf{F 4/11 Worksheet} | Pg. \thepage}
+  \fancyhead[RO,R]{\textbf{M 4/14 Worksheet} | Pg. \thepage}
   \fancyfoot[CO,C]{}
   \usepackage{float}
   \usepackage{multirow}

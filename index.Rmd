@@ -241,8 +241,8 @@ The following learning objectives are designed to build on one another, with som
 |  | W 4/16 | Hypothesis Testing for Linear Regression |
 |  | F 4/18 | _Easter vacation_ |
 | **15** | M 4/21 | _Easter Vacation_ |
-|  | W 4/23 | Comparing Many Means |
-|  | F 4/25 | Multiple Linear Regression |
+|  | W 4/23 | Multiple Linear Regression |
+|  | F 4/25 | Comparing Many Means |
 | **16** | Th 5/1 | **Final Assessments <br>(10:30 AM to 12:30 PM)** |
 
 <br>
@@ -596,9 +596,9 @@ The "Read" column in the table below contains page numbers (Pg.) or chapters (ch
 | [Linear Regression](lessons/13.1-mth161-linear-regression/13.1-mth161-linear-regression.html) | Pg. 305-311 @diez2012openintro |
 | [Least-Squares Regression](lessons/13.2-mth161-least-squares-regression/13.2-mth161-least-squares-regression.html) | Pg. 317-324 @diez2012openintro |
 | [Inference for Linear Regression](lessons/14.1-mth161-inference-for-linear-regression/14.1-mth161-inference-for-linear-regression.html) | Pg. 331-334 @diez2012openintro |
-| Hypothesis Testing for Linear Regression | - |
-| Comparing Many Means | Pg. 285-294 @diez2012openintro |
+| [Hypothesis Testing for Linear Regression](lessons/14.2-mth161-hypothesis-testing-for-linear-regression/14.2-mth161-hypothesis-testing-for-linear-regression.html) | - |
 | Multiple Linear Regression | Pg. 343-349 @diez2012openintro |
+| Comparing Many Means | Pg. 285-294 @diez2012openintro |
 
 ## Books \& Online Resources Lists
 

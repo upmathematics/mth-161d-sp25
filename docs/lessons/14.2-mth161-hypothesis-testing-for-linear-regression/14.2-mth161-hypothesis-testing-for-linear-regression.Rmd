@@ -1,0 +1,284 @@
+---
+title: "Hypothesis Testing for Linear Regression"
+subtitle: "Elementary Statistics"
+author: "MTH-161D | Spring 2025 | University of Portland"
+date: "April 16, 2025"
+output:
+  slidy_presentation:
+    font_adjustment: +5
+    footer: "| MTH-161D Spring 2025 | <a href='../../index.html'>Back to the Course Website</a>"
+    css: ../_style.css
+bibliography: ../../references.bib
+csl: ../../apa.csl
+link-citation: true
+nocite: '@*'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, eval=TRUE,message=FALSE, warning=FALSE}
+library(tidyverse)
+library(openintro)
+library(gridExtra)
+library(latex2exp)
+library(kableExtra)
+library(broom)
+library(scales)
+library(infer)
+library(tidymodels)
+data(COL)
+seed <- 42
+```
+
+## Objectives
+
+:::: {.column width=15%}
+::::
+
+:::: {.column width=70%}
+- **Develop an understanding of hypothesis testing for linear regression**
+- **Know the procedural steps for inference for linear regression**
+- **Know how to conclude the hypothesis test for linear regression**
+- **Activity: Conduct a Hypothesis Test for Linear Regression**
+::::
+
+:::: {.column width=15%}
+::::
+
+## Previously...
+
+**Linear Regression**
+
+\[ y = \beta_0 + \beta_1 x + \epsilon  \]
+
+* $y$ is the outcome, $x$ is the predictor, $\beta_0$ is the intercept, and $\beta_1$ is the slope. The notation $\epsilon$ is the model's error (residuals).
+* We estimate the slope $b_1$ and intercept $b_0$ of the least squares regression line by minimizing the sum of squared residuals.
+* The slope is given by $b_1 = \frac{s_y}{s_x} r$ , and the intercept is $b_0 = \bar{y} - b_1 \bar{x}$ , where $r$ is the correlation coefficient, $s_x$ and $s_y$ are the standard deviations of $x$ and $y$, and $\bar{x}$, $\bar{y}$ are their respective means.
+
+## Case Study I
+
+Consider data births gathered originally from the US Department of Health and Human Services. The [`births14`](http://openintrostat.github.io/openintro/reference/births14.html) data can be found in the [**openintro**](http://openintrostat.github.io/openintro) R package.
+
+```{r out.width="70%", fig.align='center', fig.width=6,fig.height=4, warning=FALSE, message=FALSE}
+ggplot(births14, aes(x = weeks, y = weight)) +
+  geom_point(alpha = 0.5, size = 2) +
+  geom_smooth(method = "lm", se = FALSE, fullrange = TRUE) +
+  labs(
+    x = "weeks",
+    y = "weight"
+  ) +
+  theme_minimal()
+```
+
+## Case Study I: The Linear Model
+
+We want to predict the baby weight based on number of weeks. The population linear model is
+$$y_{weight} = \beta_0 + \beta_1 x_{weeks} + e$$
+
+
+```{r echo=FALSE}
+mod <- lm(weight ~ weeks, data=births14)
+```
+
+The relevant hypotheses for the linear model setting can be written in terms of the population slope parameter.
+
+Here the population refers to a larger population of births in the US.
+
+- $H_0: \beta_1= 0$, there is no linear relationship between `weight` and `weeks`.
+- $H_A: \beta_1 \ne 0$, there is some linear relationship between `weight` and `weeks`.
+
+Let's set the significance value to be $\alpha = 0.01$.
+
+## Technical Conditions
+
+* **Linearity.** The scatterplot of the explanatory and response must be nearly linear.
+* **Independent Observations.** The samples must be independent.
+* **Normally Distributed Residuals.** The errors must show a nearly normal distribution.
+* **Constant or equal variability.** The error must exhibit homoscedasticity.
+
+## Case Study 1: Residual Analysis (1/2)
+
+```{r echo=FALSE}
+preds <- births14 %>% 
+  mutate(weight_hat = predict(mod, births14),
+         resids = weight-weight_hat)
+```
+
+```{r echo=FALSE, fig.align='center', fig.height=2,fig.width=6, out.width="80%"}
+p1 <- ggplot(preds,aes(x=resids)) + 
+  geom_histogram(bins=30) + 
+  xlab("residuals") + 
+  ylab("count") + 
+  theme_minimal()
+
+p2 <- ggplot(preds,aes(x=weight_hat,y=resids)) + 
+  geom_point() + 
+  geom_hline(yintercept = 0, color="blue", linetype="dashed") + 
+  xlab("predicted weight") + 
+  ylab("residuals") + 
+  theme_minimal()
+
+grid.arrange(p1,p2,nrow=1)
+```
+
+* The residuals appear approximately normal, supporting the normality assumption.
+* The residual plot shows roughly "constant" variance, suggesting homoskedasticity.
+* Slight clustering near the center may require further investigation but otherwise the residuals are independent of the model (no pattern).
+
+## Case Study 1: Residual Analysis (2/2)
+
+```{r echo=FALSE, fig.align='center', fig.height=3, fig.width=4, out.width='70%'}
+ggplot(preds,aes(sample=resids)) + 
+  stat_qq() + 
+  stat_qq_line(color="blue") + 
+  xlab("theoretical quantiles") + 
+  ylab("sample quantiles") + 
+  theme_minimal()
+```
+
+## Case Study 1: Least Squares Approximation
+
+* The least squares estimates of the intercept and slope are given in the estimate column
+
+```{r ls-births}
+est <- lm(weight ~ weeks, data = births14) %>%
+  tidy() %>%
+  mutate(term = case_when(
+    term == "(Intercept)" ~ "$b_0$",
+    term == "weeks" ~ "$b_1$"),
+    SE = std.error) %>% 
+  select(-statistic,-p.value,-std.error)
+
+kable(est,digits=4)
+```
+
+The least squares regression model uses the data to find a sample linear fit: 
+$$\hat{y}_{weight} = -3.5980 + 0.2792 \times x_{weeks}.$$
+
+## Hypothesis Testing - Randomization Method (1/2)
+
+```{r permweekslm, fig.asp = 0.5, out.width="70%", message=FALSE, warning=FALSE, fig.align='center'}
+set.seed(470)
+p1 <- ggplot(births14, aes(x = weeks, y = sample(weight))) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, fullrange = TRUE) +
+  labs(
+    y = "Permuted weight of baby (pounds)",
+    x = "Length of gestation (weeks)",
+    title = "First permutation of \nweight"
+  )
+
+p2 <- ggplot(births14, aes(x = weeks, y = sample(weight))) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, fullrange = TRUE) +
+  labs(
+    y = "Permuted weight of baby (pounds)",
+    x = "Length of gestation (weeks)",
+    title = "Second permutation of \nweight"
+  )
+
+grid.arrange(p1,p2,nrow=1)
+```
+
+Two different permutations of the `weight` variable with slightly different least squares regression lines.
+
+## Hypothesis Testing - Randomization Method (2/2)
+
+```{r nulldistBirths, fig.asp = 0.5, out.width="70%", fig.align='center'}
+perm_slope <- births14 %>%
+  specify(weight ~ weeks) %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 1000, type = "permute") %>%
+  calculate(stat = "slope")
+
+obs_slope <- births14 %>%
+  specify(weight ~ weeks) %>%
+  calculate(stat = "slope") %>%
+  pull()
+
+ggplot(data = perm_slope, aes(x = stat)) +
+  geom_histogram(bins=40) +
+  geom_vline(xintercept = obs_slope, color = IMSCOL["red", "full"]) +
+  labs(x = "randomly generated slopes", y = "Count") + 
+  theme_minimal()
+```
+
+Histogram of slopes given different permutations of the `weight` variable. The vertical red line is at the observed value of the slope, 0.28.
+
+## Hypothesis Testing - Theoretical Method (1/2)
+
+* The least squares estimates of the intercept and slope are given in the estimate column
+
+```{r}
+kable(est,digits=4)
+```
+
+* Computing the test statistic. $$t = \frac{b_1 - \text{null value}}{SE} = \frac{0.2792 - 0}{0.0135} = 20.69$$
+* Degrees of Freedom: $df = n - k - 1$, where $n$ is the sample size and $k$ is the number of predictors. So, in this case, $df = 1000 - 2 = 998$.
+
+## Hypothesis Testing - Theoretical Method (2/2)
+
+* We multiply the p-value by 2 since it's a two sided test, but it's still 0.
+* Since the p-value is less than $\alpha = 0.01$, then we reject the null hypothesis, meaning we have enough evidence to support that the true slope (relationship) between weeks and weight is non-zero.
+* More specifically, since the test statistic is positive, then we can further conclude that the relationship is strongly positive.
+
+**Using R to compute the p-value**
+
+```{r echo=TRUE}
+df <- 998 # degrees of freedom
+t <- 20.69 # test statistic
+2*(1-pt(t,998))
+```
+
+## Confidence Interval (1/2)
+
+**99% Confidence interval for the slope**
+
+$$b_1 \pm t_{df}^* \text{SE}_{b_1}$$
+
+* Critical t-star for a 0.99 confidence level: $t_{df}^* = t_{998}^* = 2.5808$. Note that we use $1-\alpha$ as the confidence level, where $alpha = 0.01$.
+
+**Using R to compute the critical t-star**
+
+```{r echo=TRUE}
+df <- 998 # degrees of freedom
+lt <- (1-0.99)/2 # lower tail probability
+qt(lt,df)
+```
+
+\[
+\begin{aligned}
+0.2792 & \pm  2.5808 \times 0.0135
+\end{aligned}
+\]
+$$(0.2444,0.3140)$$
+
+We are 99% confident that the true slope is in between 0.2444 and 0.3140. Note that the null value of 0 (no slope) is not within the interval.
+
+## Confidence Interval (2/2)
+
+```{r out.width="70%", fig.align='center', fig.width=6,fig.height=4, warning=FALSE, message=FALSE}
+ggplot(births14, aes(x = weeks, y = weight)) +
+  geom_point(alpha = 0.5, size = 2) +
+  geom_smooth(method = "lm", se = TRUE, fullrange = TRUE) +
+  labs(
+    x = "weeks",
+    y = "weight"
+  ) +
+  theme_minimal()
+```
+
+## Activity: Conduct a Hypothesis Test for Linear Regression
+
+1. Make sure you have a copy of the *W 4/16 Worksheet*. This will be handed out physically. This worksheet will be available on Moodle after class.
+2. Work on your worksheet by yourself for 10 minutes. Please read the instructions carefully. Ask questions if anything need clarifications.
+3. Get together with another student.
+4. Discuss your results.
+5. Submit your worksheet on Moodle as a `.pdf` file.
+
+## References
+
+::: {#refs}
+:::
