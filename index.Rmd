@@ -241,8 +241,8 @@ The following learning objectives are designed to build on one another, with som
 |  | W 4/16 | Hypothesis Testing for Linear Regression |
 |  | F 4/18 | _Easter vacation_ |
 | **15** | M 4/21 | _Easter Vacation_ |
-|  | W 4/23 | Multiple Linear Regression |
-|  | F 4/25 | Comparing Many Means |
+|  | W 4/23 | Reading Period |
+|  | F 4/25 | Reading Period |
 | **16** | Th 5/1 | **Final Assessments <br>(10:30 AM to 12:30 PM)** |
 
 <br>
